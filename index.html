@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revender – La Moda</title>
+  <link rel="stylesheet" href="https://lamoda.com.br/wp-content/themes/swag/animate.css?m=1737055453">
+  <link rel="stylesheet" href="https://lamoda.com.br/wp-content/themes/swag/style.css?m=1737055453">
+  <link rel="stylesheet" href="https://lamoda.com.br/wp-content/plugins/gutenberg/build/styles/block-library/cover/style.min.css?m=1768920176">
+  <link rel="stylesheet" href="https://lamoda.com.br/wp-content/plugins/gutenberg/build/styles/block-library/navigation/style.min.css?m=1775663866">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #202121;
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 6%;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 0 rgba(0,0,0,.08);
+    }
+    .site-nav img { height: 36px; }
+    .site-nav ul { list-style: none; display: flex; gap: 32px; }
+    .site-nav a { text-decoration: none; color: #202121; font-size: 14px; font-weight: 400; }
+    .site-nav a:hover { color: #ff0068; }
+    .nav-cta {
+      background: #ff0068; color: #fff !important;
+      padding: 10px 22px; border-radius: 6px;
+      font-weight: 500 !important;
+    }
+
+    /* ── HERO ────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding-top: 72px;
+    }
+    .hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.10);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      padding: 0 20px;
+    }
+    .hero-content h1 {
+      font-size: clamp(32px, 5vw, 64px);
+      font-weight: 300;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+    }
+    .hero-content p {
+      font-size: 18px;
+      font-weight: 300;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── MARCAS ──────────────────────────────────── */
+    .section-title {
+      text-align: center;
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 300;
+      margin-bottom: 8px;
+    }
+    .marcas {
+      padding: 72px 6%;
+      background: #fff;
+    }
+    .marcas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .marca-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .marca-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .marca-card .marca-logo {
+      position: absolute;
+      bottom: 20px; left: 20px;
+      height: 48px;
+      object-fit: contain;
+      filter: brightness(10);
+    }
+
+    /* ── MULTIPLICA ──────────────────────────────── */
+    .multiplica-header {
+      background: #f7f7f7;
+      padding: 40px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .multiplica-header img.juntos { max-width: 420px; width: 100%; }
+    .multiplica-header img.logo-x { width: 200px; }
+
+    .multiplica-content {
+      background: #f7f7f7;
+      padding: 0 6% 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+    }
+    .multiplica-intro {
+      grid-column: 1 / 2;
+      padding-right: 40px;
+    }
+    .multiplica-intro h2 {
+      font-size: clamp(24px, 2.5vw, 40px);
+      font-weight: 500;
+      color: #ff0068;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .multiplica-intro p { font-size: 14px; font-weight: 300; line-height: 1.7; }
+
+    .benefits-col {
+      padding: 0 16px;
+      border-left: 1px solid #e0e0e0;
+    }
+    .benefit {
+      padding: 20px 16px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .benefit:last-child { border-bottom: none; }
+    .benefit h5 {
+      font-size: 14px;
+      font-weight: 500;
+      color: #ff0068;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .benefit p { font-size: 13px; font-weight: 300; line-height: 1.6; color: #444; }
+
+    /* ── STATS + FACHADA ─────────────────────────── */
+    .stats-section {
+      padding: 64px 6%;
+      background: #fff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .stat-item { }
+    .stat-number {
+      font-size: 56px;
+      font-weight: 700;
+      color: #ff0068;
+      line-height: 1;
+    }
+    .stat-label { font-size: 14px; font-weight: 300; color: #666; margin-top: 4px; }
+    .fachada-img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    /* ── GOVERNANÇA ──────────────────────────────── */
+    .governanca {
+      padding: 80px 6%;
+      background: #fff;
+      text-align: center;
+    }
+    .governanca h2 {
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+    .governanca > p {
+      max-width: 700px;
+      margin: 0 auto 48px;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #444;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .team-card img {
+      width: 100%;
+      border-radius: 16px;
+      aspect-ratio: 326/599;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+    .team-card h5 { font-size: 22px; font-weight: 300; margin-bottom: 4px; }
+    .team-card a { font-size: 13px; color: #ff0068; text-decoration: none; }
+
+    /* ── VANTAGENS CTA ───────────────────────────── */
+    .vantagens {
+      background: #202121;
+      padding: 80px 6%;
+      text-align: center;
+      color: #fff;
+    }
+    .vantagens h2 {
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+    .vantagens p {
+      max-width: 640px;
+      margin: 0 auto 36px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #ccc;
+    }
+    .btn-cta {
+      display: inline-block;
+      background: #ff0068;
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 40px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: background .2s;
+    }
+    .btn-cta:hover { background: #d4005a; }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      background: #fff;
+      border-top: 1px solid #e0e0e0;
+      padding: 48px 6%;
+    }
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    .footer-cols h5 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .footer-cols ul { list-style: none; }
+    .footer-cols li { margin-bottom: 8px; }
+    .footer-cols a { text-decoration: none; color: #444; font-size: 14px; }
+    .footer-cols a:hover { color: #ff0068; }
+    .social-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .social-links a {
+      width: 36px; height: 36px;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #202121;
+      text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+    .social-links a:hover { border-color: #ff0068; color: #ff0068; }
+    .footer-bottom {
+      border-top: 1px solid #e0e0e0;
+      padding-top: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-addresses { display: flex; gap: 48px; flex-wrap: wrap; }
+    .footer-addr p { font-size: 13px; color: #666; line-height: 1.5; }
+    .footer-addr strong { font-size: 14px; color: #202121; }
+    .footer-logo img { max-width: 180px; opacity: .7; }
+    .footer-selos { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .footer-selos a { font-size: 13px; color: #666; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .footer-selos img { height: 36px; }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 900px) {
+      .site-nav ul { display: none; }
+      .marcas-grid, .team-grid, .footer-cols { grid-template-columns: 1fr 1fr; }
+      .multiplica-content { grid-template-columns: 1fr; }
+      .multiplica-intro { padding-right: 0; margin-bottom: 32px; }
+      .benefits-col { border-left: none; border-top: 1px solid #e0e0e0; }
+      .stats-section { grid-template-columns: 1fr; }
+      .multiplica-header { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .marcas-grid, .team-grid, .footer-cols, .stats-grid { grid-template-columns: 1fr; }
+      .footer-addresses { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <img src="https://lamoda.com.br/wp-content/uploads/2025/02/logo-lamoda-footer-1024x321.png" alt="La Moda" style="height:32px">
+    <ul>
+      <li><a href="#">O Grupo</a></li>
+      <li><a href="#">Marcas</a></li>
+      <li><a href="#">Revender</a></li>
+      <li><a href="#">Sustentabilidade</a></li>
+      <li><a href="https://api.whatsapp.com/send/?phone=554834366992&text=Olá,%20tenho%20interesse%20em%20revender" target="_blank" class="nav-cta">Quero revender</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="topo">
+    <video autoplay muted loop playsinline>
+      <source src="https://videos.files.wordpress.com/okDou4Gz/lamoda-run.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Potencialize seus lucros</h1>
+      <p>Junte-se a milhares de lojistas e garanta as incríveis vantagens de revender nossas marcas!</p>
+    </div>
+  </section>
+
+  <!-- NOSSAS MARCAS -->
+  <section class="marcas">
+    <h2 class="section-title">Nossas marcas</h2>
+    <div class="marcas-grid">
+      <div class="marca-card">
+        <img src="https://lamoda.com.br/wp-content/uploads/2026/01/siga-lp-1-712x1024.png" alt="Lança Perfume">
+        <img class="marca-logo" src="https://lamoda.com.br/wp-content/uploads/2026/01/logo-CTA.png" alt="Lança Perfume">
+      </div>
+      <div class="marca-card">
+        <img src="https://lamoda.com.br/wp-content/uploads/2026/01/siga-lp-trade-1-712x1024.png" alt="My Favorite">
+        <img class="marca-logo" src="https://lamoda.com.br/wp-content/uploads/2026/01/logo-CTA2.png" alt="My Favorite">
+      </div>
+      <div class="marca-card">
+        <img src="https://lamoda.com.br/wp-content/uploads/2026/01/siga-easy-712x1024.png" alt="Easy">
+        <img class="marca-logo" src="https://lamoda.com.br/wp-content/uploads/2026/01/logo-CTA3.png" alt="Easy">
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLICA HEADER -->
+  <div class="multiplica-header" id="multiplica">
+    <img class="juntos" src="https://lamoda.com.br/wp-content/uploads/2026/01/juntos-somos-1.png" alt="Juntos somos melhores">
+    <img class="logo-x" src="https://lamoda.com.br/wp-content/uploads/2026/01/multiplica-logo-x-2-edited-300x300.png" alt="Multiplica X">
+  </div>
+
+  <!-- MULTIPLICA CONTENT -->
+  <div class="multiplica-content">
+    <div class="multiplica-intro">
+      <h2>Vamos te ajudar a vender mais e lucrar mais</h2>
+      <p>O programa Multiplica foi criado para revolucionar o mercado de moda multimarcas, com ações de curto, médio e longo prazo pensadas para impulsionar o crescimento do nosso lojista parceiro. Um programa com tantos benefícios exclusivos só poderia ser assinado pelo grupo de moda que mais cresce no país.</p>
+    </div>
+
+    <div class="benefits-col">
+      <div class="benefit">
+        <h5>Política de brindes "Comprou, ganhou"</h5>
+        <p>Importantes alavancas comerciais para fidelizar, encantar, além de ampliar ticket médio e PA.</p>
+      </div>
+      <div class="benefit">
+        <h5>Política promocional estruturada</h5>
+        <p>Diretrizes que organizam o calendário comercial e os limites das ações promocionais, garantindo disciplina de preço, valorização e proteção das coleções vigentes, além do equilíbrio competitivo no mercado.</p>
+      </div>
+      <div class="benefit">
+        <h5>Prazo de pagamento especial</h5>
+        <p>Condições diferenciadas de pagamento, desenvolvidas para apoiar na gestão financeira da loja, proporcionando mais flexibilidade, segurança e equilíbrio no fluxo de caixa.</p>
+      </div>
+      <div class="benefit">
+        <h5>Giro de produto</h5>
+        <p>Oportunidade única para girar peças do estoque por outras mais desejadas pelas clientes!</p>
+      </div>
+    </div>
+
+    <div class="benefits-col">
+      <div class="benefit">
+        <h5>Portal Venda +</h5>
+        <p>Plataforma de reposição dedicada ao lojista multimarcas, com expansão de oferta e profundidade de grade, coleções exclusivas e loja de brindes.</p>
+      </div>
+      <div class="benefit">
+        <h5>Universidade La Moda</h5>
+        <p>Uma plataforma completa e totalmente gratuita de conhecimento e capacitação, desenvolvida especialmente para apoiar o crescimento da loja e também da equipe de vendas.</p>
+      </div>
+      <div class="benefit">
+        <h5>Suporte para ações no PDV</h5>
+        <p>Apoio personalizado para eventos, ações e treinamentos com o objetivo de maximizar o sell-out dos nossos lojistas.</p>
+      </div>
+      <div class="benefit">
+        <h5>App Multiplica La Moda</h5>
+        <p>Conteúdos para redes sociais, fotos de produto, treinamentos com importantes nomes de mercado na palma da mão para compartilhar com a equipe da loja.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS + FACHADA -->
+  <section class="stats-section">
+    <div>
+      <p style="font-size:14px;color:#888;margin-bottom:24px;font-weight:300">Nós levamos emoção à vida das pessoas</p>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">29</div>
+          <div class="stat-label">anos de mercado</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4</div>
+          <div class="stat-label">marcas próprias</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">30</div>
+          <div class="stat-label">países</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">16</div>
+          <div class="stat-label">mil pontos de venda</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <img class="fachada-img" src="https://lamoda.com.br/wp-content/uploads/2026/01/fachada-lm.png" alt="Fachada La Moda">
+    </div>
+  </section>
+
+  <!-- GOVERNANÇA FAMILIAR -->
+  <section class="governanca" id="governanca">
+    <h2>Governança Familiar</h2>
+    <p>O grupo é uma empresa com alma e cultura forte passada de geração para geração. Na liderança executiva, temos Hugo Olivo, como CEO, Bruna Olivo como VP Criativa do grupo e também founder da marca BO e Bianca Olivo, Diretora Criativa da My Favorite.<br><br>Somos uma empresa familiar impulsionada por um olhar inovador sobre produtos, processos e um relacionamento genuíno com os clientes.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="https://lamoda.com.br/wp-content/uploads/2025/02/Foto-Bruna-28-10.png" alt="Bruna Olivo">
+        <h5>Bruna Olivo</h5>
+        <a href="https://www.instagram.com/olivobruna/" target="_blank">@olivobruna</a>
+      </div>
+      <div class="team-card">
+        <img src="https://lamoda.com.br/wp-content/uploads/2026/01/foto-bianca-olivo-revender.png" alt="Bianca Olivo">
+        <h5>Bianca Olivo</h5>
+        <a href="https://www.instagram.com/bianca.olivo/" target="_blank">@bianca.olivo</a>
+      </div>
+      <div class="team-card">
+        <img src="https://lamoda.com.br/wp-content/uploads/2025/08/foto_hugo_olivo_v2-1.png" alt="Hugo Olivo">
+        <h5>Hugo Olivo</h5>
+        <a href="https://www.instagram.com/olivo_hugo_/" target="_blank">@olivo_hugo_</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VANTAGENS CTA -->
+  <section class="vantagens" id="vantagens">
+    <h2>Vantagens de ser um revendedor La Moda</h2>
+    <p>Muito mais do que dar suporte, nós operamos a sua loja junto com você e, para isso, contamos com a ajuda de especialistas em nossas representações. Fazemos ações mensais para capacitar o seu time, visitas constantes para acompanhar e corrigir os processos e estamos sempre disponíveis para ajudar.</p>
+    <a class="btn-cta" href="https://api.whatsapp.com/send/?phone=554834366992&text=Olá,%20tenho%20interesse%20em%20revender%20em%20minha%20loja%20uma%20das%20marcas%20do%20grupo%20La%20Moda." target="_blank">Quero revender</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-cols">
+      <div>
+        <h5>La Moda</h5>
+        <ul>
+          <li><a href="https://lamoda.com.br/o-grupo-la-moda/">O Grupo La Moda</a></li>
+          <li><a href="https://lamoda.com.br/sustentabilidade/">Sustentabilidade</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Nossas Marcas</h5>
+        <ul>
+          <li><a href="https://lamoda.com.br/marcas/#lanca-perfume">Lança Perfume</a></li>
+          <li><a href="https://lamoda.com.br/marcas/#easy">Lança Perfume Easy</a></li>
+          <li><a href="https://lamoda.com.br/marcas/#myft">My Favorite</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Comunicação</h5>
+        <ul>
+          <li><a href="https://lamoda.com.br/trabalhe-conosco/">Trabalhe Conosco</a></li>
+          <li><a href="https://lamoda.com.br/contato/">Contatos</a></li>
+          <li><a href="https://lamoda.com.br/wp-content/uploads/2025/03/politica-de-privacidade.pdf" target="_blank">Política de Privacidade</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Siga as nossas redes</h5>
+        <div class="social-links">
+          <a href="https://instagram.com/lamodainspira" target="_blank" title="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12,4.622c2.403,0,2.688,0.009,3.637,0.052c0.877,0.04,1.354,0.187,1.671,0.31c0.42,0.163,0.72,0.358,1.035,0.673c0.315,0.315,0.51,0.615,0.673,1.035c0.123,0.317,0.27,0.794,0.31,1.671c0.043,0.949,0.052,1.234,0.052,3.637s-0.009,2.688-0.052,3.637c-0.04,0.877-0.187,1.354-0.31,1.671c-0.163,0.42-0.358,0.72-0.673,1.035c-0.315,0.315-0.615,0.51-1.035,0.673c-0.317,0.123-0.794,0.27-1.671,0.31c-0.949,0.043-1.233,0.052-3.637,0.052s-2.688-0.009-3.637-0.052c-0.877-0.04-1.354-0.187-1.671-0.31c-0.42-0.163-0.72-0.358-1.035-0.673c-0.315-0.315-0.51-0.615-0.673-1.035c-0.123-0.317-0.27-0.794-0.31-1.671C4.631,14.688,4.622,14.403,4.622,12s0.009-2.688,0.052-3.637c0.04-0.877,0.187-1.354,0.31-1.671c0.163-0.42,0.358-0.72,0.673-1.035c0.315-0.315,0.615-0.51,1.035-0.673c0.317-0.123,0.794-0.27,1.671-0.31C9.312,4.631,9.597,4.622,12,4.622 M12,3C9.556,3,9.249,3.01,8.289,3.054C7.331,3.098,6.677,3.25,6.105,3.472C5.513,3.702,5.011,4.01,4.511,4.511c-0.5,0.5-0.808,1.002-1.038,1.594C3.25,6.677,3.098,7.331,3.054,8.289C3.01,9.249,3,9.556,3,12c0,2.444,0.01,2.751,0.054,3.711c0.044,0.958,0.196,1.612,0.418,2.185c0.23,0.592,0.538,1.094,1.038,1.594c0.5,0.5,1.002,0.808,1.594,1.038c0.572,0.222,1.227,0.375,2.185,0.418C9.249,20.99,9.556,21,12,21s2.751-0.01,3.711-0.054c0.958-0.044,1.612-0.196,2.185-0.418c0.592-0.23,1.094-0.538,1.594-1.038c0.5-0.5,0.808-1.002,1.038-1.594c0.222-0.572,0.375-1.227,0.418-2.185C20.99,14.751,21,14.444,21,12s-0.01-2.751-0.054-3.711c-0.044-0.958-0.196-1.612-0.418-2.185c-0.23-0.592-0.538-1.094-1.038-1.594c-0.5-0.5-1.002-0.808-1.594-1.038c-0.572-0.222-1.227-0.375-2.185-0.418C14.751,3.01,14.444,3,12,3L12,3z M12,7.378c-2.552,0-4.622,2.069-4.622,4.622S9.448,16.622,12,16.622s4.622-2.069,4.622-4.622S14.552,7.378,12,7.378z M12,15c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z M16.804,6.116c-0.596,0-1.08,0.484-1.08,1.08s0.484,1.08,1.08,1.08c0.596,0,1.08-0.484,1.08-1.08S17.401,6.116,16.804,6.116z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/lamodainspira" target="_blank" title="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@lamodainspira" target="_blank" title="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.8,8s-.2-1.4-.8-2c-.76-.8-1.6-.8-2-.85C16.8,5,12,5,12,5s-4.8,0-7,.15c-.4.05-1.24.05-2,.85-.6.6-.8,2-.8,2S2,9.62,2,11.24v1.52c0,1.62.2,3.24.2,3.24s.2,1.38.8,1.98c.76.8,1.76.77,2.2.85C6.8,19,12,19,12,19s4.8,0,7-.2c.4-.05,1.24-.05,2-.85.6-.6.8-2,.8-2s.2-1.62.2-3.24v-1.52C22,9.62,21.8,8,21.8,8zM9.94,14.59V9.41l5.4,2.6L9.94,14.59z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/la-moda/" target="_blank" title="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.7,3H4.3C3.582,3,3,3.582,3,4.3v15.4C3,20.418,3.582,21,4.3,21h15.4c0.718,0,1.3-0.582,1.3-1.3V4.3C21,3.582,20.418,3,19.7,3z M8.339,18.338H5.667v-8.59h2.672V18.338z M7.004,8.574c-0.857,0-1.549-0.694-1.549-1.548c0-0.855,0.691-1.548,1.549-1.548c0.854,0,1.547,0.694,1.547,1.548C8.551,7.881,7.858,8.574,7.004,8.574z M18.339,18.338h-2.669v-4.177c0-0.996-0.017-2.278-1.387-2.278c-1.389,0-1.601,1.086-1.601,2.206v4.249h-2.667v-8.59h2.559v1.174h0.037c0.356-0.675,1.227-1.387,2.526-1.387c2.703,0,3.203,1.779,3.203,4.092V18.338z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@grupolamoda" target="_blank" title="TikTok">
+            <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-addresses">
+        <div class="footer-addr">
+          <strong>Unidade Criciúma (Matriz)</strong>
+          <p>Acesso estadual Rio Maina, 1925<br>Criciúma/SC — 88818-800</p>
+        </div>
+        <div class="footer-addr">
+          <strong>Unidade Nova Veneza</strong>
+          <p>Rua Alfredo Pessi, 1137<br>Nova Veneza/SC — 88865-000</p>
+        </div>
+      </div>
+      <div class="footer-selos">
+        <a href="http://www.finep.gov.br/" target="_blank">
+          <img src="https://lamoda.com.br/wp-content/uploads/2025/02/logo-finep.png" alt="Finep">
+          Empreendimento Financiado pela Finep
+        </a>
+        <a href="https://www.eureciclo.com.br/" target="_blank">
+          <img src="https://lamoda.com.br/wp-content/uploads/2025/02/logo-eu-reciclo.png" alt="Eu Reciclo">
+          Certificado de Reciclagem
+        </a>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;border-top:1px solid #e0e0e0;padding-top:32px;">
+      <img src="https://lamoda.com.br/wp-content/uploads/2025/02/logo-lamoda-footer-1024x321.png" alt="La Moda" style="max-width:240px;opacity:.6">
+    </div>
+  </footer>
+
+</body>
+</html>
