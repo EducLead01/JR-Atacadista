@@ -64,41 +64,76 @@
       padding: 0 4%;
       height: 64px;
     }
-    .header-logo img { height: 40px; filter: brightness(10); }
+    .header-logo-text {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .header-logo-text span { color: #f5a800; font-weight: 400; }
     .header-nav ul {
       display: flex;
       list-style: none;
       gap: 0;
+      margin: 0; padding: 0;
     }
     .header-nav a {
       display: block;
-      padding: 22px 14px;
-      color: #d0d0d0;
+      padding: 22px 13px;
+      color: #b0b0b0;
       text-decoration: none;
       font-family: 'Roboto Condensed', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 400;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       transition: color .2s;
+      white-space: nowrap;
     }
-    .header-nav a:hover { color: #fff; }
-    .nav-cta-btn {
-      background: #f5a800 !important;
-      color: #0d0d0d !important;
-      padding: 10px 28px !important;
-      border-radius: 4px;
-      font-weight: 700 !important;
-      letter-spacing: 2px !important;
-    }
-    .nav-cta-btn:hover { background: #e09700 !important; }
-    .header-icons {
+    .header-nav a:hover { color: #f5a800; }
+    .header-right {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
     }
-    .header-icons a { color: #d0d0d0; text-decoration: none; font-size: 13px; }
-    .header-icons svg { width: 20px; height: 20px; fill: currentColor; }
+    .nav-cta-btn {
+      background: #f5a800;
+      color: #0d0d0d;
+      padding: 10px 22px;
+      border-radius: 4px;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .nav-cta-btn:hover { background: #e09700; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* ── HERO SLIDER ───────────────────────────── */
     .hero-slider {
@@ -757,8 +792,29 @@
       .categories-grid { grid-template-columns: repeat(3, 1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .header-nav { display: none; }
+      .header-nav.open {
+        display: flex;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: var(--black);
+        border-top: 1px solid #2a2a2a;
+        z-index: 99;
+      }
+      .header-nav.open ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 8px 0;
+      }
+      .header-nav.open a {
+        padding: 14px 24px;
+        font-size: 13px;
+        border-bottom: 1px solid #1e1e1e;
+      }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 768px) {
       .products-grid { grid-template-columns: repeat(2, 1fr); }
       .categories-grid { grid-template-columns: repeat(2, 1fr); }
       .shipping-grid { grid-template-columns: repeat(2, 1fr); }
@@ -786,11 +842,24 @@
   <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
-      <nav class="header-nav">
+      <a href="#hero" class="header-logo-text">JR<span>atacadista</span></a>
+
+      <nav class="header-nav" id="headerNav">
         <ul>
-          <li><a href="#" class="nav-cta-btn">QUERO REVENDER</a></li>
+          <li><a href="#hero">Início</a></li>
+          <li><a href="#como-funciona">Como Funciona</a></li>
+          <li><a href="#novidades">Novidades</a></li>
+          <li><a href="#comunidade">Comunidade JR</a></li>
+          <li><a href="#reposicoes">Reposições</a></li>
         </ul>
       </nav>
+
+      <div class="header-right">
+        <a href="#quero-revender" class="nav-cta-btn">QUERO REVENDER</a>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -833,7 +902,7 @@
   </div>
 
   <!-- COMO FUNCIONA -->
-  <section class="benefits-section">
+  <section class="benefits-section" id="como-funciona">
     <div class="benefits-header">
       <span class="benefits-tag">COMO FUNCIONA</span>
       <h2 class="benefits-title">Por que comprar da JR Atacadista?</h2>
@@ -990,7 +1059,7 @@
   </section>
 
   <!-- PRODUTOS EM DESTAQUE -->
-  <section class="section-wrap">
+  <section class="section-wrap" id="novidades">
     <h2 class="section-title">Novidades da Semana JR</h2>
     <p class="section-sub">As últimas peças da coleção</p>
     <div class="products-grid">
@@ -1031,7 +1100,7 @@
 
 
   <!-- BANNER WHATSAPP COMUNIDADE -->
-  <section class="wpp-banner-section">
+  <section class="wpp-banner-section" id="comunidade">
     <div class="wpp-slide wpp-slide-active">
       <div class="wpp-banner wpp-banner-1">
         <div class="wpp-banner-content">
@@ -1074,7 +1143,7 @@
   </section>
 
   <!-- CATEGORIAS -->
-  <section class="section-wrap" style="background: var(--gray);">
+  <section class="section-wrap" id="reposicoes" style="background: var(--gray);">
     <h2 class="section-title">Reposições da Semana</h2>
     <p class="section-sub">Encontre as mercadorias validadas para fazer injeção de caixa rápido</p>
     <div class="categories-grid">
@@ -1126,6 +1195,20 @@
       slides[currentSlide].classList.add('active');
     }
     setInterval(() => changeSlide(1), 5000);
+
+    // ── HAMBURGER MENU ──
+    function toggleMenu() {
+      const nav = document.getElementById('headerNav');
+      const btn = document.getElementById('hamburger');
+      nav.classList.toggle('open');
+      btn.classList.toggle('open');
+    }
+    document.querySelectorAll('#headerNav a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('headerNav').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('open');
+      });
+    });
 
     // ── CARROSSEL DE BENEFÍCIOS ──
     let bCurrent = 0;
