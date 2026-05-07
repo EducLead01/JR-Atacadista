@@ -510,6 +510,8 @@
     <div class="slide">
       <img src="https://honeybe.com.br/cdn/shop/files/Desktop_1_738be3ab-7623-478b-8c49-3cd6cdd21c58.png?format=pjpg&v=1770483461&width=1920" alt="Banner 3">
     </div>
+    <button class="slider-arrow slider-prev" onclick="changeSlide(-1)">&#8592;</button>
+    <button class="slider-arrow slider-next" onclick="changeSlide(1)">&#8594;</button>
   </section>
 
   <!-- SHIPPING BAR -->
@@ -685,12 +687,12 @@
   <script>
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
-    function nextSlide() {
+    function changeSlide(dir) {
       slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
+      currentSlide = (currentSlide + dir + slides.length) % slides.length;
       slides[currentSlide].classList.add('active');
     }
-    setInterval(nextSlide, 5000);
+    setInterval(() => changeSlide(1), 5000);
   </script>
 
 </body>
