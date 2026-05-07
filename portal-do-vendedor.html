@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal do Vendedor — JR Atacadista</title>
+  <link rel="icon" href="public/icons/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500;700&family=Open+Sans:wght@300;400;600&family=Nunito:wght@400;600;800;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0d0d0d;
+      --dark:  #1a1a1a;
+      --gray:  #f5f5f5;
+      --accent:#f5a800;
+      --text:  #333;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', sans-serif; background: #fff; color: var(--text); }
+
+    /* ── ANNOUNCE BAR ── */
+    .announce-bar { background: var(--black); overflow: hidden; white-space: nowrap; padding: 8px 0; }
+    .announce-track { display: inline-flex; gap: 80px; animation: marquee 28s linear infinite; }
+    .announce-track span {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px; color: #fff; text-transform: uppercase;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── HEADER ── */
+    .site-header { background: var(--black); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #2a2a2a; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 4%; height: 64px; }
+    .header-logo-text {
+      font-family: 'Roboto Condensed', sans-serif; font-size: 20px; font-weight: 700;
+      color: #fff; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap;
+    }
+    .header-logo-text span { color: #f5a800; font-weight: 400; }
+    .header-nav ul { display: flex; list-style: none; gap: 0; }
+    .header-nav a {
+      display: block; padding: 22px 13px; color: #b0b0b0; text-decoration: none;
+      font-family: 'Roboto Condensed', sans-serif; font-size: 11px; font-weight: 400;
+      letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; white-space: nowrap;
+    }
+    .header-nav a:hover, .header-nav a.active { color: #f5a800; }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .nav-cta-btn {
+      background: #f5a800; color: #0d0d0d; padding: 10px 22px; border-radius: 4px;
+      font-family: 'Roboto Condensed', sans-serif; font-weight: 700; font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: background .2s;
+    }
+    .nav-cta-btn:hover { background: #e09700; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: var(--black);
+      padding: 80px 24px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center top, rgba(245,168,0,.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .page-hero-tag {
+      display: inline-block; background: #f5a800; color: #0d0d0d;
+      font-family: 'Roboto Condensed', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; padding: 4px 14px; border-radius: 2px; margin-bottom: 20px;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif; font-size: 48px; color: #fff;
+      font-weight: 700; margin-bottom: 14px; line-height: 1.2; position: relative;
+    }
+    .page-hero p { color: #888; font-size: 15px; max-width: 500px; margin: 0 auto; line-height: 1.7; position: relative; }
+
+    /* ── ACCESS CARDS ── */
+    .access-section { padding: 72px 5%; background: var(--gray); }
+    .access-section-title {
+      font-family: 'Roboto Condensed', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase; color: #999; text-align: center; margin-bottom: 40px;
+    }
+    .access-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .access-card {
+      background: #fff;
+      border-radius: 6px;
+      padding: 32px 24px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text);
+      border: 2px solid transparent;
+      transition: border-color .2s, box-shadow .2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .access-card:hover { border-color: #f5a800; box-shadow: 0 4px 20px rgba(245,168,0,.12); }
+    .access-card-icon {
+      width: 52px; height: 52px;
+      background: var(--black);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #f5a800;
+      font-size: 22px;
+    }
+    .access-card h3 { font-size: 14px; font-weight: 700; color: var(--black); font-family: 'Roboto Condensed', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+    .access-card p { font-size: 12px; color: #888; line-height: 1.6; }
+    .access-card .card-arrow { font-size: 20px; color: #f5a800; margin-top: auto; }
+
+    /* ── HOW TO ORDER ── */
+    .order-section { padding: 80px 5%; max-width: 900px; margin: 0 auto; }
+    .order-section-title {
+      font-family: 'Playfair Display', serif; font-size: 32px; color: var(--black);
+      font-weight: 700; text-align: center; margin-bottom: 8px;
+    }
+    .order-section-sub { text-align: center; color: #999; font-size: 14px; margin-bottom: 52px; }
+    .order-steps { display: flex; flex-direction: column; gap: 0; }
+    .order-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .order-step:last-child { border-bottom: none; }
+    .step-num {
+      min-width: 44px; height: 44px;
+      background: var(--black);
+      color: #f5a800;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 18px; font-weight: 900;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-body h4 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+    .step-body p { font-size: 13px; color: #777; line-height: 1.7; }
+
+    /* ── RESOURCES ── */
+    .resources-section { background: var(--black); padding: 72px 5%; }
+    .resources-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .resources-section h2 {
+      font-family: 'Playfair Display', serif; font-size: 32px; color: #fff; font-weight: 700; margin-bottom: 10px;
+    }
+    .resources-section .sub { color: #888; font-size: 14px; margin-bottom: 48px; }
+    .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .resource-item {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 28px 20px;
+      text-align: left;
+      text-decoration: none;
+      transition: border-color .2s;
+    }
+    .resource-item:hover { border-color: #f5a800; }
+    .resource-item .ri-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+    .resource-item h4 { font-family: 'Roboto Condensed', sans-serif; font-size: 14px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .resource-item p { font-size: 12px; color: #666; line-height: 1.6; }
+
+    /* ── SUPPORT ── */
+    .support-section { padding: 72px 5%; text-align: center; background: var(--gray); }
+    .support-section h2 { font-family: 'Playfair Display', serif; font-size: 30px; color: var(--black); margin-bottom: 10px; }
+    .support-section .sub { color: #999; font-size: 14px; margin-bottom: 40px; }
+    .support-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 800px; margin: 0 auto; }
+    .support-item { background: #fff; border-radius: 6px; padding: 24px 20px; }
+    .support-item .si-icon { font-size: 28px; margin-bottom: 12px; }
+    .support-item h4 { font-size: 13px; font-weight: 700; color: var(--black); font-family: 'Roboto Condensed', sans-serif; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .support-item p { font-size: 12px; color: #888; line-height: 1.6; }
+    .support-item a { color: #f5a800; font-weight: 600; text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); border-top: 1px solid #1e1e1e; }
+    .footer-bottom { padding: 24px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+    .footer-copy { font-size: 11px; color: #555; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .header-nav { display: none; }
+      .header-nav.open { display: flex; position: absolute; top: 64px; left: 0; right: 0; background: var(--black); border-top: 1px solid #2a2a2a; z-index: 99; }
+      .header-nav.open ul { flex-direction: column; width: 100%; padding: 8px 0; }
+      .header-nav.open a { padding: 14px 24px; font-size: 13px; border-bottom: 1px solid #1e1e1e; }
+      .hamburger { display: flex; }
+      .access-grid { grid-template-columns: repeat(2, 1fr); }
+      .resources-grid { grid-template-columns: 1fr; }
+      .support-grid { grid-template-columns: 1fr; }
+      .page-hero h1 { font-size: 32px; }
+    }
+    @media (max-width: 480px) {
+      .access-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCE BAR -->
+  <div class="announce-bar">
+    <div class="announce-track">
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo-text">JR<span>atacadista</span></a>
+      <nav class="header-nav" id="headerNav">
+        <ul>
+          <li><a href="index.html#hero">Início</a></li>
+          <li><a href="index.html#como-funciona">Como Funciona</a></li>
+          <li><a href="index.html#novidades">Novidades</a></li>
+          <li><a href="index.html#comunidade">Comunidade JR</a></li>
+          <li><a href="index.html#reposicoes">Reposições</a></li>
+          <li><a href="depoimentos.html">Depoimentos</a></li>
+          <li><a href="portal-do-vendedor.html" class="active">Portal do Vendedor</a></li>
+        </ul>
+      </nav>
+      <div class="header-right">
+        <a href="index.html#quero-revender" class="nav-cta-btn">QUERO REVENDER</a>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <span class="page-hero-tag">Área exclusiva</span>
+    <h1>Portal do Vendedor</h1>
+    <p>Tudo que você precisa para revender com a JR Atacadista em um só lugar.</p>
+  </div>
+
+  <!-- ACCESS CARDS -->
+  <section class="access-section">
+    <p class="access-section-title">Acesso rápido</p>
+    <div class="access-grid">
+
+      <a href="https://jratacadista44.com.br/comunidade/" target="_blank" class="access-card">
+        <div class="access-card-icon">💬</div>
+        <h3>Comunidade</h3>
+        <p>Entre no grupo exclusivo do WhatsApp e receba ofertas antes de todo mundo.</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="index.html#novidades" class="access-card">
+        <div class="access-card-icon">👗</div>
+        <h3>Catálogo</h3>
+        <p>Veja as novidades da semana e monte seu pedido com as peças mais vendidas.</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="index.html#quero-revender" class="access-card">
+        <div class="access-card-icon">📋</div>
+        <h3>Fazer Pedido</h3>
+        <p>Preencha o formulário de qualificação e nosso time entra em contato rapidamente.</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="depoimentos.html" class="access-card">
+        <div class="access-card-icon">⭐</div>
+        <h3>Depoimentos</h3>
+        <p>Veja o que outros lojistas dizem sobre a parceria com a JR Atacadista.</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- HOW TO ORDER -->
+  <section class="order-section">
+    <h2 class="order-section-title">Como fazer seu pedido</h2>
+    <p class="order-section-sub">Em 4 passos simples você já está com o estoque abastecido</p>
+    <div class="order-steps">
+      <div class="order-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Preencha o formulário de qualificação</h4>
+          <p>Acesse a seção "Quero Revender" na página inicial e responda as perguntas rápidas. Leva menos de 30 segundos.</p>
+        </div>
+      </div>
+      <div class="order-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Fale com nosso time no WhatsApp</h4>
+          <p>Após a qualificação, você será direcionado para conversar com o nosso time e tirar todas as dúvidas sobre peças, pedido mínimo e prazos.</p>
+        </div>
+      </div>
+      <div class="order-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Escolha as peças e confirme o pedido</h4>
+          <p>Selecione as peças do catálogo, monte seu mix e confirme o pedido mínimo. São 10 peças do mesmo item ou 20 peças sortidas.</p>
+        </div>
+      </div>
+      <div class="order-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Receba e comece a vender</h4>
+          <p>Após confirmação do pagamento, despachamos em até 24h. Seu estoque chega rápido, pronto para gerar caixa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="resources-section">
+    <div class="resources-inner">
+      <h2>Materiais de apoio</h2>
+      <p class="sub">Recursos para ajudar você a vender mais</p>
+      <div class="resources-grid">
+        <a href="https://jratacadista44.com.br/comunidade/" target="_blank" class="resource-item">
+          <span class="ri-icon">📱</span>
+          <h4>Grupo VIP WhatsApp</h4>
+          <p>Ofertas relâmpago, reposições e lançamentos antecipados exclusivos para membros do grupo.</p>
+        </a>
+        <a href="index.html#novidades" class="resource-item">
+          <span class="ri-icon">🗂️</span>
+          <h4>Catálogo da Semana</h4>
+          <p>Peças selecionadas com maior giro de estoque. Atualizado toda semana para você.</p>
+        </a>
+        <a href="index.html#como-funciona" class="resource-item">
+          <span class="ri-icon">📖</span>
+          <h4>Como Funciona</h4>
+          <p>Entenda o processo de compra, prazos, formas de pagamento e política de trocas da JR.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT -->
+  <section class="support-section">
+    <h2>Precisa de ajuda?</h2>
+    <p class="sub">Nossa equipe está disponível para te atender</p>
+    <div class="support-grid">
+      <div class="support-item">
+        <div class="si-icon">💬</div>
+        <h4>WhatsApp</h4>
+        <p>Fale diretamente com o time JR.<br><a href="https://jratacadista44.com.br/comunidade/" target="_blank">Entrar na Comunidade →</a></p>
+      </div>
+      <div class="support-item">
+        <div class="si-icon">📦</div>
+        <h4>Pedido Mínimo</h4>
+        <p>10 peças do mesmo item<br>ou 20 peças sortidas.</p>
+      </div>
+      <div class="support-item">
+        <div class="si-icon">🔄</div>
+        <h4>Reposição</h4>
+        <p>Novidades toda semana.<br>Estoque sempre abastecido.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright © 2026 JR Atacadista. Todos os direitos reservados.</p>
+      <p class="footer-copy">CNPJ: 40.920.765/0001-64</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('headerNav');
+      const btn = document.getElementById('hamburger');
+      nav.classList.toggle('open');
+      btn.classList.toggle('open');
+    }
+    document.querySelectorAll('#headerNav a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('headerNav').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
