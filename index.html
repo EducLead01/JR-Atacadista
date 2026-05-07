@@ -556,6 +556,47 @@
     .payment-icons { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .payment-icons img { height: 22px; opacity: .7; }
 
+    /* ── QUALIDADE DO PRODUTO ───────────────────── */
+    .product-quality-section {
+      background: #fff;
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .pq-icon {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 28px;
+      color: var(--black);
+    }
+    .pq-icon svg { width: 100%; height: 100%; }
+    .pq-heading {
+      font-family: 'Nunito', sans-serif;
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1.15;
+      letter-spacing: -.5px;
+      margin-bottom: 32px;
+    }
+    .pq-list {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .pq-list li {
+      font-family: 'Nunito', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: #aaa;
+      line-height: 1.6;
+    }
+    @media (max-width: 600px) {
+      .pq-heading { font-size: 28px; }
+      .pq-list li { font-size: 17px; }
+    }
+
     /* ── COMO FUNCIONA / BENEFÍCIOS ─────────────── */
     .benefits-section {
       background: var(--black);
@@ -1028,6 +1069,22 @@
       </div>
     </div>
   </div>
+
+  <!-- QUALIDADE DO PRODUTO -->
+  <section class="product-quality-section">
+    <div class="pq-icon">
+      <svg viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6 C18 6 14 10 8 11 L4 20 L10 22 L10 42 L38 42 L38 22 L44 20 L40 11 C34 10 30 6 30 6 C30 6 27.5 10 24 10 C20.5 10 18 6 18 6Z"/>
+      </svg>
+    </div>
+    <h2 class="pq-heading">As melhores Camisetas<br>do mercado internacional.</h2>
+    <ul class="pq-list">
+      <li>Algodão Premium</li>
+      <li>Algodão Pima</li>
+      <li>Fio 30.1 Penteado</li>
+      <li>Fio 40.1 Penteado</li>
+    </ul>
+  </section>
 
   <!-- COMO FUNCIONA -->
   <section class="benefits-section" id="como-funciona">
