@@ -737,7 +737,7 @@
       <div class="qual-header">
         <span class="qual-tag">SEJA UM PARCEIRO JR</span>
         <h2 class="qual-title">Quero Revender</h2>
-        <p class="qual-sub">Preencha as informações abaixo para verificarmos se podemos atender você.</p>
+        <p class="qual-sub">Preencha as informações — leva 30 segundos.</p>
       </div>
 
       <form id="qualForm" class="qual-form" novalidate>
@@ -745,8 +745,12 @@
         <!-- PASSO 1: dados pessoais -->
         <div class="qual-step" id="step1">
           <div class="qual-field">
-            <label for="qNome">Nome completo <span class="req">*</span></label>
-            <input type="text" id="qNome" placeholder="Seu nome" autocomplete="name">
+            <label for="qNome">Nome e Sobrenome <span class="req">*</span></label>
+            <input type="text" id="qNome" placeholder="Seu nome e sobrenome" autocomplete="name">
+          </div>
+          <div class="qual-field">
+            <label for="qLoja">Nome da loja que você representa <span class="req">*</span></label>
+            <input type="text" id="qLoja" placeholder="Nome da sua loja">
           </div>
           <div class="qual-field">
             <label for="qWhats">WhatsApp <span class="req">*</span></label>
@@ -946,9 +950,10 @@
 
     function goStep2() {
       const nome = document.getElementById('qNome');
+      const loja = document.getElementById('qLoja');
       const whats = document.getElementById('qWhats');
       let ok = true;
-      [nome, whats].forEach(f => {
+      [nome, loja, whats].forEach(f => {
         f.classList.remove('error');
         if (!f.value.trim()) { f.classList.add('error'); ok = false; }
       });
@@ -982,6 +987,7 @@
 
     function resetForm() {
       document.getElementById('qNome').value = '';
+      document.getElementById('qLoja').value = '';
       document.getElementById('qWhats').value = '';
       ['loja-sim','loja-nao','min-sim','min-nao'].forEach(id => {
         document.getElementById(id).className = 'qual-opt';
