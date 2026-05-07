@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Depoimentos — JR Atacadista</title>
+  <link rel="icon" href="public/icons/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500;700&family=Open+Sans:wght@300;400;600&family=Nunito:wght@400;600;800;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0d0d0d;
+      --dark:  #1a1a1a;
+      --gray:  #f5f5f5;
+      --accent:#c8a96e;
+      --text:  #333;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #fff;
+      color: var(--text);
+    }
+
+    /* ── ANNOUNCE BAR ── */
+    .announce-bar {
+      background: var(--black);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 8px 0;
+    }
+    .announce-track {
+      display: inline-flex;
+      gap: 80px;
+      animation: marquee 28s linear infinite;
+    }
+    .announce-track span {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--black);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4%;
+      height: 64px;
+    }
+    .header-logo-text {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .header-logo-text span { color: #f5a800; font-weight: 400; }
+    .header-nav ul {
+      display: flex;
+      list-style: none;
+      gap: 0;
+    }
+    .header-nav a {
+      display: block;
+      padding: 22px 13px;
+      color: #b0b0b0;
+      text-decoration: none;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color .2s;
+      white-space: nowrap;
+    }
+    .header-nav a:hover,
+    .header-nav a.active { color: #f5a800; }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .nav-cta-btn {
+      background: #f5a800;
+      color: #0d0d0d;
+      padding: 10px 22px;
+      border-radius: 4px;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .nav-cta-btn:hover { background: #e09700; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: var(--black);
+      padding: 72px 24px 60px;
+      text-align: center;
+    }
+    .page-hero-tag {
+      display: inline-block;
+      background: #f5a800;
+      color: #0d0d0d;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .page-hero p {
+      color: #888;
+      font-size: 15px;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── DEPOIMENTOS GRID ── */
+    .dep-section {
+      padding: 72px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .dep-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .dep-card {
+      background: var(--gray);
+      border-radius: 6px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .dep-stars { color: #f5a800; font-size: 16px; letter-spacing: 2px; }
+    .dep-text {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.75;
+      flex: 1;
+      font-style: italic;
+    }
+    .dep-text::before { content: '"'; }
+    .dep-text::after  { content: '"'; }
+    .dep-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dep-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--black);
+      color: #f5a800;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .dep-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+    }
+    .dep-city {
+      font-size: 11px;
+      color: #999;
+      margin-top: 2px;
+      letter-spacing: .5px;
+    }
+
+    /* ── CTA FINAL ── */
+    .dep-cta-section {
+      background: var(--black);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .dep-cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .dep-cta-section p { color: #888; font-size: 14px; margin-bottom: 32px; }
+    .dep-cta-btn {
+      display: inline-block;
+      background: #f5a800;
+      color: #0d0d0d;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 16px 40px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .dep-cta-btn:hover { background: #e09700; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid #1e1e1e;
+    }
+    .footer-bottom {
+      padding: 24px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+    }
+    .footer-copy { font-size: 11px; color: #555; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .header-nav { display: none; }
+      .header-nav.open {
+        display: flex;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: var(--black);
+        border-top: 1px solid #2a2a2a;
+        z-index: 99;
+      }
+      .header-nav.open ul { flex-direction: column; width: 100%; padding: 8px 0; }
+      .header-nav.open a { padding: 14px 24px; font-size: 13px; border-bottom: 1px solid #1e1e1e; }
+      .hamburger { display: flex; }
+      .dep-grid { grid-template-columns: 1fr; }
+      .page-hero h1 { font-size: 30px; }
+    }
+    @media (max-width: 768px) {
+      .dep-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .dep-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCE BAR -->
+  <div class="announce-bar">
+    <div class="announce-track">
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo-text">JR<span>atacadista</span></a>
+      <nav class="header-nav" id="headerNav">
+        <ul>
+          <li><a href="index.html#hero">Início</a></li>
+          <li><a href="index.html#como-funciona">Como Funciona</a></li>
+          <li><a href="index.html#novidades">Novidades</a></li>
+          <li><a href="index.html#comunidade">Comunidade JR</a></li>
+          <li><a href="index.html#reposicoes">Reposições</a></li>
+          <li><a href="depoimentos.html" class="active">Depoimentos</a></li>
+        </ul>
+      </nav>
+      <div class="header-right">
+        <a href="index.html#quero-revender" class="nav-cta-btn">QUERO REVENDER</a>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <span class="page-hero-tag">Quem já é parceiro</span>
+    <h1>O que dizem os<br>nossos lojistas</h1>
+    <p>Depoimentos reais de lojistas que já estão revendendo com a JR Atacadista e transformando seus negócios.</p>
+  </div>
+
+  <!-- DEPOIMENTOS -->
+  <section class="dep-section">
+    <div class="dep-grid">
+
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">Trabalho com a JR há 8 meses e o giro de estoque melhorou demais. As peças chegam rápido e a qualidade é sempre consistente.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">A</div>
+          <div>
+            <p class="dep-name">Ana Paula S.</p>
+            <p class="dep-city">São Paulo — SP</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">Minha loja cresceu muito depois que comecei a comprar na JR. Pedido mínimo acessível e variedade de peças que meu cliente ama.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">R</div>
+          <div>
+            <p class="dep-name">Rodrigo M.</p>
+            <p class="dep-city">Curitiba — PR</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">Já testei vários atacadistas e a JR é a que entrega mais consistência. Todo pedido chega certo, no prazo e bem embalado.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">F</div>
+          <div>
+            <p class="dep-name">Fernanda T.</p>
+            <p class="dep-city">Belo Horizonte — MG</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">A comunidade no WhatsApp é incrível. Fico sabendo das novidades antes de todo mundo e consigo fazer reposição estratégica.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">M</div>
+          <div>
+            <p class="dep-name">Marcos L.</p>
+            <p class="dep-city">Florianópolis — SC</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">O caimento das peças é diferenciado. Meus clientes sempre elogiam e voltam. Virei cliente fiel da JR Atacadista.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">J</div>
+          <div>
+            <p class="dep-name">Juliana C.</p>
+            <p class="dep-city">Goiânia — GO</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">Primeira compra foi R$ 650,00 e já vendi tudo em 10 dias. Retorno garantido. Já fiz o segundo pedido e não vou mais parar.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">C</div>
+          <div>
+            <p class="dep-name">Carlos E.</p>
+            <p class="dep-city">Recife — PE</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <div class="dep-cta-section">
+    <h2>Você pode ser o próximo.</h2>
+    <p>Preencha o formulário e descubra se podemos atender você.</p>
+    <a href="index.html#quero-revender" class="dep-cta-btn">Quero Revender Agora</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright © 2026 JR Atacadista. Todos os direitos reservados.</p>
+      <p class="footer-copy">CNPJ: 40.920.765/0001-64</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('headerNav');
+      const btn = document.getElementById('hamburger');
+      nav.classList.toggle('open');
+      btn.classList.toggle('open');
+    }
+    document.querySelectorAll('#headerNav a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('headerNav').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
