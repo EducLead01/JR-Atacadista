@@ -117,28 +117,48 @@
     }
     .color-swatch:hover, .color-swatch.active { border-color: var(--black); transform: scale(1.12); }
 
-    .size-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-    .size-btn {
-      padding: 9px 16px;
+    .size-ticker-wrap {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+    .size-ticker-wrap::before,
+    .size-ticker-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 28px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .size-ticker-wrap::before { left: 0; background: linear-gradient(to right, #fff 60%, transparent); }
+    .size-ticker-wrap::after  { right: 0; background: linear-gradient(to left,  #fff 60%, transparent); }
+    .size-ticker-track {
+      display: inline-flex;
+      gap: 8px;
+      animation: sizeTicker 7s linear infinite;
+      white-space: nowrap;
+    }
+    .size-chip {
+      padding: 9px 18px;
       border: 1px solid #ddd;
       background: #fff;
       font-family: 'Roboto Condensed', sans-serif;
       font-size: 12px;
       font-weight: 700;
-      cursor: default;
       text-transform: uppercase;
-      min-width: 44px;
-      text-align: center;
-      animation: sizePulse 2.4s ease-in-out infinite;
+      color: #333;
+      flex-shrink: 0;
+      user-select: none;
     }
-    .size-btn:nth-child(1) { animation-delay: 0s; }
-    .size-btn:nth-child(2) { animation-delay: .4s; }
-    .size-btn:nth-child(3) { animation-delay: .8s; }
-    .size-btn:nth-child(4) { animation-delay: 1.2s; }
-    .size-btn:nth-child(5) { animation-delay: 1.6s; }
-    @keyframes sizePulse {
-      0%, 100% { background: #fff; color: #333; border-color: #ddd; }
-      30%, 60% { background: var(--black); color: #fff; border-color: var(--black); }
+    .size-chip.highlight {
+      background: var(--black);
+      color: #fff;
+      border-color: var(--black);
+    }
+    @keyframes sizeTicker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
 
     .qty-wrap { display: inline-flex; align-items: center; border: 1px solid #ddd; }
@@ -638,13 +658,20 @@
 
       <!-- Tamanho -->
       <div class="option-group">
-        <span class="option-label">Tamanho</span>
-        <div class="size-buttons">
-          <button class="size-btn" onclick="selectSize(this)">P</button>
-          <button class="size-btn active" onclick="selectSize(this)">M</button>
-          <button class="size-btn" onclick="selectSize(this)">G</button>
-          <button class="size-btn" onclick="selectSize(this)">GG</button>
-          <button class="size-btn" onclick="selectSize(this)">3G</button>
+        <span class="option-label">Tamanhos Disponíveis</span>
+        <div class="size-ticker-wrap">
+          <div class="size-ticker-track">
+            <span class="size-chip">P</span>
+            <span class="size-chip highlight">M</span>
+            <span class="size-chip">G</span>
+            <span class="size-chip">GG</span>
+            <span class="size-chip">3G</span>
+            <span class="size-chip">P</span>
+            <span class="size-chip highlight">M</span>
+            <span class="size-chip">G</span>
+            <span class="size-chip">GG</span>
+            <span class="size-chip">3G</span>
+          </div>
         </div>
       </div>
 
