@@ -58,9 +58,8 @@
       background: #f5a800;
       color: #0d0d0d;
       border-radius: 50%;
-      width: 26px; height: 26px;
+      width: 28px; height: 28px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px;
       flex-shrink: 0;
     }
     .guarantee-main { font-family: 'Roboto Condensed', sans-serif; font-size: 12px; font-weight: 700; color: var(--black); }
@@ -205,6 +204,8 @@
     .cta-btn.dark:hover { background: #222; }
     .cta-btn.gold { background: var(--accent); color: var(--black); margin-top: 10px; }
     .cta-btn.gold:hover { background: #e09700; }
+    .cta-btn.outline { background: transparent; color: var(--black); border: 2px solid var(--black); margin-top: 10px; }
+    .cta-btn.outline:hover { background: var(--black); color: #fff; }
 
     .whatsapp-note { text-align: center; font-size: 11px; color: #bbb; margin-top: 10px; }
 
@@ -610,7 +611,19 @@
     <!-- LEFT: imagens -->
     <div class="product-img-col">
       <div class="product-guarantee">
-        <div class="guarantee-badge">🧵</div>
+        <div class="guarantee-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none">
+            <!-- setas circulares -->
+            <path d="M21 12a9 9 0 0 0-9-9" stroke="#0d0d0d" stroke-width="2" stroke-linecap="round"/>
+            <path d="M21 12l-2-2.5M21 12l2.5-2" stroke="#0d0d0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 12a9 9 0 0 0 9 9" stroke="#0d0d0d" stroke-width="2" stroke-linecap="round"/>
+            <path d="M3 12l2 2.5M3 12l-2.5 2" stroke="#0d0d0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- caixa isométrica -->
+            <polygon points="12,5 17,8 12,11 7,8" fill="#0d0d0d"/>
+            <polygon points="7,8 7,14 12,17 12,11" fill="#0d0d0d" opacity=".6"/>
+            <polygon points="17,8 17,14 12,17 12,11" fill="#0d0d0d" opacity=".85"/>
+          </svg>
+        </div>
         <div>
           <p class="guarantee-main">Direto da fábrica para sua loja</p>
         </div>
@@ -679,8 +692,9 @@
       </div>
 
       <!-- CTAs -->
-      <a href="https://jratacadista44.com.br/comunidade/" target="_blank" class="cta-btn dark">Solicitar Pedido</a>
-      <a href="index.html#quero-revender" class="cta-btn gold">Quero ser Revendedor</a>
+      <a href="#" class="cta-btn dark">Solicitar Pedido</a>
+      <a href="#" class="cta-btn gold">Quero ser Revendedor</a>
+      <a href="#" class="cta-btn outline">Solicitar Material de Venda</a>
     </div>
 
   </div>
