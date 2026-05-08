@@ -434,15 +434,26 @@
       border-radius: 3px;
       text-decoration: none;
     }
-    .story-nav {
+    .story-arrow {
       position: absolute;
-      top: 0; bottom: 0;
-      width: 40%;
-      z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: #f5a800;
+      border: none;
+      color: #000;
+      font-size: 18px;
       cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, opacity .2s;
+      opacity: .9;
+      padding: 0;
     }
-    .story-nav-prev { left: 0; }
-    .story-nav-next { right: 0; }
+    .story-arrow:hover { background: #e09700; opacity: 1; }
+    .story-arrow-prev { left: -18px; }
+    .story-arrow-next { right: -18px; }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
@@ -705,9 +716,9 @@
         <a id="storyCtaLink" class="story-cta-link" href="#" style="display:none" target="_blank">Solicitar Pedido</a>
       </div>
 
-      <!-- Áreas de navegação -->
-      <div class="story-nav story-nav-prev" onclick="prevStory()"></div>
-      <div class="story-nav story-nav-next" onclick="nextStory()"></div>
+      <!-- Setas de navegação -->
+      <button class="story-arrow story-arrow-prev" onclick="prevStory()" aria-label="Anterior">&#8592;</button>
+      <button class="story-arrow story-arrow-next" onclick="nextStory()" aria-label="Próximo">&#8594;</button>
 
     </div>
   </div>
