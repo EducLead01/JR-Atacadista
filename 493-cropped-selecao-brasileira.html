@@ -241,6 +241,209 @@
     .footer-bottom { padding: 24px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
     .footer-copy { font-size: 11px; color: #555; }
 
+    /* ── STORIES ROW ── */
+    .stories-row {
+      border-bottom: 1px solid #ebebeb;
+      padding: 16px 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .stories-row::-webkit-scrollbar { display: none; }
+    .stories-inner {
+      display: flex;
+      gap: 20px;
+      padding: 4px 5%;
+      width: max-content;
+      max-width: 100%;
+    }
+    .story-bubble {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .story-ring {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      padding: 2.5px;
+      background: conic-gradient(#f5a800 0%, #ff6b00 33%, #ff0050 66%, #f5a800 100%);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity .2s;
+    }
+    .story-ring-inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      border: 2.5px solid #fff;
+      overflow: hidden;
+    }
+    .story-ring-inner img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .story-bubble.seen .story-ring { background: #ccc; }
+    .story-bubble-label {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 10px;
+      letter-spacing: .5px;
+      color: #777;
+      text-transform: uppercase;
+      max-width: 68px;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* ── STORY MODAL ── */
+    .story-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.88);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .story-modal.open { display: flex; }
+    .story-container {
+      position: relative;
+      width: 360px;
+      max-width: 96vw;
+      height: min(640px, 88vh);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #111;
+      box-shadow: 0 24px 64px rgba(0,0,0,.6);
+    }
+    .story-progress {
+      position: absolute;
+      top: 14px; left: 12px; right: 12px;
+      display: flex;
+      gap: 4px;
+      z-index: 4;
+    }
+    .prog-seg {
+      flex: 1;
+      height: 2.5px;
+      background: rgba(255,255,255,.3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .prog-fill {
+      height: 100%;
+      background: #fff;
+      width: 0%;
+    }
+    .story-header {
+      position: absolute;
+      top: 28px; left: 12px; right: 44px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 4;
+    }
+    .story-header-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #f5a800;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #000;
+      flex-shrink: 0;
+    }
+    .story-header-name {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .5px;
+    }
+    .story-header-time {
+      font-size: 11px;
+      color: rgba(255,255,255,.6);
+    }
+    .story-close {
+      position: absolute;
+      top: 28px; right: 12px;
+      z-index: 5;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      opacity: .85;
+    }
+    .story-close:hover { opacity: 1; }
+    .story-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .story-text-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.82));
+      padding: 48px 20px 28px;
+      z-index: 3;
+    }
+    .story-tag {
+      display: inline-block;
+      background: #f5a800;
+      color: #000;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 8px;
+    }
+    .story-title {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+    .story-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,.75);
+      line-height: 1.5;
+    }
+    .story-cta-link {
+      display: inline-block;
+      margin-top: 14px;
+      background: #f5a800;
+      color: #000;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 3px;
+      text-decoration: none;
+    }
+    .story-nav {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 40%;
+      z-index: 2;
+      cursor: pointer;
+    }
+    .story-nav-prev { left: 0; }
+    .story-nav-next { right: 0; }
+
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .header-nav { display: none; }
@@ -309,6 +512,58 @@
     <span style="margin:0 8px;">›</span>
     <span style="color:#333;">Ref.493 Cropped</span>
   </nav>
+
+  <!-- STORIES ROW -->
+  <div class="stories-row">
+    <div class="stories-inner">
+
+      <button class="story-bubble" onclick="openStory(0)">
+        <div class="story-ring">
+          <div class="story-ring-inner">
+            <img src="https://honeybe.com.br/cdn/shop/files/Desktop_1_d47a1691-d167-49de-b3a7-8f0479a41bcd.png?format=pjpg&v=1768948824&width=120" alt="">
+          </div>
+        </div>
+        <span class="story-bubble-label">A Peça</span>
+      </button>
+
+      <button class="story-bubble" onclick="openStory(1)">
+        <div class="story-ring">
+          <div class="story-ring-inner">
+            <img src="https://honeybe.com.br/cdn/shop/files/Desktop_1_412c0b8a-bb10-4405-b0fa-913750b834c8.png?format=pjpg&v=1770423283&width=120" alt="">
+          </div>
+        </div>
+        <span class="story-bubble-label">Qualidade</span>
+      </button>
+
+      <button class="story-bubble" onclick="openStory(2)">
+        <div class="story-ring">
+          <div class="story-ring-inner">
+            <img src="https://honeybe.com.br/cdn/shop/files/Desktop_1_738be3ab-7623-478b-8c49-3cd6cdd21c58.png?format=pjpg&v=1770483461&width=120" alt="">
+          </div>
+        </div>
+        <span class="story-bubble-label">Cores</span>
+      </button>
+
+      <button class="story-bubble" onclick="openStory(3)">
+        <div class="story-ring">
+          <div class="story-ring-inner">
+            <img src="https://honeybe.com.br/cdn/shop/files/principal_MOBILE_3435924a-1bce-4155-9a26-bfdef6d9a117.png?format=pjpg&v=1770423282&width=120" alt="">
+          </div>
+        </div>
+        <span class="story-bubble-label">Caimento</span>
+      </button>
+
+      <button class="story-bubble" onclick="openStory(4)">
+        <div class="story-ring">
+          <div class="story-ring-inner">
+            <img src="https://honeybe.com.br/cdn/shop/files/principal_MOBILE_09ef3a20-687b-4a1b-9316-2f71346426c6.png?format=pjpg&v=1768948824&width=120" alt="">
+          </div>
+        </div>
+        <span class="story-bubble-label">Pedido</span>
+      </button>
+
+    </div>
+  </div>
 
   <!-- PRODUCT SECTION -->
   <div class="product-section">
@@ -420,7 +675,170 @@
     </div>
   </footer>
 
+  <!-- STORY MODAL -->
+  <div class="story-modal" id="storyModal" onclick="handleModalClick(event)">
+    <div class="story-container" id="storyContainer">
+
+      <!-- Barras de progresso -->
+      <div class="story-progress" id="storyProgress"></div>
+
+      <!-- Header -->
+      <div class="story-header">
+        <div class="story-header-avatar">JR</div>
+        <div>
+          <p class="story-header-name">JR Atacadista</p>
+          <p class="story-header-time">Seleção Brasileira</p>
+        </div>
+      </div>
+
+      <!-- Fechar -->
+      <button class="story-close" onclick="closeStory()">✕</button>
+
+      <!-- Imagem -->
+      <img class="story-img" id="storyImg" src="" alt="">
+
+      <!-- Overlay de texto -->
+      <div class="story-text-overlay">
+        <div class="story-tag" id="storyTag"></div>
+        <p class="story-title" id="storyTitle"></p>
+        <p class="story-sub" id="storySub"></p>
+        <a id="storyCtaLink" class="story-cta-link" href="#" style="display:none" target="_blank">Solicitar Pedido</a>
+      </div>
+
+      <!-- Áreas de navegação -->
+      <div class="story-nav story-nav-prev" onclick="prevStory()"></div>
+      <div class="story-nav story-nav-next" onclick="nextStory()"></div>
+
+    </div>
+  </div>
+
   <script>
+    const stories = [
+      {
+        img: 'https://honeybe.com.br/cdn/shop/files/Desktop_1_d47a1691-d167-49de-b3a7-8f0479a41bcd.png?format=pjpg&v=1768948824&width=720',
+        tag: 'Ref. 493',
+        title: 'Cropped Seleção Brasileira 🇧🇷',
+        sub: 'A peça da temporada. Estilo, conforto e identidade nacional.',
+        cta: false
+      },
+      {
+        img: 'https://honeybe.com.br/cdn/shop/files/Desktop_1_412c0b8a-bb10-4405-b0fa-913750b834c8.png?format=pjpg&v=1770423283&width=720',
+        tag: 'Qualidade',
+        title: 'Algodão Premium',
+        sub: 'Fio penteado 30.1 — toque macio, nunca desbota, não amassa.',
+        cta: false
+      },
+      {
+        img: 'https://honeybe.com.br/cdn/shop/files/Desktop_1_738be3ab-7623-478b-8c49-3cd6cdd21c58.png?format=pjpg&v=1770483461&width=720',
+        tag: '5 Cores',
+        title: 'Verde · Amarelo · Azul · Branco · Preto',
+        sub: 'Disponível em todas as cores da Seleção para sortir no pedido.',
+        cta: false
+      },
+      {
+        img: 'https://honeybe.com.br/cdn/shop/files/principal_MOBILE_3435924a-1bce-4155-9a26-bfdef6d9a117.png?format=pjpg&v=1770423282&width=720',
+        tag: 'Tamanhos',
+        title: 'P ao 3G',
+        sub: 'Caimento perfeito para todas as silhuetas. Grades completas disponíveis.',
+        cta: false
+      },
+      {
+        img: 'https://honeybe.com.br/cdn/shop/files/principal_MOBILE_09ef3a20-687b-4a1b-9316-2f71346426c6.png?format=pjpg&v=1768948824&width=720',
+        tag: 'Atacado',
+        title: 'R$ 49,90 / peça',
+        sub: 'Mínimo 10 peças do mesmo item. Resposta em até 2h úteis.',
+        cta: true
+      }
+    ];
+
+    let current = 0;
+    let progInterval = null;
+    const DURATION = 5000;
+
+    function openStory(idx) {
+      current = idx;
+      document.getElementById('storyModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      buildProgress();
+      renderStory();
+      startProgress();
+    }
+
+    function closeStory() {
+      document.getElementById('storyModal').classList.remove('open');
+      document.body.style.overflow = '';
+      clearInterval(progInterval);
+    }
+
+    function nextStory() {
+      clearInterval(progInterval);
+      if (current < stories.length - 1) {
+        current++;
+        renderStory();
+        startProgress();
+      } else {
+        closeStory();
+      }
+    }
+
+    function prevStory() {
+      clearInterval(progInterval);
+      if (current > 0) {
+        current--;
+        renderStory();
+        startProgress();
+      }
+    }
+
+    function buildProgress() {
+      const wrap = document.getElementById('storyProgress');
+      wrap.innerHTML = stories.map((_, i) =>
+        `<div class="prog-seg"><div class="prog-fill" id="pf${i}"></div></div>`
+      ).join('');
+    }
+
+    function renderStory() {
+      const s = stories[current];
+      document.getElementById('storyImg').src = s.img;
+      document.getElementById('storyTag').textContent = s.tag;
+      document.getElementById('storyTitle').textContent = s.title;
+      document.getElementById('storySub').textContent = s.sub;
+      const ctaEl = document.getElementById('storyCtaLink');
+      ctaEl.style.display = s.cta ? 'inline-block' : 'none';
+      ctaEl.href = 'https://jratacadista44.com.br/comunidade/';
+
+      // Atualiza barras
+      stories.forEach((_, i) => {
+        const fill = document.getElementById('pf' + i);
+        if (!fill) return;
+        fill.style.transition = 'none';
+        fill.style.width = i < current ? '100%' : '0%';
+      });
+
+      // Marca bubble como visto
+      document.querySelectorAll('.story-bubble')[current]?.classList.add('seen');
+    }
+
+    function startProgress() {
+      let elapsed = 0;
+      const fill = document.getElementById('pf' + current);
+      progInterval = setInterval(() => {
+        elapsed += 50;
+        if (fill) fill.style.width = Math.min(100, (elapsed / DURATION) * 100) + '%';
+        if (elapsed >= DURATION) nextStory();
+      }, 50);
+    }
+
+    function handleModalClick(e) {
+      if (e.target === document.getElementById('storyModal')) closeStory();
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeStory();
+      if (e.key === 'ArrowRight') nextStory();
+      if (e.key === 'ArrowLeft') prevStory();
+    });
+
     function toggleMenu() {
       const nav = document.getElementById('headerNav');
       const btn = document.getElementById('hamburger');
