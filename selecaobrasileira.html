@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coleção Seleção Brasileira — JR Atacadista</title>
   <link rel="icon" href="public/icons/favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500;700&family=Open+Sans:wght@300;400;600&family=Nunito:wght@400;600;800;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500;700&family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --black: #0d0d0d; --dark: #1a1a1a; --gray: #f5f5f5; --accent: #f5a800; --text: #333; }
+    :root { --black: #0d0d0d; --dark: #1a1a1a; --gray: #f5f5f5; --text: #333; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Open Sans', sans-serif; background: #fff; color: var(--text); }
 
@@ -23,8 +23,8 @@
     .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 4%; height: 64px; }
     .header-logo-text { font-family: 'Roboto Condensed', sans-serif; font-size: 20px; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
     .header-logo-text span { color: #f5a800; font-weight: 400; }
-    .header-nav ul { display: flex; list-style: none; gap: 0; }
-    .header-nav a { display: block; padding: 22px 13px; color: #b0b0b0; text-decoration: none; font-family: 'Roboto Condensed', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; white-space: nowrap; }
+    .header-nav ul { display: flex; list-style: none; }
+    .header-nav a { display: block; padding: 22px 13px; color: #b0b0b0; text-decoration: none; font-family: 'Roboto Condensed', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; white-space: nowrap; }
     .header-nav a:hover, .header-nav a.active { color: #f5a800; }
     .header-right { display: flex; align-items: center; gap: 16px; }
     .nav-cta-btn { background: #f5a800; color: #0d0d0d; padding: 10px 22px; border-radius: 4px; font-family: 'Roboto Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: background .2s; }
@@ -35,199 +35,74 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* PRODUCT SECTION — Jouse-style 2-col */
-    .product-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 48px 5% 64px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-
-    /* Left col */
-    .product-guarantee {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-    .guarantee-badge {
-      background: #009c3b;
-      color: #fff;
-      border-radius: 50%;
-      width: 22px; height: 22px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .guarantee-main { font-family: 'Roboto Condensed', sans-serif; font-size: 12px; font-weight: 700; color: var(--black); }
-    .guarantee-sub { font-size: 10px; color: #aaa; margin-top: 1px; }
-
-    .product-main-img {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      display: block;
-      background: var(--gray);
-      transition: opacity .3s;
-    }
-    .product-thumbs { display: flex; gap: 8px; margin-top: 8px; }
-    .product-thumb {
-      width: 68px; height: 86px;
-      object-fit: cover;
-      cursor: pointer;
-      opacity: .55;
-      border: 2px solid transparent;
-      transition: all .2s;
-    }
-    .product-thumb:hover, .product-thumb.active { opacity: 1; border-color: var(--black); }
-
-    /* Right col */
-    .product-info-col h1 {
-      font-family: 'Roboto Condensed', sans-serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--black);
-      line-height: 1.2;
-      margin-bottom: 28px;
-    }
-
-    .option-group { margin-bottom: 22px; }
-    .option-label {
-      display: block;
-      font-family: 'Roboto Condensed', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #888;
-      margin-bottom: 10px;
-    }
-
-    .color-swatches { display: flex; gap: 8px; flex-wrap: wrap; }
-    .color-swatch {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: all .2s;
-    }
-    .color-swatch:hover, .color-swatch.active { border-color: var(--black); transform: scale(1.12); }
-
-    .size-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-    .size-btn {
-      padding: 9px 16px;
-      border: 1px solid #ddd;
-      background: #fff;
-      font-family: 'Roboto Condensed', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all .2s;
-      text-transform: uppercase;
-      min-width: 44px;
+    /* PAGE HERO */
+    .page-hero {
+      background: var(--black);
+      padding: 72px 24px 60px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .size-btn:hover, .size-btn.active { background: var(--black); color: #fff; border-color: var(--black); }
-
-    .qty-wrap { display: inline-flex; align-items: center; border: 1px solid #ddd; }
-    .qty-btn { width: 38px; height: 38px; background: #fff; border: none; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: background .2s; }
-    .qty-btn:hover { background: var(--gray); }
-    .qty-input { width: 56px; height: 38px; text-align: center; border: none; border-left: 1px solid #ddd; border-right: 1px solid #ddd; font-family: 'Roboto Condensed', sans-serif; font-size: 15px; font-weight: 700; }
-    .qty-input:focus { outline: none; }
-
-    .price-block { margin: 22px 0; }
-    .price-main { font-family: 'Roboto Condensed', sans-serif; font-size: 30px; font-weight: 700; color: var(--black); line-height: 1; }
-    .price-main span { font-size: 14px; font-weight: 400; color: #999; }
-
-    .info-pill {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 4px;
-      margin-top: 12px;
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0,56,168,.15) 0%, rgba(245,168,0,.08) 50%, transparent 75%);
+      pointer-events: none;
     }
-    .info-pill.green { background: rgba(0,156,59,.07); border: 1px solid rgba(0,156,59,.2); }
-    .info-pill.yellow { background: rgba(245,168,0,.07); border: 1px solid rgba(245,168,0,.28); }
-    .pill-icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
-    .pill-text { font-size: 12px; color: #444; line-height: 1.55; }
-    .pill-text strong { font-weight: 700; display: block; margin-bottom: 1px; color: var(--black); }
+    .page-hero-tag {
+      display: inline-block; background: #009c3b; color: #fff;
+      font-family: 'Roboto Condensed', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; padding: 4px 14px; border-radius: 2px; margin-bottom: 18px;
+    }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 44px; color: #fff; font-weight: 700; margin-bottom: 12px; line-height: 1.2; position: relative; }
+    .page-hero h1 em { color: #f5a800; font-style: normal; }
+    .page-hero p { color: #888; font-size: 14px; max-width: 460px; margin: 0 auto; line-height: 1.7; position: relative; }
 
-    .cta-btn {
-      display: block;
-      width: 100%;
-      font-family: 'Roboto Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 17px;
-      text-align: center;
-      border: none;
+    /* PRODUCTS CAROUSEL */
+    .products-section { padding: 64px 0 80px; background: #fff; position: relative; }
+    .products-section-header { text-align: center; padding: 0 5%; margin-bottom: 36px; }
+    .products-section-header h2 { font-family: 'Roboto Condensed', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--black); margin-bottom: 6px; }
+    .products-section-header p { font-size: 13px; color: #999; }
+
+    .carousel-wrap { position: relative; padding: 0 52px; }
+    .carousel-overflow { overflow: hidden; }
+    .carousel-track { display: flex; gap: 16px; transition: transform .45s cubic-bezier(.4,0,.2,1); }
+
+    .prod-card {
+      flex: 0 0 calc(25% - 12px);
+      position: relative;
       cursor: pointer;
-      border-radius: 2px;
       text-decoration: none;
-      transition: background .2s;
+      color: inherit;
+      display: block;
     }
-    .cta-btn.dark { background: var(--black); color: #fff; margin-top: 20px; }
-    .cta-btn.dark:hover { background: #222; }
-    .cta-btn.gold { background: var(--accent); color: var(--black); margin-top: 10px; }
-    .cta-btn.gold:hover { background: #e09700; }
+    .prod-img-wrap { overflow: hidden; aspect-ratio: 3/4; background: var(--gray); margin-bottom: 12px; position: relative; }
+    .prod-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+    .prod-card:hover .prod-img-wrap img { transform: scale(1.04); }
+    .prod-badge {
+      position: absolute; top: 10px; left: 10px;
+      background: #009c3b; color: #fff;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 8px;
+    }
+    .prod-ref { font-family: 'Roboto Condensed', sans-serif; font-size: 10px; color: #bbb; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+    .prod-name { font-size: 12px; font-weight: 400; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
+    .prod-price { font-family: 'Roboto Condensed', sans-serif; font-size: 14px; font-weight: 700; color: var(--black); }
+    .prod-price .pix { font-size: 11px; font-weight: 400; color: #666; }
+    .prod-ver { font-family: 'Roboto Condensed', sans-serif; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #f5a800; margin-top: 6px; display: inline-block; }
 
-    .whatsapp-note { text-align: center; font-size: 11px; color: #bbb; margin-top: 10px; }
-
-    /* FEATURES ROW */
-    .features-row-wrap { border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; }
-    .features-row {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 28px 5%;
-      display: flex;
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-60%);
+      width: 40px; height: 40px;
+      background: transparent; border: 2px solid #f5a800; color: #f5a800;
+      font-size: 18px; border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s; z-index: 2; padding: 0;
     }
-    .feat-item {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 0 24px;
-      border-right: 1px solid #e8e8e8;
-    }
-    .feat-item:first-child { padding-left: 0; }
-    .feat-item:last-child { border-right: none; padding-right: 0; }
-    .feat-icon { width: 44px; height: 44px; background: var(--gray); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-    .feat-title { font-family: 'Roboto Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 2px; }
-    .feat-desc { font-size: 11px; color: #aaa; }
-
-    /* ACCORDION */
-    .accordion-wrap { max-width: 1100px; margin: 0 auto; padding: 0 5% 64px; }
-    .accordion-item { border-top: 1px solid #e8e8e8; }
-    .accordion-item:last-child { border-bottom: 1px solid #e8e8e8; }
-    .accordion-btn {
-      width: 100%;
-      background: none;
-      border: none;
-      padding: 22px 0;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      cursor: pointer;
-      text-align: left;
-    }
-    .acc-icon { width: 42px; height: 42px; background: var(--gray); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-    .acc-titles { flex: 1; }
-    .acc-title { font-family: 'Roboto Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--black); }
-    .acc-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
-    .acc-chevron { font-size: 22px; color: #ccc; transition: transform .25s; line-height: 1; }
-    .accordion-btn[aria-expanded="true"] .acc-chevron { transform: rotate(45deg); }
-    .accordion-body { display: none; padding: 0 0 24px 58px; font-size: 14px; color: #555; line-height: 1.75; }
-    .accordion-body.open { display: block; }
-    .faq-item { margin-bottom: 18px; }
-    .faq-q { font-weight: 700; color: var(--black); margin-bottom: 3px; font-size: 13px; }
-    .faq-a { color: #666; font-size: 13px; }
+    .carousel-btn:hover { background: #f5a800; color: #0d0d0d; }
+    .carousel-btn-prev { left: 4px; }
+    .carousel-btn-next { right: 4px; }
 
     /* CTA BANNER */
     .cta-banner { background: var(--black); padding: 64px 24px; text-align: center; }
@@ -248,18 +123,11 @@
       .header-nav.open ul { flex-direction: column; width: 100%; padding: 8px 0; }
       .header-nav.open a { padding: 14px 24px; font-size: 13px; border-bottom: 1px solid #1e1e1e; }
       .hamburger { display: flex; }
-      .product-section { grid-template-columns: 1fr; gap: 32px; padding: 28px 4%; }
-      .features-row { flex-wrap: wrap; gap: 0; }
-      .feat-item { flex: 0 0 50%; border-right: none; padding: 16px 0; border-bottom: 1px solid #e8e8e8; }
-      .feat-item:nth-child(odd) { padding-right: 12px; }
-      .feat-item:last-child { border-bottom: none; }
-      .accordion-wrap { padding: 0 4% 48px; }
+      .prod-card { flex: 0 0 calc(50% - 8px); }
+      .page-hero h1 { font-size: 30px; }
     }
     @media (max-width: 480px) {
-      .feat-item { flex: 0 0 100%; }
-      .product-section { padding: 20px 4%; }
-      .product-thumbs { gap: 6px; }
-      .product-thumb { width: 54px; height: 68px; }
+      .prod-card { flex: 0 0 100%; }
     }
   </style>
 </head>
@@ -299,212 +167,103 @@
     </div>
   </header>
 
-  <!-- PRODUCT SECTION -->
-  <div class="product-section">
-
-    <!-- LEFT: imagens -->
-    <div class="product-img-col">
-      <div class="product-guarantee">
-        <div class="guarantee-badge">✓</div>
-        <div>
-          <p class="guarantee-main">Fábrica direta para o seu negócio</p>
-          <p class="guarantee-sub">Qualidade garantida em cada peça</p>
-        </div>
-      </div>
-      <img class="product-main-img" id="mainImg"
-        src="https://honeybe.com.br/cdn/shop/files/Desktop_1_d47a1691-d167-49de-b3a7-8f0479a41bcd.png?format=pjpg&v=1768948824&width=900"
-        alt="Coleção Seleção Brasileira">
-      <div class="product-thumbs">
-        <img class="product-thumb active"
-          src="https://honeybe.com.br/cdn/shop/files/Desktop_1_d47a1691-d167-49de-b3a7-8f0479a41bcd.png?format=pjpg&v=1768948824&width=200"
-          alt="Look 1"
-          onclick="setThumb(this,'https://honeybe.com.br/cdn/shop/files/Desktop_1_d47a1691-d167-49de-b3a7-8f0479a41bcd.png?format=pjpg&v=1768948824&width=900')">
-        <img class="product-thumb"
-          src="https://honeybe.com.br/cdn/shop/files/Desktop_1_412c0b8a-bb10-4405-b0fa-913750b834c8.png?format=pjpg&v=1770423283&width=200"
-          alt="Look 2"
-          onclick="setThumb(this,'https://honeybe.com.br/cdn/shop/files/Desktop_1_412c0b8a-bb10-4405-b0fa-913750b834c8.png?format=pjpg&v=1770423283&width=900')">
-        <img class="product-thumb"
-          src="https://honeybe.com.br/cdn/shop/files/Desktop_1_738be3ab-7623-478b-8c49-3cd6cdd21c58.png?format=pjpg&v=1770483461&width=200"
-          alt="Look 3"
-          onclick="setThumb(this,'https://honeybe.com.br/cdn/shop/files/Desktop_1_738be3ab-7623-478b-8c49-3cd6cdd21c58.png?format=pjpg&v=1770483461&width=900')">
-        <img class="product-thumb"
-          src="https://honeybe.com.br/cdn/shop/files/principal_MOBILE_3435924a-1bce-4155-9a26-bfdef6d9a117.png?format=pjpg&v=1770423282&width=200"
-          alt="Look 4"
-          onclick="setThumb(this,'https://honeybe.com.br/cdn/shop/files/principal_MOBILE_3435924a-1bce-4155-9a26-bfdef6d9a117.png?format=pjpg&v=1770423282&width=900')">
-      </div>
-    </div>
-
-    <!-- RIGHT: info do produto -->
-    <div class="product-info-col">
-      <h1>🇧🇷 Coleção Seleção Brasileira</h1>
-
-      <!-- Cor -->
-      <div class="option-group">
-        <span class="option-label">Cor</span>
-        <div class="color-swatches">
-          <div class="color-swatch active" style="background:#009c3b" title="Verde" onclick="selectColor(this)"></div>
-          <div class="color-swatch" style="background:#FFDF00" title="Amarelo" onclick="selectColor(this)"></div>
-          <div class="color-swatch" style="background:#003087" title="Azul" onclick="selectColor(this)"></div>
-          <div class="color-swatch" style="background:#fff;box-shadow:inset 0 0 0 1px #ccc" title="Branco" onclick="selectColor(this)"></div>
-          <div class="color-swatch" style="background:#0d0d0d" title="Preto" onclick="selectColor(this)"></div>
-        </div>
-      </div>
-
-      <!-- Tamanho -->
-      <div class="option-group">
-        <span class="option-label">Tamanho</span>
-        <div class="size-buttons">
-          <button class="size-btn" onclick="selectSize(this)">P</button>
-          <button class="size-btn active" onclick="selectSize(this)">M</button>
-          <button class="size-btn" onclick="selectSize(this)">G</button>
-          <button class="size-btn" onclick="selectSize(this)">GG</button>
-          <button class="size-btn" onclick="selectSize(this)">3G</button>
-        </div>
-      </div>
-
-      <!-- Quantidade -->
-      <div class="option-group">
-        <span class="option-label">Quantidade</span>
-        <div class="qty-wrap">
-          <button class="qty-btn" onclick="adjustQty(-1)">–</button>
-          <input class="qty-input" id="qtyInput" type="number" value="10" min="10">
-          <button class="qty-btn" onclick="adjustQty(1)">+</button>
-        </div>
-      </div>
-
-      <!-- Preço -->
-      <div class="price-block">
-        <p class="price-main">R$ 49,90 <span>/ peça no atacado</span></p>
-        <div class="info-pill green">
-          <span class="pill-icon">🏷️</span>
-          <p class="pill-text"><strong>Leve 20 ou mais por R$ 44,90 cada</strong>Desconto aplicado automaticamente no pedido.</p>
-        </div>
-        <div class="info-pill yellow">
-          <span class="pill-icon">📦</span>
-          <p class="pill-text"><strong>Pedido mínimo: 10 peças do mesmo item</strong>ou 20 peças sortidas da coleção.</p>
-        </div>
-      </div>
-
-      <!-- CTAs -->
-      <a href="https://jratacadista44.com.br/comunidade/" target="_blank" class="cta-btn dark">Solicitar Pedido</a>
-      <a href="index.html#quero-revender" class="cta-btn gold">Quero ser Revendedor</a>
-      <p class="whatsapp-note">💬 Atendimento via WhatsApp · Resposta em até 2h úteis</p>
-    </div>
-
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <span class="page-hero-tag">🇧🇷 Coleção Especial</span>
+    <h1>Coleção <em>Seleção</em><br>Brasileira</h1>
+    <p>Peças exclusivas com o estilo e as cores do Brasil. Clique em um produto para ver detalhes, tamanhos e solicitar seu pedido.</p>
   </div>
 
-  <!-- FEATURES ROW -->
-  <div class="features-row-wrap">
-    <div class="features-row">
-      <div class="feat-item">
-        <div class="feat-icon">🌿</div>
-        <div>
-          <p class="feat-title">Algodão Premium</p>
-          <p class="feat-desc">Toque macio e durável</p>
-        </div>
-      </div>
-      <div class="feat-item">
-        <div class="feat-icon">👕</div>
-        <div>
-          <p class="feat-title">Nunca desbota</p>
-          <p class="feat-desc">Parece nova para sempre</p>
-        </div>
-      </div>
-      <div class="feat-item">
-        <div class="feat-icon">✨</div>
-        <div>
-          <p class="feat-title">Não amassa</p>
-          <p class="feat-desc">É só lavar, secar e usar</p>
-        </div>
-      </div>
-      <div class="feat-item">
-        <div class="feat-icon">🏭</div>
-        <div>
-          <p class="feat-title">Fábrica direta</p>
-          <p class="feat-desc">Preço e qualidade garantidos</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ACCORDION -->
-  <div class="accordion-wrap">
-
-    <div class="accordion-item">
-      <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
-        <div class="acc-icon">🇧🇷</div>
-        <div class="acc-titles">
-          <p class="acc-title">Sobre a Coleção</p>
-          <p class="acc-sub">Conheça a Seleção Brasileira JR</p>
-        </div>
-        <span class="acc-chevron">+</span>
-      </button>
-      <div class="accordion-body">
-        <p>A Coleção Seleção Brasileira foi desenvolvida exclusivamente para lojistas que querem se destacar em datas comemorativas como Copa do Mundo, Olimpíadas e festividades nacionais.</p>
-        <br>
-        <p>Cada peça foi criada para celebrar as cores e o espírito do Brasil com muito estilo e qualidade de fábrica. O resultado são peças que conectam emocionalmente com o cliente e giram rápido no estoque.</p>
-        <br>
-        <p>Disponível em 5 cores (verde, amarelo, azul, branco e preto) e nos tamanhos P ao 3G.</p>
-      </div>
+  <!-- PRODUCTS CAROUSEL -->
+  <section class="products-section">
+    <div class="products-section-header">
+      <h2>Peças da Coleção</h2>
+      <p>Use as setas para navegar · Clique na peça para ver detalhes</p>
     </div>
 
-    <div class="accordion-item">
-      <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
-        <div class="acc-icon">💬</div>
-        <div class="acc-titles">
-          <p class="acc-title">Avaliações dos Lojistas</p>
-          <p class="acc-sub">Quem já vendeu a coleção</p>
-        </div>
-        <span class="acc-chevron">+</span>
-      </button>
-      <div class="accordion-body">
-        <p><strong>"Vendi tudo em uma semana durante a Copa."</strong><br><span style="color:#aaa;font-size:12px;">Ana Paula S. — São Paulo, SP ★★★★★</span></p>
-        <br>
-        <p><strong>"Meus clientes amaram as cores. Já fiz o segundo pedido."</strong><br><span style="color:#aaa;font-size:12px;">Rodrigo M. — Curitiba, PR ★★★★★</span></p>
-        <br>
-        <p><strong>"Qualidade muito acima do esperado para o preço de atacado."</strong><br><span style="color:#aaa;font-size:12px;">Fernanda T. — Belo Horizonte, MG ★★★★★</span></p>
-      </div>
-    </div>
+    <div class="carousel-wrap">
+      <button class="carousel-btn carousel-btn-prev" onclick="slideProd(-1)">&#8592;</button>
 
-    <div class="accordion-item">
-      <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
-        <div class="acc-icon">❓</div>
-        <div class="acc-titles">
-          <p class="acc-title">Perguntas Frequentes</p>
-          <p class="acc-sub">Sua dúvida pode estar aqui</p>
-        </div>
-        <span class="acc-chevron">+</span>
-      </button>
-      <div class="accordion-body">
-        <div class="faq-item">
-          <p class="faq-q">Qual o pedido mínimo?</p>
-          <p class="faq-a">10 peças do mesmo item ou 20 peças sortidas da coleção.</p>
-        </div>
-        <div class="faq-item">
-          <p class="faq-q">Quais tamanhos estão disponíveis?</p>
-          <p class="faq-a">P, M, G, GG e 3G em todas as cores.</p>
-        </div>
-        <div class="faq-item">
-          <p class="faq-q">Como faço meu pedido?</p>
-          <p class="faq-a">Clique em "Solicitar Pedido" e fale com nosso time pelo WhatsApp. Respondemos em até 2 horas úteis.</p>
-        </div>
-        <div class="faq-item">
-          <p class="faq-q">Quanto tempo leva para chegar?</p>
-          <p class="faq-a">De 3 a 7 dias úteis para todo o Brasil, dependendo da sua região.</p>
-        </div>
-        <div class="faq-item">
-          <p class="faq-q">Posso sortir cores e tamanhos?</p>
-          <p class="faq-a">Sim! No pedido de 20 peças sortidas você escolhe livremente entre as 5 cores e todos os tamanhos disponíveis.</p>
+      <div class="carousel-overflow">
+        <div class="carousel-track" id="prodTrack">
+
+          <a class="prod-card" href="493-cropped-selecao-brasileira.html">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/Desktop_1_412c0b8a-bb10-4405-b0fa-913750b834c8.png?format=pjpg&v=1770423283&width=600" alt="Cropped Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-ref">Ref. 493</p>
+            <p class="prod-name">Cropped Seleção Brasileira</p>
+            <p class="prod-price">R$ 49,90 <span class="pix">atacado</span></p>
+            <span class="prod-ver">Ver produto →</span>
+          </a>
+
+          <a class="prod-card" href="493-cropped-selecao-brasileira.html">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/Desktop_1_d47a1691-d167-49de-b3a7-8f0479a41bcd.png?format=pjpg&v=1768948824&width=600" alt="Legging Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-ref">Ref. 494</p>
+            <p class="prod-name">Legging Seleção Brasileira</p>
+            <p class="prod-price">R$ 59,90 <span class="pix">atacado</span></p>
+            <span class="prod-ver">Ver produto →</span>
+          </a>
+
+          <a class="prod-card" href="493-cropped-selecao-brasileira.html">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/principal_MOBILE_3435924a-1bce-4155-9a26-bfdef6d9a117.png?format=pjpg&v=1770423282&width=600" alt="Short Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-ref">Ref. 495</p>
+            <p class="prod-name">Short Seleção Performance</p>
+            <p class="prod-price">R$ 44,90 <span class="pix">atacado</span></p>
+            <span class="prod-ver">Ver produto →</span>
+          </a>
+
+          <a class="prod-card" href="493-cropped-selecao-brasileira.html">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/Desktop_1_738be3ab-7623-478b-8c49-3cd6cdd21c58.png?format=pjpg&v=1770483461&width=600" alt="Top Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-ref">Ref. 496</p>
+            <p class="prod-name">Top Seleção Dry Fit</p>
+            <p class="prod-price">R$ 39,90 <span class="pix">atacado</span></p>
+            <span class="prod-ver">Ver produto →</span>
+          </a>
+
+          <a class="prod-card" href="493-cropped-selecao-brasileira.html">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/principal_MOBILE_09ef3a20-687b-4a1b-9316-2f71346426c6.png?format=pjpg&v=1768948824&width=600" alt="Conjunto Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-ref">Ref. 497</p>
+            <p class="prod-name">Conjunto Seleção Feminino</p>
+            <p class="prod-price">R$ 99,90 <span class="pix">atacado</span></p>
+            <span class="prod-ver">Ver produto →</span>
+          </a>
+
+          <a class="prod-card" href="493-cropped-selecao-brasileira.html">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/principal_MOBILE_2e5b34d9-fbec-4a91-8e13-859bf99a4140.png?format=pjpg&v=1770483461&width=600" alt="Regata Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-ref">Ref. 498</p>
+            <p class="prod-name">Regata Seleção Brasil</p>
+            <p class="prod-price">R$ 34,90 <span class="pix">atacado</span></p>
+            <span class="prod-ver">Ver produto →</span>
+          </a>
+
         </div>
       </div>
-    </div>
 
-  </div>
+      <button class="carousel-btn carousel-btn-next" onclick="slideProd(1)">&#8594;</button>
+    </div>
+  </section>
 
   <!-- CTA BANNER -->
   <div class="cta-banner">
-    <h2>Pronto para vender mais?</h2>
-    <p>Garanta a Coleção Seleção Brasileira para a sua loja.</p>
+    <h2>Quer garantir a coleção?</h2>
+    <p>Fale com nosso time e monte seu pedido da Seleção Brasileira.</p>
     <a href="index.html#quero-revender">Quero Revender Agora</a>
   </div>
 
@@ -517,6 +276,17 @@
   </footer>
 
   <script>
+    let prodIndex = 0;
+    function visibleCards() { return window.innerWidth <= 480 ? 1 : window.innerWidth <= 900 ? 2 : 4; }
+    const totalCards = 6;
+    function maxIndex() { return totalCards - visibleCards(); }
+    function slideProd(dir) {
+      prodIndex = Math.max(0, Math.min(maxIndex(), prodIndex + dir));
+      const cardW = document.querySelector('.prod-card').offsetWidth + 16;
+      document.getElementById('prodTrack').style.transform = 'translateX(-' + (cardW * prodIndex) + 'px)';
+    }
+    window.addEventListener('resize', () => { prodIndex = Math.min(prodIndex, maxIndex()); slideProd(0); });
+
     function toggleMenu() {
       const nav = document.getElementById('headerNav');
       const btn = document.getElementById('hamburger');
@@ -529,33 +299,6 @@
         document.getElementById('hamburger').classList.remove('open');
       });
     });
-
-    function setThumb(el, src) {
-      document.getElementById('mainImg').src = src;
-      document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
-      el.classList.add('active');
-    }
-
-    function selectColor(el) {
-      document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
-      el.classList.add('active');
-    }
-
-    function selectSize(el) {
-      document.querySelectorAll('.size-btn').forEach(s => s.classList.remove('active'));
-      el.classList.add('active');
-    }
-
-    function adjustQty(delta) {
-      const inp = document.getElementById('qtyInput');
-      inp.value = Math.max(10, parseInt(inp.value || 10) + delta);
-    }
-
-    function toggleAcc(btn) {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      btn.nextElementSibling.classList.toggle('open', !expanded);
-    }
   </script>
 </body>
 </html>
