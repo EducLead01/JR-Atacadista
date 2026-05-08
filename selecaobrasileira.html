@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coleção Seleção Brasileira — JR Atacadista</title>
+  <link rel="icon" href="public/icons/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500;700&family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #0d0d0d; --dark: #1a1a1a; --gray: #f5f5f5; --text: #333; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', sans-serif; background: #fff; color: var(--text); }
+
+    /* ── ANNOUNCE BAR ── */
+    .announce-bar { background: var(--black); overflow: hidden; white-space: nowrap; padding: 8px 0; }
+    .announce-track { display: inline-flex; gap: 80px; animation: marquee 28s linear infinite; }
+    .announce-track span { font-family: 'Roboto Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; color: #fff; text-transform: uppercase; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── HEADER ── */
+    .site-header { background: var(--black); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #2a2a2a; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 4%; height: 64px; }
+    .header-logo-text { font-family: 'Roboto Condensed', sans-serif; font-size: 20px; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+    .header-logo-text span { color: #f5a800; font-weight: 400; }
+    .header-nav ul { display: flex; list-style: none; }
+    .header-nav a { display: block; padding: 22px 13px; color: #b0b0b0; text-decoration: none; font-family: 'Roboto Condensed', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; white-space: nowrap; }
+    .header-nav a:hover { color: #f5a800; }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .nav-cta-btn { background: #f5a800; color: #0d0d0d; padding: 10px 22px; border-radius: 4px; font-family: 'Roboto Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: background .2s; }
+    .nav-cta-btn:hover { background: #e09700; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: var(--black);
+      padding: 72px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0,56,168,.15) 0%, rgba(245,168,0,.08) 50%, transparent 75%);
+      pointer-events: none;
+    }
+    .hero-flag {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .hero-flag span {
+      font-size: 28px;
+    }
+    .page-hero-tag {
+      display: inline-block; background: #009c3b; color: #fff;
+      font-family: 'Roboto Condensed', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; padding: 4px 14px; border-radius: 2px; margin-bottom: 18px;
+    }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 44px; color: #fff; font-weight: 700; margin-bottom: 12px; line-height: 1.2; position: relative; }
+    .page-hero h1 em { color: #f5a800; font-style: normal; }
+    .page-hero p { color: #888; font-size: 14px; max-width: 460px; margin: 0 auto; line-height: 1.7; position: relative; }
+
+    /* ── PRODUCTS CAROUSEL ── */
+    .products-section {
+      padding: 64px 0 80px;
+      background: #fff;
+      position: relative;
+    }
+    .products-section-header {
+      text-align: center;
+      padding: 0 5%;
+      margin-bottom: 36px;
+    }
+    .products-section-header h2 {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .products-section-header p { font-size: 13px; color: #999; }
+
+    .carousel-wrap {
+      position: relative;
+      padding: 0 52px;
+    }
+    .carousel-overflow { overflow: hidden; }
+    .carousel-track {
+      display: flex;
+      gap: 16px;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+    }
+    .prod-card {
+      flex: 0 0 calc(25% - 12px);
+      position: relative;
+      cursor: pointer;
+    }
+    .prod-img-wrap {
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--gray);
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .prod-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+    .prod-card:hover .prod-img-wrap img { transform: scale(1.04); }
+    .prod-badge {
+      position: absolute;
+      top: 10px; left: 10px;
+      background: #009c3b;
+      color: #fff;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 8px;
+    }
+    .prod-name { font-size: 12px; font-weight: 400; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
+    .prod-price { font-family: 'Roboto Condensed', sans-serif; font-size: 14px; font-weight: 700; color: var(--black); }
+    .prod-price .pix { font-size: 11px; font-weight: 400; color: #666; }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-60%);
+      width: 40px; height: 40px;
+      background: transparent;
+      border: 2px solid #f5a800;
+      color: #f5a800;
+      font-size: 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s;
+      z-index: 2;
+      padding: 0;
+    }
+    .carousel-btn:hover { background: #f5a800; color: #0d0d0d; }
+    .carousel-btn-prev { left: 4px; }
+    .carousel-btn-next { right: 4px; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--black);
+      padding: 64px 24px;
+      text-align: center;
+    }
+    .cta-banner h2 { font-family: 'Playfair Display', serif; font-size: 30px; color: #fff; margin-bottom: 10px; }
+    .cta-banner p { color: #888; font-size: 14px; margin-bottom: 28px; }
+    .cta-banner a {
+      display: inline-block; background: #f5a800; color: #0d0d0d;
+      font-family: 'Roboto Condensed', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; padding: 16px 40px; border-radius: 4px;
+      text-decoration: none; transition: background .2s;
+    }
+    .cta-banner a:hover { background: #e09700; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); border-top: 1px solid #1e1e1e; }
+    .footer-bottom { padding: 24px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+    .footer-copy { font-size: 11px; color: #555; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .header-nav { display: none; }
+      .header-nav.open { display: flex; position: absolute; top: 64px; left: 0; right: 0; background: var(--black); border-top: 1px solid #2a2a2a; z-index: 99; }
+      .header-nav.open ul { flex-direction: column; width: 100%; padding: 8px 0; }
+      .header-nav.open a { padding: 14px 24px; font-size: 13px; border-bottom: 1px solid #1e1e1e; }
+      .hamburger { display: flex; }
+      .prod-card { flex: 0 0 calc(50% - 8px); }
+      .page-hero h1 { font-size: 30px; }
+    }
+    @media (max-width: 480px) {
+      .prod-card { flex: 0 0 calc(100%); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCE BAR -->
+  <div class="announce-bar">
+    <div class="announce-track">
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo-text">JR<span>atacadista</span></a>
+      <nav class="header-nav" id="headerNav">
+        <ul>
+          <li><a href="index.html#hero">Início</a></li>
+          <li><a href="index.html#como-funciona">Como Funciona</a></li>
+          <li><a href="index.html#novidades">Novidades</a></li>
+          <li><a href="index.html#comunidade">Comunidade JR</a></li>
+          <li><a href="index.html#reposicoes">Reposições</a></li>
+          <li><a href="depoimentos.html">Depoimentos</a></li>
+          <li><a href="portal-do-revendedor.html">Portal do Revendedor</a></li>
+        </ul>
+      </nav>
+      <div class="header-right">
+        <a href="index.html#quero-revender" class="nav-cta-btn">QUERO REVENDER</a>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <span class="page-hero-tag">🇧🇷 Coleção Especial</span>
+    <h1>Coleção <em>Seleção</em><br>Brasileira</h1>
+    <p>Peças exclusivas com o estilo e as cores do Brasil. Ideal para alavancar suas vendas em datas comemorativas e criar conexão com seus clientes.</p>
+  </div>
+
+  <!-- PRODUCTS CAROUSEL -->
+  <section class="products-section">
+    <div class="products-section-header">
+      <h2>Peças da Coleção</h2>
+      <p>Use as setas para navegar por todos os produtos</p>
+    </div>
+
+    <div class="carousel-wrap">
+      <button class="carousel-btn carousel-btn-prev" onclick="slideProd(-1)">&#8592;</button>
+
+      <div class="carousel-overflow">
+        <div class="carousel-track" id="prodTrack">
+
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/Desktop_1_412c0b8a-bb10-4405-b0fa-913750b834c8.png?format=pjpg&v=1770423283&width=600" alt="Camiseta Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-name">Camiseta Seleção Feminina SB001</p>
+            <p class="prod-price">R$ 59,90 <span class="pix">R$ 56,91 no Pix</span></p>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/Desktop_1_d47a1691-d167-49de-b3a7-8f0479a41bcd.png?format=pjpg&v=1768948824&width=600" alt="Legging Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-name">Legging Seleção Verde Amarelo SB002</p>
+            <p class="prod-price">R$ 99,90 <span class="pix">R$ 94,91 no Pix</span></p>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/principal_MOBILE_3435924a-1bce-4155-9a26-bfdef6d9a117.png?format=pjpg&v=1770423282&width=600" alt="Short Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-name">Short Seleção Performance SB003</p>
+            <p class="prod-price">R$ 79,90 <span class="pix">R$ 75,91 no Pix</span></p>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/Desktop_1_738be3ab-7623-478b-8c49-3cd6cdd21c58.png?format=pjpg&v=1770483461&width=600" alt="Top Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-name">Top Seleção Cropped SB004</p>
+            <p class="prod-price">R$ 69,90 <span class="pix">R$ 66,41 no Pix</span></p>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/principal_MOBILE_09ef3a20-687b-4a1b-9316-2f71346426c6.png?format=pjpg&v=1768948824&width=600" alt="Conjunto Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-name">Conjunto Seleção Feminino SB005</p>
+            <p class="prod-price">R$ 139,90 <span class="pix">R$ 132,91 no Pix</span></p>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-img-wrap">
+              <img src="https://honeybe.com.br/cdn/shop/files/principal_MOBILE_2e5b34d9-fbec-4a91-8e13-859bf99a4140.png?format=pjpg&v=1770483461&width=600" alt="Regata Seleção">
+              <div class="prod-badge">Seleção</div>
+            </div>
+            <p class="prod-name">Regata Seleção Dry Fit SB006</p>
+            <p class="prod-price">R$ 49,90 <span class="pix">R$ 47,41 no Pix</span></p>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="carousel-btn carousel-btn-next" onclick="slideProd(1)">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <h2>Quer garantir a coleção?</h2>
+    <p>Fale com nosso time e monte seu pedido da Seleção Brasileira.</p>
+    <a href="index.html#quero-revender">Quero Revender Agora</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright © 2026 JR Atacadista. Todos os direitos reservados.</p>
+      <p class="footer-copy">CNPJ: 40.920.765/0001-64</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── PRODUCT CAROUSEL ──
+    let prodIndex = 0;
+    function visibleCards() { return window.innerWidth <= 480 ? 1 : window.innerWidth <= 900 ? 2 : 4; }
+    const totalCards = 6;
+    function maxIndex() { return totalCards - visibleCards(); }
+    function slideProd(dir) {
+      prodIndex = Math.max(0, Math.min(maxIndex(), prodIndex + dir));
+      const cardW = document.querySelector('.prod-card').offsetWidth + 16;
+      document.getElementById('prodTrack').style.transform = 'translateX(-' + (cardW * prodIndex) + 'px)';
+    }
+    window.addEventListener('resize', () => { prodIndex = Math.min(prodIndex, maxIndex()); slideProd(0); });
+
+    // ── HAMBURGER ──
+    function toggleMenu() {
+      const nav = document.getElementById('headerNav');
+      const btn = document.getElementById('hamburger');
+      nav.classList.toggle('open');
+      btn.classList.toggle('open');
+    }
+    document.querySelectorAll('#headerNav a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('headerNav').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
