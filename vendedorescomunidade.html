@@ -826,6 +826,27 @@
       transition: all .2s;
     }
     .qual-retry-btn:hover { border-color: #f5a800; color: #f5a800; }
+    .qual-progress { margin-bottom: 28px; }
+    .qual-progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .qual-progress-label { font-size: 12px; color: #888; font-weight: 500; letter-spacing: .5px; }
+    .qual-progress-pct { font-size: 13px; color: #f5a800; font-weight: 700; }
+    .qual-progress-track {
+      background: #2a2a2a;
+      border-radius: 99px;
+      height: 5px;
+      overflow: hidden;
+    }
+    .qual-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f5a800, #ffc94d);
+      border-radius: 99px;
+      transition: width .5s cubic-bezier(.4,0,.2,1);
+    }
 
     /* ── RESPONSIVE ────────────────────────────── */
     @media (max-width: 1024px) {
@@ -1169,6 +1190,17 @@
 
       <form id="qualForm" class="qual-form" novalidate>
 
+        <!-- BARRA DE PROGRESSO -->
+        <div class="qual-progress" id="qualProgress">
+          <div class="qual-progress-meta">
+            <span class="qual-progress-label" id="progressLabel">Passo 1 de 3</span>
+            <span class="qual-progress-pct" id="progressPct">33%</span>
+          </div>
+          <div class="qual-progress-track">
+            <div class="qual-progress-fill" id="progressFill" style="width:33%"></div>
+          </div>
+        </div>
+
         <!-- PASSO 1: dados pessoais -->
         <div class="qual-step" id="step1">
           <div class="qual-field">
@@ -1410,9 +1442,26 @@
     setInterval(() => goBenefit((bCurrent + 1) % bTotal), 5000);
 
     // ── FORMULÁRIO DE QUALIFICAÇÃO ──
+    const STEP_PROGRESS = {
+      step1: [33,  'Passo 1 de 3'],
+      step2: [66,  'Passo 2 de 3'],
+      step3: [100, 'Passo 3 de 3']
+    };
+
+    function setProgress(id) {
+      const bar = document.getElementById('qualProgress');
+      const p = STEP_PROGRESS[id];
+      if (!p) { bar.style.display = 'none'; return; }
+      bar.style.display = 'block';
+      document.getElementById('progressLabel').textContent = p[1];
+      document.getElementById('progressPct').textContent  = p[0] + '%';
+      document.getElementById('progressFill').style.width = p[0] + '%';
+    }
+
     function show(id) {
       document.querySelectorAll('.qual-step').forEach(s => s.classList.add('hidden'));
       document.getElementById(id).classList.remove('hidden');
+      setProgress(id);
     }
 
     function goStep2() {
