@@ -204,7 +204,16 @@
       border-right: 1px solid #2a2a2a;
     }
     .shipping-item:last-child { border-right: none; }
-    .shipping-icon { font-size: 22px; margin-bottom: 6px; }
+    .shipping-icon {
+      width: 22px;
+      height: 22px;
+      margin: 0 auto 8px;
+      color: rgba(255,255,255,.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .shipping-icon svg { width: 100%; height: 100%; }
     .shipping-item strong {
       display: block;
       font-family: 'Roboto Condensed', sans-serif;
@@ -1061,19 +1070,48 @@
   <div class="shipping-bar">
     <div class="shipping-grid">
       <div class="shipping-item">
-        <div class="shipping-icon">🚚</div>
+        <div class="shipping-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13" rx="1"/>
+            <path d="M16 8h4l3 5v4h-7V8z"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
         <strong>Frete Inteligente</strong>
         <span>Frete rápido para reposições estratégicas</span>
       </div>
       <div class="shipping-item">
-        <div class="shipping-icon">📦</div>
+        <div class="shipping-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
         <strong>Pedido Mínimo</strong>
         <span>10 peças do mesmo item ou 20 peças sortidas</span>
       </div>
       <div class="shipping-item">
-        <div class="shipping-icon">🔑</div>
+        <div class="shipping-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
         <strong>Compre no Pix</strong>
         <span>Descontos exclusivos</span>
+      </div>
+      <div class="shipping-item">
+        <div class="shipping-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="9.5" y1="11" x2="14.5" y2="16"/>
+            <line x1="14.5" y1="11" x2="9.5" y2="16"/>
+          </svg>
+        </div>
+        <strong>Não Vendemos Varejo</strong>
+        <span>Exclusivo para lojistas e revendedores</span>
       </div>
     </div>
   </div>
