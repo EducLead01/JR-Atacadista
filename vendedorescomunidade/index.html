@@ -1381,9 +1381,14 @@
       document.getElementById('min-nao').className = 'qual-opt' + (ans === 'nao' ? ' selected-yes' : ' selected-no');
       setTimeout(() => {
         if (ans === 'sim') {
-          const nome = encodeURIComponent(document.getElementById('qNome').value.trim());
-          const whats = document.getElementById('qWhats').value.trim().replace(/\D/g,'');
-          const msg = encodeURIComponent('Olá! Me chamo ' + document.getElementById('qNome').value.trim() + ' e quero me tornar revendedor da JR Atacadista.');
+          const nome  = document.getElementById('qNome').value.trim();
+          const loja  = document.getElementById('qLoja').value.trim();
+          const whats = document.getElementById('qWhats').value.trim();
+          fetch('https://n8n.educlead.com.br/webhook/551e56ec-83f3-4237-a8f9-522cce899a70', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nome, loja, whatsapp: whats })
+          }).catch(() => {});
           document.getElementById('wppLink').href = 'https://jratacadista44.com.br/vendedoresatacadocomunidade/';
           show('stepOk');
         } else {
