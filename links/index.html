@@ -3,203 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JR Atacadista</title>
+  <title>JR Atacadista — Links</title>
   <link rel="icon" href="../public/icons/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { gold: '#f5a800' },
+          fontFamily: { inter: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0a0a0a;
-      color: #fff;
-      min-height: 100vh;
-      padding: 52px 20px 52px;
-      display: flex;
-      justify-content: center;
-    }
+    * { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; }
     ::selection { background: #f5a800; color: #0a0a0a; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #f5a800; border-radius: 10px; }
 
-    .wrap { width: 100%; max-width: 400px; display: flex; flex-direction: column; align-items: center; }
-
-    /* perfil */
-    .avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #f5a800; margin-bottom: 14px; }
-    .name { font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.3px; margin-bottom: 4px; }
-    .name span { color: #f5a800; }
-    .bio { font-size: 11px; color: rgba(255,255,255,.35); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px; }
-
-    /* grid */
-    .grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .full { grid-column: span 2; }
-
-    /* card — estilo comunidade */
-    .card {
-      position: relative;
-      background: #111;
-      border-radius: 20px;
-      padding: 22px 20px 20px;
-      border: 1px solid rgba(255,255,255,.05);
-      border-left: 2px solid #f5a800;
-      overflow: hidden;
-      text-decoration: none;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      transition: background .2s, border-color .2s, transform .15s;
+    .gradient-text {
+      background: linear-gradient(to right, #f5a800, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .card:hover { background: #161616; transform: translateY(-2px); }
-    .card:active { transform: translateY(0); }
 
-    /* watermark */
-    .card .wm {
+    .stat-card { position: relative; overflow: hidden; }
+    .stat-card .watermark {
       position: absolute;
-      right: -10px; bottom: -10px;
-      width: 80px; height: 80px;
+      right: -12px; bottom: -12px;
+      width: 110px; height: 110px;
       object-fit: contain;
-      opacity: .05;
+      opacity: .06;
       pointer-events: none;
     }
 
-    /* ícone */
-    .icon-box {
-      width: 42px; height: 42px;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(245,168,0,.1);
-      border: 1px solid rgba(245,168,0,.2);
-      margin-bottom: 14px;
-      flex-shrink: 0;
+    .dot-bg {
+      background-image: radial-gradient(circle, #f5a800 1px, transparent 1px);
+      background-size: 28px 28px;
     }
-    .icon-box svg { width: 20px; height: 20px; }
-
-    /* linha dourada */
-    .gold-line {
-      width: 28px; height: 2px;
-      background: rgba(245,168,0,.4);
-      margin-bottom: 12px;
-      transition: width .3s;
-    }
-    .card:hover .gold-line { width: 44px; }
-
-    .card-title {
-      font-size: 13px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      color: #fff;
-      line-height: 1.25;
-      margin-bottom: 6px;
-    }
-    .card-sub {
-      font-size: 11px;
-      color: rgba(255,255,255,.38);
-      line-height: 1.4;
-    }
-
-    /* variações de cor */
-    .card.wpp  { border-left-color: #25d366; }
-    .card.wpp  .icon-box { background: rgba(37,211,102,.1); border-color: rgba(37,211,102,.2); }
-    .card.wpp  .gold-line { background: rgba(37,211,102,.4); }
-
-    .card.ig   { border-left-color: #e1306c; }
-    .card.ig   .icon-box { background: rgba(225,48,108,.1); border-color: rgba(225,48,108,.2); }
-    .card.ig   .gold-line { background: rgba(225,48,108,.4); }
-
-    .card.maps { border-left-color: #4285f4; }
-    .card.maps .icon-box { background: rgba(66,133,244,.1); border-color: rgba(66,133,244,.2); }
-    .card.maps .gold-line { background: rgba(66,133,244,.4); }
-
-    .footer { font-size: 10px; color: rgba(255,255,255,.1); letter-spacing: 2px; text-transform: uppercase; margin-top: 32px; }
   </style>
 </head>
-<body>
-<div class="wrap">
+<body class="min-h-screen flex flex-col">
 
-  <!-- PERFIL -->
-  <img class="avatar"
-       src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg"
-       alt="JR Atacadista">
-  <p class="name">JR <span>Atacadista</span></p>
-  <p class="bio">Maior atacadista da 44</p>
+  <!-- HEADER -->
+  <header class="fixed top-0 w-full z-50"
+          style="background:rgba(10,10,10,.9); backdrop-filter:blur(16px); border-bottom:1px solid rgba(255,255,255,.05);">
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-center gap-3">
+      <img src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg"
+           alt="JR Atacadista" class="w-9 h-9 rounded-full object-cover">
+      <span class="font-black text-lg uppercase tracking-tight">JR <span class="text-gold">Atacadista</span></span>
+    </div>
+  </header>
 
-  <!-- LINKS -->
-  <div class="grid">
+  <main class="flex-grow pt-16">
 
-    <!-- Seja um Revendedor — full -->
-    <a class="card full" href="https://lp.jratacadista44.com.br/revenda/" target="_blank" rel="noopener">
-      <img class="wm" src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="">
-      <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#f5a800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-        </svg>
+    <!-- HERO -->
+    <section class="px-4 pt-20 pb-24 text-center relative overflow-hidden">
+      <div class="dot-bg absolute inset-0 opacity-[0.03] pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto relative z-10">
+
+        <!-- perfil -->
+        <img src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg"
+             alt="JR Atacadista"
+             class="w-20 h-20 rounded-full object-cover mx-auto mb-4"
+             style="border:2px solid rgba(245,168,0,.5);">
+        <p class="text-gold text-xs font-black uppercase tracking-[0.35em] mb-2">Links</p>
+        <h1 class="font-black text-4xl sm:text-5xl uppercase tracking-tighter leading-[0.95] mb-3">
+          JR <span class="gradient-text">Atacadista</span>
+        </h1>
+        <p class="text-white/40 text-base font-light mb-14 max-w-sm mx-auto">Maior atacadista da 44</p>
+
+        <!-- GRID DE LINKS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+
+          <!-- Seja um Revendedor — full width -->
+          <a href="https://lp.jratacadista44.com.br/revenda/" target="_blank" rel="noopener"
+             class="stat-card sm:col-span-2 bg-[#111] rounded-3xl p-8 border border-white/[0.06] hover:border-gold/30 transition-all duration-300 block"
+             style="border-left:2px solid #f5a800;">
+            <img class="watermark" src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(245,168,0,.1); border:1px solid rgba(245,168,0,.2);">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#f5a800" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+            </div>
+            <div class="w-8 h-[2px] mb-5" style="background:rgba(245,168,0,.4);"></div>
+            <h3 class="font-black text-2xl uppercase tracking-tight mb-2 text-gold">Seja um Revendedor</h3>
+            <p class="text-white/40 text-sm leading-relaxed">Revenda com lucro mesmo dando desconto — sem CNPJ e sem consulta ao Serasa.</p>
+          </a>
+
+          <!-- Grupo WhatsApp -->
+          <a href="https://lp.jratacadista44.com.br/comunidade/" target="_blank" rel="noopener"
+             class="stat-card bg-[#111] rounded-3xl p-8 border border-white/[0.06] hover:border-green-500/30 transition-all duration-300 block"
+             style="border-left:2px solid #25d366;">
+            <img class="watermark" src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(37,211,102,.1); border:1px solid rgba(37,211,102,.2);">
+              <svg class="w-6 h-6" viewBox="0 0 448 512" fill="#25d366" xmlns="http://www.w3.org/2000/svg">
+                <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+              </svg>
+            </div>
+            <div class="w-8 h-[2px] mb-5" style="background:rgba(37,211,102,.4);"></div>
+            <h3 class="font-black text-2xl uppercase tracking-tight mb-2" style="color:#25d366;">Grupo WhatsApp</h3>
+            <p class="text-white/40 text-sm leading-relaxed">Entre para a comunidade JR.</p>
+          </a>
+
+          <!-- Catálogo -->
+          <a href="https://catalogo.jratacadista44.com.br/" target="_blank" rel="noopener"
+             class="stat-card bg-[#111] rounded-3xl p-8 border border-white/[0.06] hover:border-gold/30 transition-all duration-300 block"
+             style="border-left:2px solid #f5a800;">
+            <img class="watermark" src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(245,168,0,.1); border:1px solid rgba(245,168,0,.2);">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#f5a800" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </div>
+            <div class="w-8 h-[2px] mb-5" style="background:rgba(245,168,0,.4);"></div>
+            <h3 class="font-black text-2xl uppercase tracking-tight mb-2 text-gold">Catálogo</h3>
+            <p class="text-white/40 text-sm leading-relaxed">Veja todos os produtos disponíveis.</p>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/jratacadista_reserva/" target="_blank" rel="noopener"
+             class="stat-card bg-[#111] rounded-3xl p-8 border border-white/[0.06] hover:border-pink-500/30 transition-all duration-300 block"
+             style="border-left:2px solid #e1306c;">
+            <img class="watermark" src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(225,48,108,.1); border:1px solid rgba(225,48,108,.2);">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </div>
+            <div class="w-8 h-[2px] mb-5" style="background:rgba(225,48,108,.4);"></div>
+            <h3 class="font-black text-2xl uppercase tracking-tight mb-2" style="color:#e1306c;">Instagram</h3>
+            <p class="text-white/40 text-sm leading-relaxed">@jratacadista_reserva</p>
+          </a>
+
+          <!-- Onde estamos — full width -->
+          <a href="https://maps.app.goo.gl/oQqumesyUrhT4QN49" target="_blank" rel="noopener"
+             class="stat-card sm:col-span-2 bg-[#111] rounded-3xl p-8 border border-white/[0.06] hover:border-blue-500/30 transition-all duration-300 block"
+             style="border-left:2px solid #4285f4;">
+            <img class="watermark" src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:rgba(66,133,244,.1); border:1px solid rgba(66,133,244,.2);">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#4285f4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="w-8 h-[2px] mb-5" style="background:rgba(66,133,244,.4);"></div>
+            <h3 class="font-black text-2xl uppercase tracking-tight mb-2" style="color:#4285f4;">Onde estamos</h3>
+            <p class="text-white/40 text-sm leading-relaxed">Encontre a loja mais próxima — ver no Google Maps.</p>
+          </a>
+
+        </div>
       </div>
-      <div class="gold-line"></div>
-      <p class="card-title">Seja um Revendedor</p>
-      <p class="card-sub">Revenda com lucro mesmo dando desconto — sem CNPJ.</p>
-    </a>
+    </section>
 
-    <!-- Grupo WhatsApp -->
-    <a class="card wpp" href="https://lp.jratacadista44.com.br/comunidade/" target="_blank" rel="noopener">
-      <img class="wm" src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="">
-      <div class="icon-box">
-        <svg viewBox="0 0 448 512" fill="#25d366" xmlns="http://www.w3.org/2000/svg">
-          <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-        </svg>
-      </div>
-      <div class="gold-line"></div>
-      <p class="card-title">Grupo WhatsApp</p>
-      <p class="card-sub">Entre para a comunidade JR.</p>
-    </a>
+  </main>
 
-    <!-- Catálogo -->
-    <a class="card" href="https://catalogo.jratacadista44.com.br/" target="_blank" rel="noopener">
-      <img class="wm" src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="">
-      <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#f5a800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-        </svg>
-      </div>
-      <div class="gold-line"></div>
-      <p class="card-title">Catálogo</p>
-      <p class="card-sub">Veja todos os produtos.</p>
-    </a>
+  <!-- FOOTER -->
+  <footer class="py-8 px-4 text-center" style="border-top:1px solid rgba(255,255,255,.05);">
+    <p class="text-white/20 text-sm">© 2026 JR Atacadista. Todos os direitos reservados.</p>
+  </footer>
 
-    <!-- Instagram -->
-    <a class="card ig" href="https://www.instagram.com/jratacadista_reserva/" target="_blank" rel="noopener">
-      <img class="wm" src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="">
-      <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-        </svg>
-      </div>
-      <div class="gold-line"></div>
-      <p class="card-title">Instagram</p>
-      <p class="card-sub">@jratacadista_reserva</p>
-    </a>
-
-    <!-- Onde estamos — full -->
-    <a class="card maps full" href="https://maps.app.goo.gl/oQqumesyUrhT4QN49" target="_blank" rel="noopener">
-      <img class="wm" src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="">
-      <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#4285f4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-          <circle cx="12" cy="10" r="3"/>
-        </svg>
-      </div>
-      <div class="gold-line"></div>
-      <p class="card-title">Onde estamos</p>
-      <p class="card-sub">Encontre a loja mais próxima — ver no Google Maps.</p>
-    </a>
-
-  </div>
-
-  <p class="footer">© 2026 JR Atacadista</p>
-</div>
 </body>
 </html>
