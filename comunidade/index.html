@@ -92,20 +92,23 @@
   <!-- HEADER -->
   <header class="fixed top-[42px] w-full z-50"
           style="background:rgba(10,10,10,.9); backdrop-filter:blur(16px); border-bottom:1px solid rgba(255,255,255,.05);">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-col items-center gap-2">
-      <div class="flex items-center gap-3">
-        <img src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg"
-             alt="JR Atacadista" class="w-9 h-9 rounded-full object-cover">
-        <span class="font-black text-lg uppercase tracking-tight">JR <span class="text-gold">Atacadista</span></span>
-      </div>
-      <a href="#formulario"
-         class="bg-gold text-[#0a0a0a] font-black text-xs uppercase tracking-wide px-5 py-1.5 rounded-lg hover:bg-yellow-400 transition-colors duration-200">
-        Entrar no grupo
-      </a>
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-center gap-3">
+      <img src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg"
+           alt="JR Atacadista" class="w-9 h-9 rounded-full object-cover">
+      <span class="font-black text-lg uppercase tracking-tight">JR <span class="text-gold">Atacadista</span></span>
     </div>
   </header>
 
-  <main class="flex-grow pt-[130px]">
+  <!-- BOTÃO FIXO NO RODAPÉ -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-4 pt-3"
+       style="background:linear-gradient(to top, rgba(10,10,10,1) 60%, transparent);">
+    <a href="#formulario"
+       class="block w-full max-w-sm mx-auto text-center bg-gold text-[#0a0a0a] font-black text-sm uppercase tracking-wide py-4 rounded-2xl hover:bg-yellow-400 transition-colors duration-200">
+      Entrar no grupo
+    </a>
+  </div>
+
+  <main class="flex-grow pt-[106px] pb-24">
 
     <!-- HERO -->
     <section class="px-4 pt-20 pb-24 text-center relative overflow-hidden">
