@@ -27,23 +27,25 @@
 
     /* ── ANNOUNCEMENT BAR ──────────────────────── */
     .announce-bar {
-      background: var(--black);
-      color: #fff;
-      font-family: 'Roboto Condensed', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
+      background: #f5a800;
       overflow: hidden;
-      padding: 8px 0;
+      padding: 14px 0;
       white-space: nowrap;
     }
     .announce-track {
-      display: inline-block;
-      animation: marquee 28s linear infinite;
+      display: flex;
+      width: max-content;
+      animation: marquee 22s linear infinite;
     }
-    .announce-track span { padding: 0 48px; }
-    .announce-track span::before { content: "•"; margin-right: 48px; color: var(--accent); }
+    .announce-track span {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #0a0a0a;
+      padding: 0 40px;
+    }
     @keyframes marquee {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -903,10 +905,12 @@
   <!-- ANNOUNCEMENT BAR -->
   <div class="announce-bar">
     <div class="announce-track">
-      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
-      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
-      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
-      <span>FÁBRICA 100% ATACADO — EXCLUSIVO PARA LOJISTAS</span>
+      <span>100% ATACADO ●</span>
+      <span>EXCLUSIVO PARA LOJISTAS ●</span>
+      <span>SEM CNPJ NECESSÁRIO ●</span>
+      <span>100% ATACADO ●</span>
+      <span>EXCLUSIVO PARA LOJISTAS ●</span>
+      <span>SEM CNPJ NECESSÁRIO ●</span>
     </div>
   </div>
 
