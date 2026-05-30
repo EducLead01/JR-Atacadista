@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JR Atacadista — Links</title>
+  <link rel="icon" href="../public/icons/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { gold: '#f5a800' } } }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; min-height: 100vh; }
+    ::selection { background: #f5a800; color: #0a0a0a; }
+
+    .gradient-text {
+      background: linear-gradient(to right, #f5a800, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #111;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px;
+      padding: 16px 18px;
+      text-decoration: none;
+      color: #fff;
+      transition: border-color .2s, transform .15s, background .2s;
+      width: 100%;
+    }
+    .link-card:hover {
+      border-color: rgba(245,168,0,.4);
+      background: #161616;
+      transform: translateY(-2px);
+    }
+    .link-card:active { transform: translateY(0); }
+
+    .link-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* dot pattern */
+    .dot-bg {
+      background-image: radial-gradient(circle, #f5a800 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-start min-h-screen px-4 py-14 relative overflow-x-hidden">
+
+  <!-- dot bg -->
+  <div class="dot-bg fixed inset-0 opacity-[0.025] pointer-events-none"></div>
+
+  <div class="w-full max-w-sm relative z-10 flex flex-col items-center">
+
+    <!-- LOGO + BRAND -->
+    <img src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg"
+         alt="JR Atacadista" class="w-20 h-20 rounded-full object-cover mb-4"
+         style="border: 2px solid rgba(245,168,0,.4);">
+
+    <h1 class="font-black text-2xl uppercase tracking-tight mb-1">
+      JR <span class="text-gold">Atacadista</span>
+    </h1>
+    <p class="text-white/40 text-sm mb-10 text-center">Maior atacadista da 44</p>
+
+    <!-- LINKS -->
+    <div class="flex flex-col gap-3 w-full">
+
+      <!-- Seja um Revendedor -->
+      <a class="link-card" href="https://lp.jratacadista44.com.br/revenda/" target="_blank" rel="noopener">
+        <div class="link-icon" style="background:rgba(245,168,0,.12); border:1px solid rgba(245,168,0,.2);">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#f5a800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-bold text-sm text-white leading-tight">Seja um Revendedor</p>
+          <p class="text-white/40 text-xs mt-0.5">Revenda com lucro, sem CNPJ</p>
+        </div>
+        <svg class="w-4 h-4 text-white/20 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a>
+
+      <!-- Grupo no WhatsApp -->
+      <a class="link-card" href="https://lp.jratacadista44.com.br/comunidade/" target="_blank" rel="noopener">
+        <div class="link-icon" style="background:rgba(37,211,102,.12); border:1px solid rgba(37,211,102,.2);">
+          <svg class="w-5 h-5" viewBox="0 0 448 512" fill="#25d366" xmlns="http://www.w3.org/2000/svg">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-bold text-sm text-white leading-tight">Grupo no WhatsApp</p>
+          <p class="text-white/40 text-xs mt-0.5">Entre para a comunidade JR</p>
+        </div>
+        <svg class="w-4 h-4 text-white/20 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a>
+
+      <!-- Catálogo -->
+      <a class="link-card" href="https://catalogo.jratacadista44.com.br/" target="_blank" rel="noopener">
+        <div class="link-icon" style="background:rgba(245,168,0,.12); border:1px solid rgba(245,168,0,.2);">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#f5a800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-bold text-sm text-white leading-tight">Catálogo</p>
+          <p class="text-white/40 text-xs mt-0.5">Veja todos os produtos disponíveis</p>
+        </div>
+        <svg class="w-4 h-4 text-white/20 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a>
+
+      <!-- Instagram -->
+      <a class="link-card" href="https://www.instagram.com/jratacadista_reserva/" target="_blank" rel="noopener">
+        <div class="link-icon" style="background:rgba(225,48,108,.12); border:1px solid rgba(225,48,108,.2);">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-bold text-sm text-white leading-tight">Instagram</p>
+          <p class="text-white/40 text-xs mt-0.5">@jratacadista_reserva</p>
+        </div>
+        <svg class="w-4 h-4 text-white/20 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a>
+
+      <!-- Onde estamos -->
+      <a class="link-card" href="https://maps.app.goo.gl/oQqumesyUrhT4QN49" target="_blank" rel="noopener">
+        <div class="link-icon" style="background:rgba(66,133,244,.12); border:1px solid rgba(66,133,244,.2);">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#4285f4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-bold text-sm text-white leading-tight">Onde estamos</p>
+          <p class="text-white/40 text-xs mt-0.5">Ver no Google Maps</p>
+        </div>
+        <svg class="w-4 h-4 text-white/20 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a>
+
+    </div>
+
+    <p class="text-white/15 text-xs mt-12">© 2026 JR Atacadista</p>
+
+  </div>
+
+</body>
+</html>
