@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temporada de Férias 2026 — JR Atacadista</title>
+  <link rel="icon" href="../public/icons/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { scroll-behavior: smooth; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+    }
+    .hero-iframe-wrapper {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 177.78vh; /* 16:9 */
+      height: 100%;
+      min-width: 100%;
+      min-height: 56.25vw;
+      pointer-events: none;
+    }
+    .hero-iframe-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 24px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.4);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+    .hero-title span {
+      color: #f5a800;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 36px;
+      max-width: 560px;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: #f5a800;
+      color: #0a0a0a;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 36px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .hero-cta:hover { background: #fbbf24; transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll svg { width: 20px; height: 20px; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── LOCALIZAÇÃO ── */
+    .localizacao {
+      background: #fff;
+      padding: 80px 24px;
+    }
+    .localizacao-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .mapa-img {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      display: block;
+    }
+    .loc-dica {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b45309;
+      margin-bottom: 10px;
+    }
+    .loc-titulo {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: #1a1a1a;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .loc-divisor {
+      width: 48px;
+      height: 3px;
+      background: #b45309;
+      margin-bottom: 20px;
+    }
+    .loc-texto {
+      font-size: 0.97rem;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .loc-texto a {
+      color: #b45309;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .loc-lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .loc-lista li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.93rem;
+      color: #333;
+    }
+    .loc-lista li .icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .loc-lista li .icon img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+    .loc-rodape {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #777;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .localizacao-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero">
+    <div class="hero-iframe-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/Xq6nv4iEC-Y?autoplay=1&mute=1&loop=1&playlist=Xq6nv4iEC-Y&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge">Temporada de Férias 2026</span>
+      <h1 class="hero-title">Um refúgio à beira<br>do <span>Rio Araguaia</span></h1>
+      <p class="hero-sub">Natureza preservada, pesca esportiva e experiências inesquecíveis para toda a família.</p>
+      <a href="#localizacao" class="hero-cta">Ver localização</a>
+    </div>
+    <div class="hero-scroll">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════ LOCALIZAÇÃO ═══════════════ -->
+  <section class="localizacao" id="localizacao">
+    <div class="localizacao-inner">
+
+      <!-- Mapa animado -->
+      <div>
+        <img
+          class="mapa-img"
+          src="https://santapira.com.br/wp-content/uploads/2026/02/MAPA-ANIMADO_560.gif"
+          alt="Mapa de localização — distâncias até Santa Terezinha/MT"
+        />
+      </div>
+
+      <!-- Texto -->
+      <div>
+        <p class="loc-dica">Dica</p>
+        <h2 class="loc-titulo">Com uma localização privilegiada</h2>
+        <div class="loc-divisor"></div>
+        <p class="loc-texto">
+          Estamos no coração de um paraíso preservado, no
+          <a href="#">pacato município de Santa Terezinha/MT</a>.
+          Goiânia está há 1.100 km, 560 km de Palmas e 1.300 km de Cuiabá.
+        </p>
+
+        <ul class="loc-lista">
+          <li>
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#b45309" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h8M8 11h8m-8 4h5M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/></svg>
+            </span>
+            <span>Para grupos de até <strong>04 pessoas</strong> indicamos a locação de veículos em Palmas</span>
+          </li>
+          <li>
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#b45309" stroke-width="1.8"><rect x="1" y="7" width="22" height="12" rx="2"/><path stroke-linecap="round" d="M1 11h22"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg>
+            </span>
+            <span>Para grupos de até <strong>12 pessoas</strong> indicamos o fretamento de van ou micro-ônibus</span>
+          </li>
+          <li>
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#b45309" stroke-width="1.8"><rect x="1" y="5" width="22" height="14" rx="2"/><path stroke-linecap="round" d="M1 10h22"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
+            </span>
+            <span>Para grupos de até <strong>34 pessoas</strong> indicamos o fretamento de ônibus leito</span>
+          </li>
+          <li>
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#b45309" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5m0 0l-4 4m4-4l4 4"/><path stroke-linecap="round" d="M4 21h16"/></svg>
+            </span>
+            <span>Contamos com <strong>pista de pouso homologada</strong> a 3 km do Lodge</span>
+          </li>
+        </ul>
+
+        <p class="loc-rodape">Temos contatos com todos os prestadores de serviços.</p>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
