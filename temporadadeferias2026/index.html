@@ -349,16 +349,22 @@
     }
     .carousel-wrapper {
       position: relative;
-      max-width: 700px;
+      max-width: 860px;
       margin: 0 auto;
-      padding: 0 60px;
+      padding: 0 64px;
     }
     .carousel-stage {
       perspective: 1200px;
-      overflow: hidden;
       border-radius: 12px;
       position: relative;
-      height: 420px;
+      background: #000;
+      overflow: hidden;
+    }
+    /* Placeholder que sustenta a altura do stage */
+    .carousel-stage::after {
+      content: '';
+      display: block;
+      padding-top: 66.66%; /* proporção 3:2 — ajuste se necessário */
     }
     .carousel-slide {
       position: absolute;
@@ -386,11 +392,12 @@
       transform: rotateY(90deg) scale(0.85);
     }
     .carousel-slide img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 12px;
-      display: block;
     }
     .carousel-btn {
       position: absolute;
@@ -413,8 +420,8 @@
       backdrop-filter: blur(4px);
     }
     .carousel-btn:hover { background: rgba(245,168,0,0.7); }
-    .carousel-btn.prev { left: 4px; }
-    .carousel-btn.next { right: 4px; }
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
     .carousel-dots {
       display: flex;
       justify-content: center;
@@ -436,8 +443,8 @@
       transform: scale(1.3);
     }
     @media (max-width: 640px) {
-      .carousel-stage { height: 240px; }
       .carousel-wrapper { padding: 0 48px; }
+      .carousel-stage::after { padding-top: 75%; }
     }
   </style>
 
