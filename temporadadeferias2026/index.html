@@ -219,12 +219,35 @@
   <!-- ═══════════════ HERO ═══════════════ -->
   <section class="hero">
     <div class="hero-iframe-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/CwP35aSlNas?autoplay=1&mute=1&loop=1&playlist=CwP35aSlNas&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-      ></iframe>
+      <div id="yt-player"></div>
     </div>
+    <script>
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+      var ytPlayer;
+      var START_SEC = 250; // 4:10
+      var END_SEC   = 285; // 4:45
+      function onYouTubeIframeAPIReady() {
+        ytPlayer = new YT.Player('yt-player', {
+          videoId: 'CwP35aSlNas',
+          playerVars: {
+            autoplay: 1, mute: 1, controls: 0, rel: 0,
+            modestbranding: 1, playsinline: 1, iv_load_policy: 3,
+            disablekb: 1, start: START_SEC, end: END_SEC
+          },
+          events: {
+            onReady: function(e) { e.target.playVideo(); },
+            onStateChange: function(e) {
+              if (e.data === YT.PlayerState.ENDED || e.data === YT.PlayerState.PAUSED) {
+                ytPlayer.seekTo(START_SEC, true);
+                ytPlayer.playVideo();
+              }
+            }
+          }
+        });
+      }
+    </script>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="hero-badge">Temporada de Férias 2026</span>
