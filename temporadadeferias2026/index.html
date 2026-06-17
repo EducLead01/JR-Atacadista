@@ -24,12 +24,13 @@
     .hero-iframe-wrapper {
       position: absolute;
       top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -52%); /* sobe ligeiramente para cortar o rodapé */
       width: 177.78vh; /* 16:9 */
-      height: 100%;
+      height: 112%; /* altura extra para compensar o clip */
       min-width: 100%;
       min-height: 56.25vw;
       pointer-events: none;
+      clip-path: inset(0 0 10% 0); /* corta 10% do bottom — esconde legenda e marca d'água */
     }
     .hero-iframe-wrapper iframe {
       position: absolute;
@@ -226,8 +227,8 @@
       tag.src = 'https://www.youtube.com/iframe_api';
       document.head.appendChild(tag);
       var ytPlayer;
-      var START_SEC = 250; // 4:10
-      var END_SEC   = 285; // 4:45
+      var START_SEC = 257; // 4:17
+      var END_SEC   = 278; // 4:38
       function onYouTubeIframeAPIReady() {
         ytPlayer = new YT.Player('yt-player', {
           videoId: 'CwP35aSlNas',
