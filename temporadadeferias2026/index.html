@@ -244,11 +244,29 @@
 
       <!-- Mapa animado -->
       <div>
-        <img
-          class="mapa-img"
-          src="https://santapira.com.br/wp-content/uploads/2026/02/MAPA-ANIMADO_560.gif"
-          alt="Mapa de localização — distâncias até Santa Terezinha/MT"
-        />
+        <canvas id="mapa-canvas" class="mapa-img" aria-label="Mapa de localização"></canvas>
+        <script>
+          (function () {
+            var GIF_URL = 'https://santapira.com.br/wp-content/uploads/2026/02/MAPA-ANIMADO_560.gif';
+            var canvas = document.getElementById('mapa-canvas');
+            var ctx = canvas.getContext('2d');
+            var img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function () {
+              canvas.width  = img.naturalWidth;
+              canvas.height = img.naturalHeight;
+              ctx.drawImage(img, 0, 0);
+            };
+            img.onerror = function () {
+              var el = document.createElement('img');
+              el.src = GIF_URL;
+              el.alt = 'Mapa de localização';
+              el.className = canvas.className;
+              canvas.parentNode.replaceChild(el, canvas);
+            };
+            img.src = GIF_URL;
+          })();
+        </script>
       </div>
 
       <!-- Texto -->
