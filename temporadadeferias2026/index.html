@@ -314,5 +314,192 @@
     </div>
   </section>
 
+  <!-- ═══════════════ CAROUSEL ═══════════════ -->
+  <section class="carousel-section">
+    <div class="carousel-wrapper">
+      <div class="carousel-stage" id="carouselStage">
+        <div class="carousel-slide active">
+          <img src="https://santapira.com.br/wp-content/uploads/2025/08/IMG_85831-1-1024x576.jpg" alt="Foto 1">
+        </div>
+        <div class="carousel-slide">
+          <img src="https://santapira.com.br/wp-content/uploads/elementor/thumbs/IMG_51121-raskubn8ddhkv3xkrps8scf8oezgeudehg2040puvc.jpg" alt="Foto 2">
+        </div>
+        <div class="carousel-slide">
+          <img src="https://santapira.com.br/wp-content/uploads/elementor/thumbs/IMG_51131-raskubn8ddhkv3xkrps8scf8oezgeudehg2040puvc.jpg" alt="Foto 3">
+        </div>
+        <div class="carousel-slide">
+          <img src="https://santapira.com.br/wp-content/uploads/elementor/thumbs/IMG_61021-raskucl2k7iv6pw7m86vcu6p9sutmjh4tkphlaogp4.jpg" alt="Foto 4">
+        </div>
+        <div class="carousel-slide">
+          <img src="https://santapira.com.br/wp-content/uploads/elementor/thumbs/IMG_84611-raskucl2k7iv6pw7m86vcu6p9sutmjh4tkphlaogp4.jpg" alt="Foto 5">
+        </div>
+        <div class="carousel-slide">
+          <img src="https://santapira.com.br/wp-content/uploads/elementor/thumbs/IMG_40481-rase27y3j9d79kqjm6zmybwhiu51tfae7qjccle7bs.jpg" alt="Foto 6">
+        </div>
+      </div>
+
+      <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">&#8249;</button>
+      <button class="carousel-btn next" id="nextBtn" aria-label="Próximo">&#8250;</button>
+
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+  </section>
+
+  <style>
+    .carousel-section {
+      background: #111;
+      padding: 60px 0;
+    }
+    .carousel-wrapper {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 60px;
+    }
+    .carousel-stage {
+      perspective: 1200px;
+      overflow: hidden;
+      border-radius: 12px;
+      position: relative;
+      height: 420px;
+    }
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backface-visibility: hidden;
+      opacity: 0;
+      transform: rotateY(90deg) scale(0.85);
+      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.45s ease;
+      pointer-events: none;
+    }
+    .carousel-slide.active {
+      opacity: 1;
+      transform: rotateY(0deg) scale(1);
+      pointer-events: auto;
+    }
+    .carousel-slide.exit-left {
+      opacity: 0;
+      transform: rotateY(-90deg) scale(0.85);
+    }
+    .carousel-slide.exit-right {
+      opacity: 0;
+      transform: rotateY(90deg) scale(0.85);
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      font-size: 2rem;
+      line-height: 1;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+    .carousel-btn:hover { background: rgba(245,168,0,0.7); }
+    .carousel-btn.prev { left: 4px; }
+    .carousel-btn.next { right: 4px; }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .carousel-dots button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      padding: 0;
+    }
+    .carousel-dots button.active {
+      background: #f5a800;
+      transform: scale(1.3);
+    }
+    @media (max-width: 640px) {
+      .carousel-stage { height: 240px; }
+      .carousel-wrapper { padding: 0 48px; }
+    }
+  </style>
+
+  <script>
+    (function () {
+      var slides = Array.from(document.querySelectorAll('.carousel-slide'));
+      var dotsContainer = document.getElementById('carouselDots');
+      var current = 0;
+
+      slides.forEach(function (_, i) {
+        var btn = document.createElement('button');
+        if (i === 0) btn.classList.add('active');
+        btn.addEventListener('click', function () { goTo(i); });
+        dotsContainer.appendChild(btn);
+      });
+
+      function getDots() { return Array.from(dotsContainer.querySelectorAll('button')); }
+
+      function goTo(next, direction) {
+        if (next === current) return;
+        var dir = direction !== undefined ? direction : (next > current ? 'left' : 'right');
+        var exitClass = dir === 'left' ? 'exit-left' : 'exit-right';
+        var enterFrom = dir === 'left' ? 'enter-right' : 'enter-left';
+
+        slides[current].classList.remove('active');
+        slides[current].classList.add(exitClass);
+
+        slides[next].style.transform = dir === 'left' ? 'rotateY(90deg) scale(0.85)' : 'rotateY(-90deg) scale(0.85)';
+        slides[next].style.opacity = '0';
+        slides[next].style.transition = 'none';
+        slides[next].classList.add('active');
+
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            slides[next].style.transition = '';
+            slides[next].style.transform = '';
+            slides[next].style.opacity = '';
+          });
+        });
+
+        var prev = current;
+        setTimeout(function () {
+          slides[prev].classList.remove(exitClass);
+        }, 550);
+
+        var dots = getDots();
+        dots[current].classList.remove('active');
+        dots[next].classList.add('active');
+        current = next;
+      }
+
+      document.getElementById('prevBtn').addEventListener('click', function () {
+        goTo((current - 1 + slides.length) % slides.length, 'right');
+      });
+      document.getElementById('nextBtn').addEventListener('click', function () {
+        goTo((current + 1) % slides.length, 'left');
+      });
+    })();
+  </script>
+
 </body>
 </html>
