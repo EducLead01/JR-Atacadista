@@ -166,14 +166,14 @@
       background: var(--gold);
       color: var(--white);
       text-align: center;
-      font-size: 0.65rem;
+      font-size: 0.8rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      padding: 9px 8px;
-      border-radius: 6px;
+      padding: 12px 8px;
+      border-radius: 8px;
       text-decoration: none;
-      margin-top: auto;
+      margin-top: 4px;
       transition: background 0.2s;
     }
     .product-cta:hover { background: var(--gold-lt); }
@@ -190,24 +190,22 @@
     /* ── CARD DE PRODUTO ── */
     .product-card {
       background: var(--white);
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       border: 1.5px solid #e0d8cc;
       display: flex;
-      flex-direction: row;
-      min-height: 220px;
+      flex-direction: column;
     }
     .product-images {
       display: flex;
-      flex-direction: column;
-      width: 55%;
-      flex-shrink: 0;
+      flex-direction: row;
+      gap: 3px;
       background: #e8e2d8;
-      gap: 2px;
+      aspect-ratio: 3/2;
     }
     .product-images .img-slot {
       flex: 1;
-      background: #d8d0c4;
+      background: #d0c8bc;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -217,27 +215,27 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top;
     }
     .product-images .img-placeholder {
-      color: #aaa;
-      font-size: 0.55rem;
+      color: #999;
+      font-size: 0.6rem;
       text-align: center;
       padding: 4px;
     }
 
     .product-info {
-      padding: 12px 12px 12px;
-      flex: 1;
+      padding: 14px 14px 16px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
     .product-name {
-      font-size: 0.9rem;
+      font-size: 1.05rem;
       font-weight: 900;
       text-transform: uppercase;
       color: var(--navy);
-      line-height: 1.2;
+      line-height: 1.15;
     }
     .product-sub {
       font-size: 0.6rem;
@@ -271,7 +269,7 @@
       color: var(--white);
     }
     .price-val {
-      font-size: 2.4rem;
+      font-size: 2.8rem;
       font-weight: 900;
       color: var(--white);
       line-height: 1;
