@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destaques da Semana — JR Atacadista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #f0e9dc;
+      --navy:   #1b2a4a;
+      --gold:   #9a6b2a;
+      --gold-lt:#c8922a;
+      --white:  #ffffff;
+      --card-bg:#ffffff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--navy);
+      min-height: 100vh;
+    }
+
+    /* ── WRAPPER ── */
+    .page {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 24px 16px 32px;
+      position: relative;
+    }
+
+    /* ── DOTS DECO ── */
+    .dots {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      display: grid;
+      grid-template-columns: repeat(5,8px);
+      gap: 4px;
+      opacity: 0.35;
+    }
+    .dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--navy); display: block; }
+    .dots-tl { top: 24px; left: 16px; }
+    .dots-tr { top: 24px; right: 16px; }
+    .dots-bl { bottom: 32px; left: 16px; }
+    .dots-br { bottom: 32px; right: 16px; }
+
+    /* ── HEADER ── */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding-left: 70px;
+    }
+    .logo {
+      height: 36px;
+      object-fit: contain;
+    }
+    .brand-name {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── TÍTULO PRINCIPAL ── */
+    .main-title {
+      text-align: center;
+      font-size: clamp(2.8rem, 12vw, 4.2rem);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    /* ── BADGE DOURADO ── */
+    .badge-strip {
+      background: var(--gold);
+      color: var(--white);
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 9px 12px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .badge-strip::before { content: '/// '; }
+    .badge-strip::after  { content: ' ///'; }
+
+    /* Badge círculo no canto ── */
+    .badge-circle {
+      position: absolute;
+      top: 90px;
+      right: 16px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.5rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.3;
+      border: 3px solid var(--gold-lt);
+    }
+    .badge-circle i { font-size: 1.1rem; margin-bottom: 4px; }
+
+    /* ── BENEFITS BAR ── */
+    .benefits {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 10px 8px;
+      margin-bottom: 18px;
+      gap: 4px;
+    }
+    .benefit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      text-align: center;
+    }
+    .benefit i {
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+    .benefit span {
+      font-size: 0.48rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .benefit-divider {
+      width: 1px;
+      height: 36px;
+      background: #ddd;
+      flex-shrink: 0;
+    }
+
+    /* ── GRID DE PRODUTOS ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    /* ── CARD DE PRODUTO ── */
+    .product-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1.5px solid #e0d8cc;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-images {
+      display: flex;
+      height: 140px;
+      background: #e8e2d8;
+    }
+    .product-images .img-slot {
+      flex: 1;
+      background: #d8d0c4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .product-images .img-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .product-images .img-slot:not(:last-child) {
+      border-right: 2px solid var(--white);
+    }
+    .product-images .img-placeholder {
+      color: #aaa;
+      font-size: 0.6rem;
+      text-align: center;
+      padding: 4px;
+    }
+
+    .product-info {
+      padding: 10px 10px 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .product-name {
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .product-sub {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .por-apenas {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 0.5rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      align-self: flex-start;
+    }
+    .price-box {
+      background: var(--navy);
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+    .price-rs {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .price-val {
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+    }
+    .price-cents {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--white);
+      align-self: flex-end;
+      margin-bottom: 3px;
+    }
+    .price-cada {
+      font-size: 0.5rem;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      font-weight: 600;
+      align-self: flex-end;
+      margin-bottom: 3px;
+      margin-left: 2px;
+    }
+    .tamanhos-label {
+      font-size: 0.48rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #aaa;
+    }
+    .tamanhos-val {
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── FOOTER BAR ── */
+    .footer-benefits {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 10px 8px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ── CTA ── */
+    .cta-bar {
+      background: var(--navy);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .cta-bar i {
+      font-size: 1.4rem;
+      color: var(--gold-lt);
+    }
+    .cta-bar span {
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 400px) {
+      .product-images { height: 110px; }
+      .price-val { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Dots decorativos -->
+  <div class="dots dots-tl" id="dtl"></div>
+  <div class="dots dots-tr" id="dtr"></div>
+
+  <!-- Badge círculo -->
+  <div class="badge-circle">
+    <i class="fa-solid fa-box-open"></i>
+    PRODUTOS<br>SEMPRE<br>DISPONÍVEIS!
+  </div>
+
+  <!-- Header logo -->
+  <div class="header">
+    <img class="logo" src="../public/images/LOGO JR.jpeg" alt="JR Atacadista">
+    <span class="brand-name">Atacadista</span>
+  </div>
+
+  <!-- Título -->
+  <h1 class="main-title">Destaques<br>da Semana</h1>
+
+  <!-- Badge strip -->
+  <div class="badge-strip">Produtos sempre disponíveis!</div>
+
+  <!-- Benefits top -->
+  <div class="benefits">
+    <div class="benefit"><i class="fa-solid fa-medal"></i><span>Qualidade<br>Premium</span></div>
+    <div class="benefit-divider"></div>
+    <div class="benefit"><i class="fa-solid fa-shirt"></i><span>Tecido<br>Confortável</span></div>
+    <div class="benefit-divider"></div>
+    <div class="benefit"><i class="fa-solid fa-ruler-vertical"></i><span>Caimento<br>Perfeito</span></div>
+    <div class="benefit-divider"></div>
+    <div class="benefit"><i class="fa-solid fa-truck-fast"></i><span>Pronta<br>Entrega</span></div>
+    <div class="benefit-divider"></div>
+    <div class="benefit"><i class="fa-solid fa-paper-plane"></i><span>Envio<br>Rápido</span></div>
+  </div>
+
+  <!-- Grid de produtos -->
+  <div class="product-grid">
+
+    <!-- 1. Regata Malha -->
+    <div class="product-card">
+      <div class="product-images">
+        <div class="img-slot"><span class="img-placeholder">Foto produto</span></div>
+        <div class="img-slot"><span class="img-placeholder">Foto variação</span></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Regata<br>Malha</div>
+        <div class="por-apenas">Por apenas</div>
+        <div class="price-box">
+          <span class="price-rs">R$</span>
+          <span class="price-val">10</span>
+          <span class="price-cents">,00</span>
+          <span class="price-cada">cada</span>
+        </div>
+        <div>
+          <div class="tamanhos-label">Tamanhos</div>
+          <div class="tamanhos-val">P • M • G • GG</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Bermuda Jeans Básica -->
+    <div class="product-card">
+      <div class="product-images">
+        <div class="img-slot"><span class="img-placeholder">Foto produto</span></div>
+        <div class="img-slot"><span class="img-placeholder">Foto variação</span></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Bermuda<br>Jeans Básica</div>
+        <div class="por-apenas">Por apenas</div>
+        <div class="price-box">
+          <span class="price-rs">R$</span>
+          <span class="price-val">30</span>
+          <span class="price-cents">,00</span>
+          <span class="price-cada">cada</span>
+        </div>
+        <div>
+          <div class="tamanhos-label">Tamanhos</div>
+          <div class="tamanhos-val">36 ao 46</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Calça Jeans Juvenil -->
+    <div class="product-card">
+      <div class="product-images">
+        <div class="img-slot"><span class="img-placeholder">Foto produto</span></div>
+        <div class="img-slot"><span class="img-placeholder">Foto variação</span></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Calça Jeans<br>Juvenil</div>
+        <div class="product-sub">Do 28 ao 36</div>
+        <div class="por-apenas">Por apenas</div>
+        <div class="price-box">
+          <span class="price-rs">R$</span>
+          <span class="price-val">34</span>
+          <span class="price-cents">,00</span>
+          <span class="price-cada">cada</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Calça Dri-Fit -->
+    <div class="product-card">
+      <div class="product-images">
+        <div class="img-slot"><span class="img-placeholder">Foto produto</span></div>
+        <div class="img-slot"><span class="img-placeholder">Foto variação</span></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Calça<br>Dri-Fit</div>
+        <div class="por-apenas">Por apenas</div>
+        <div class="price-box">
+          <span class="price-rs">R$</span>
+          <span class="price-val">13</span>
+          <span class="price-cents">,00</span>
+          <span class="price-cada">cada</span>
+        </div>
+        <div>
+          <div class="tamanhos-label">Tamanhos</div>
+          <div class="tamanhos-val">M • G • GG</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Calça Jeans Masculina -->
+    <div class="product-card">
+      <div class="product-images">
+        <div class="img-slot"><span class="img-placeholder">Foto produto</span></div>
+        <div class="img-slot"><span class="img-placeholder">Foto variação</span></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Calça Jeans<br>Masculina</div>
+        <div class="por-apenas">Por apenas</div>
+        <div class="price-box">
+          <span class="price-rs">R$</span>
+          <span class="price-val">40</span>
+          <span class="price-cents">,00</span>
+          <span class="price-cada">cada</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Bermuda Brim Social -->
+    <div class="product-card">
+      <div class="product-images">
+        <div class="img-slot"><span class="img-placeholder">Foto produto</span></div>
+        <div class="img-slot"><span class="img-placeholder">Foto variação</span></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Bermuda<br>Brim Social</div>
+        <div class="por-apenas">Por apenas</div>
+        <div class="price-box">
+          <span class="price-rs">R$</span>
+          <span class="price-val">35</span>
+          <span class="price-cents">,00</span>
+          <span class="price-cada">cada</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /product-grid -->
+
+  <!-- Benefits bottom -->
+  <div class="footer-benefits">
+    <div class="benefit"><i class="fa-solid fa-medal"></i><span>Qualidade<br>Premium</span></div>
+    <div class="benefit-divider"></div>
+    <div class="benefit"><i class="fa-solid fa-shirt"></i><span>Tecido<br>Confortável</span></div>
+    <div class="benefit-divider"></div>
+    <div class="benefit"><i class="fa-solid fa-ruler-vertical"></i><span>Caimento<br>Perfeito</span></div>
+    <div class="benefit-divider"></div>
+    <div class="benefit"><i class="fa-solid fa-truck-fast"></i><span>Pronta<br>Entrega</span></div>
+    <div class="benefit-divider"></div>
+    <div class="benefit"><i class="fa-solid fa-paper-plane"></i><span>Envio<br>Rápido</span></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-bar">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span>Garanta já a sua reposição!</span>
+  </div>
+
+  <!-- Dots decorativos bottom -->
+  <div class="dots dots-bl" id="dbl"></div>
+  <div class="dots dots-br" id="dbr"></div>
+
+</div>
+
+<script>
+  // Gera os dots decorativos
+  ['dtl','dtr','dbl','dbr'].forEach(function(id) {
+    var el = document.getElementById(id);
+    for (var i = 0; i < 25; i++) {
+      var s = document.createElement('span');
+      el.appendChild(s);
+    }
+  });
+</script>
+</body>
+</html>
