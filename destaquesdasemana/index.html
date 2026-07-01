@@ -512,7 +512,7 @@
           <div class="tamanhos-val">P • M • G • GG</div>
         </div>
         <a href="https://catalogo.jratacadista44.com.br/produto-detalhes/u5sNfZau3FaWbxRQMNohsB0VIc52/6633db814b5d35ea0ebfc7af" class="product-cta" target="_blank" rel="noopener"><i class="fa-solid fa-bag-shopping"></i>Ver no catálogo</a>
-        <a href="https://lp.jratacadista44.com.br/revenda/" class="product-cta-whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>
+        <a href="#" onclick="falarComVendedor(event)" class="product-cta-whatsapp"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>
       </div>
     </div>
 
@@ -541,7 +541,7 @@
           <div class="tamanhos-val">M • G • GG</div>
         </div>
         <a href="https://catalogo.jratacadista44.com.br/produto-detalhes/u5sNfZau3FaWbxRQMNohsB0VIc52/-NNSVk4wAL1ORICLkhm8" class="product-cta" target="_blank" rel="noopener"><i class="fa-solid fa-bag-shopping"></i>Ver no catálogo</a>
-        <a href="https://lp.jratacadista44.com.br/revenda/" class="product-cta-whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>
+        <a href="#" onclick="falarComVendedor(event)" class="product-cta-whatsapp"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>
       </div>
     </div>
 
@@ -573,7 +573,7 @@
           <div class="tamanhos-val">P • M • G • GG</div>
         </div>
         <a href="https://catalogo.jratacadista44.com.br/produto-detalhes/u5sNfZau3FaWbxRQMNohsB0VIc52/655cba796675dac8d3f00a5c" class="product-cta" target="_blank" rel="noopener"><i class="fa-solid fa-bag-shopping"></i>Ver no catálogo</a>
-        <a href="https://lp.jratacadista44.com.br/revenda/" class="product-cta-whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>
+        <a href="#" onclick="falarComVendedor(event)" class="product-cta-whatsapp"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>
       </div>
     </div>
 
@@ -603,7 +603,7 @@
           <div class="tamanhos-val">M • G • GG</div>
         </div>
         <a href="https://catalogo.jratacadista44.com.br/produto-detalhes/u5sNfZau3FaWbxRQMNohsB0VIc52/65299938a767696f709f1376" class="product-cta" target="_blank" rel="noopener"><i class="fa-solid fa-bag-shopping"></i>Ver no catálogo</a>
-        <a href="https://lp.jratacadista44.com.br/revenda/" class="product-cta-whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>
+        <a href="#" onclick="falarComVendedor(event)" class="product-cta-whatsapp"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>
       </div>
     </div>
 
@@ -632,7 +632,7 @@
           <div class="tamanhos-val">36 • 38 • 40 • 42 • 44 • 46</div>
         </div>
         <a href="https://catalogo.jratacadista44.com.br/produto-detalhes/u5sNfZau3FaWbxRQMNohsB0VIc52/65c2250e8b9b4cd6e6a09ce5" class="product-cta" target="_blank" rel="noopener"><i class="fa-solid fa-bag-shopping"></i>Ver no catálogo</a>
-        <a href="https://lp.jratacadista44.com.br/revenda/" class="product-cta-whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>
+        <a href="#" onclick="falarComVendedor(event)" class="product-cta-whatsapp"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>
       </div>
     </div>
 
@@ -705,6 +705,23 @@
       if (Math.abs(diff) > 40) go(diff > 0 ? cur + 1 : cur - 1);
     }, {passive:true});
   });
+</script>
+
+<script>
+  const vendedores = [
+    { nome: 'Evellin',  wpp: 'https://wa.me/5562994044808' },
+    { nome: 'Geovanna', wpp: 'https://wa.me/5562994098652' },
+    { nome: 'Isabela',  wpp: 'https://wa.me/5562991713187' },
+    { nome: 'Lana',     wpp: 'https://wa.me/5562995473095' },
+    { nome: 'Marcelo',  wpp: 'https://wa.me/5562991904119' },
+    { nome: 'Flavia',   wpp: 'https://wa.me/5562992868332' },
+  ];
+
+  function falarComVendedor(e) {
+    e.preventDefault();
+    const v = vendedores[Math.floor(Math.random() * vendedores.length)];
+    window.open(v.wpp, '_blank');
+  }
 </script>
 </body>
 </html>
