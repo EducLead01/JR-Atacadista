@@ -325,6 +325,7 @@
           }).catch(() => {});
           document.getElementById('wppLink').href = '/revenda/vendedores/';
           show('stepOk');
+          if (typeof fbq !== 'undefined') fbq('track', 'Lead');
         } else {
           show('stepOut');
         }
