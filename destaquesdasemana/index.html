@@ -713,6 +713,7 @@
 
   function falarComVendedor(e) {
     e.preventDefault();
+    if (typeof fbq !== 'undefined') fbq('track', 'Contact');
     const v = vendedores[Math.floor(Math.random() * vendedores.length)];
     window.open(v.wpp, '_blank');
   }
