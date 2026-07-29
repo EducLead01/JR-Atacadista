@@ -318,10 +318,10 @@
           const nome  = document.getElementById('qNome').value.trim();
           const loja  = document.getElementById('qLoja').value.trim();
           const whats = document.getElementById('qWhats').value.trim();
-          fetch('https://n8n.educlead.com.br/webhook/551e56ec-83f3-4237-a8f9-522cce899a70', {
+          fetch('https://script.google.com/macros/s/AKfycbyDXX5STsPO9pLUmee2Ocmgt6yAp3QLy-EPvcj7x1bDyjUNFfc_ssKclgjpH_R3E4RG/exec', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nome, loja, whatsapp: whats })
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ nome, loja, whatsapp: whats, origem: 'revenda' })
           }).catch(() => {});
           document.getElementById('wppLink').href = '/revenda/vendedores/';
           show('stepOk');

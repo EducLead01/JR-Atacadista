@@ -213,8 +213,12 @@
                    stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
             <p class="text-[#25d366] text-xs font-black uppercase tracking-[0.3em] mb-2">Cadastro realizado!</p>
-            <h3 class="font-black text-2xl uppercase tracking-tight mb-3">Em breve entraremos em contato</h3>
-            <p class="text-white/40 text-sm">Nossa equipe vai te chamar pelo WhatsApp.</p>
+            <h3 class="font-black text-2xl uppercase tracking-tight mb-3">Falta só um passo</h3>
+            <p class="text-white/40 text-sm mb-6">Clique abaixo para entrar no grupo do WhatsApp.</p>
+            <a id="btnGrupo" href="https://chat.whatsapp.com/EVKJ1ASLZcAEzH8kIgPGFj" target="_blank" rel="noopener"
+               class="flex items-center justify-center gap-2 bg-[#25d366] hover:bg-[#1db954] text-white font-black text-sm uppercase tracking-wide py-4 rounded-2xl w-full transition-colors duration-200">
+              Entrar no grupo
+            </a>
           </div>
         </div>
 
@@ -271,13 +275,14 @@
       btn.textContent = 'Enviando…';
       btn.disabled = true;
 
-      fetch('https://n8n.educlead.com.br/webhook/551e56ec-83f3-4237-a8f9-522cce899a70', {
+      fetch('https://script.google.com/macros/s/AKfycbyDXX5STsPO9pLUmee2Ocmgt6yAp3QLy-EPvcj7x1bDyjUNFfc_ssKclgjpH_R3E4RG/exec', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({ nome, whatsapp: whats, origem: 'comunidade' })
       }).catch(() => {}).finally(() => {
         document.getElementById('formArea').classList.add('hidden');
         document.getElementById('formOk').classList.remove('hidden');
+        window.open('https://chat.whatsapp.com/EVKJ1ASLZcAEzH8kIgPGFj', '_blank', 'noopener');
       });
     }
 
