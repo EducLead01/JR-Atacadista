@@ -483,7 +483,7 @@
   </div>
 
   <!-- Grid de produtos -->
-  <div class="product-grid">
+  <div class="product-grid" id="productGrid">
 
     <!-- 1. Camiseta UV Agro Básica -->
     <div class="product-card">
@@ -667,7 +667,7 @@
   });
 
   // Product carousel
-  document.querySelectorAll('.product-carousel').forEach(function(carousel) {
+  function initCarousel(carousel) {
     var track  = carousel.querySelector('.pc-track');
     var slides = carousel.querySelectorAll('.pc-slide');
     var dotsEl = carousel.querySelector('.pc-dots');
@@ -699,7 +699,9 @@
       var diff = startX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 40) go(diff > 0 ? cur + 1 : cur - 1);
     }, {passive:true});
-  });
+  }
+
+  document.querySelectorAll('.product-carousel').forEach(initCarousel);
 </script>
 
 <script>
@@ -717,6 +719,71 @@
     const v = vendedores[Math.floor(Math.random() * vendedores.length)];
     window.open(v.wpp, '_blank');
   }
+</script>
+
+<script>
+  // Produtos cadastrados pela tela de admin (anexados após os fixos)
+  var SUPABASE_URL = 'https://atkfhvigjaphkwgcvrwv.supabase.co';
+  var SUPABASE_ANON_KEY = 'sb_publishable_iNWnWl53rYrAfF3LhwUrWQ_OrQWnbsW';
+
+  function montarCardProduto(p) {
+    var partesPreco = String(p.preco || '0,00').split(',');
+    var reais = partesPreco[0] || '0';
+    var centavos = partesPreco[1] || '00';
+    var fotos = p.fotos || [];
+
+    var slidesHtml = fotos.map(function(url, i) {
+      return '<div class="pc-slide"><img src="' + url + '" alt="Foto ' + (i + 1) + '" loading="lazy"></div>';
+    }).join('');
+
+    var card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML =
+      '<div class="product-carousel">' +
+        '<div class="pc-track">' + slidesHtml + '</div>' +
+        '<button class="pc-btn pc-prev" aria-label="Anterior">&#8249;</button>' +
+        '<button class="pc-btn pc-next" aria-label="Próximo">&#8250;</button>' +
+        '<div class="pc-dots"></div>' +
+      '</div>' +
+      '<div class="product-info">' +
+        '<div class="product-name">' + (p.nome || '') + '</div>' +
+        (p.sub ? '<div class="product-sub">' + p.sub + '</div>' : '') +
+        '<div class="por-apenas">Por apenas</div>' +
+        '<div class="price-box">' +
+          '<span class="price-rs">R$</span>' +
+          '<span class="price-val">' + reais + '</span>' +
+          '<span class="price-cents">,' + centavos + '</span>' +
+          '<span class="price-cada">cada</span>' +
+        '</div>' +
+        '<div>' +
+          '<div class="tamanhos-label">Tamanhos</div>' +
+          '<div class="tamanhos-val">' + (p.tamanhos || '') + '</div>' +
+        '</div>' +
+        '<a href="#" class="product-cta-whatsapp"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>' +
+      '</div>';
+
+    card.querySelector('.product-cta-whatsapp').addEventListener('click', falarComVendedor);
+    return card;
+  }
+
+  fetch(SUPABASE_URL + '/rest/v1/produtos?ativo=eq.true&order=ordem.asc&select=*', {
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: 'Bearer ' + SUPABASE_ANON_KEY
+    }
+  })
+    .then(function(r) { return r.json(); })
+    .then(function(produtos) {
+      if (!Array.isArray(produtos) || !produtos.length) return;
+      var grid = document.getElementById('productGrid');
+      produtos.forEach(function(p) {
+        if (!p.fotos || !p.fotos.length) return;
+        var card = montarCardProduto(p);
+        grid.appendChild(card);
+        initCarousel(card.querySelector('.product-carousel'));
+      });
+    })
+    .catch(function () { /* mantém a página com os produtos fixos mesmo se o admin estiver fora do ar */ });
 </script>
 </body>
 </html>

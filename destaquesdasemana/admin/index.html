@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin — Destaques da Semana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #f0e9dc;
+      --navy:    #1b2a4a;
+      --gold:    #9a6b2a;
+      --gold-lt: #c8922a;
+      --white:   #ffffff;
+      --danger:  #b3412c;
+      --ok:      #2b8a4e;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--navy);
+      min-height: 100vh;
+    }
+
+    /* ── LOGIN ── */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .login-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px 28px;
+      width: 100%;
+      max-width: 360px;
+      border: 1.5px solid #e0d8cc;
+      text-align: center;
+    }
+    .login-card h1 {
+      font-size: 1.3rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .login-card p {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 20px;
+    }
+    input[type="password"], input[type="text"], input[type="number"], textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--navy);
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--gold); }
+    .btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 13px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: var(--gold-lt); }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-secundario {
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid #ccc;
+    }
+    .btn-secundario:hover { background: #f0f0f0; }
+    .login-card .btn { width: 100%; margin-top: 14px; }
+    #loginErro {
+      color: var(--danger);
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-top: 10px;
+      min-height: 1em;
+    }
+
+    /* ── PAINEL ── */
+    #painel { max-width: 620px; margin: 0 auto; padding: 24px 16px 60px; }
+    .hidden { display: none !important; }
+
+    .painel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .painel-header h1 {
+      font-size: 1.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 14px;
+      border: 1.5px solid #e0d8cc;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      font-size: 0.95rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .campo { margin-bottom: 14px; }
+    .campo label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #999;
+      margin-bottom: 6px;
+    }
+    .linha-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .fotos-label { font-size: 0.7rem; font-weight: 700; color: #999; margin-bottom: 8px; }
+    .fotos-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .foto-item { position: relative; width: 64px; height: 64px; border-radius: 8px; overflow: hidden; border: 1px solid #ddd; }
+    .foto-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .foto-remover {
+      position: absolute; top: 2px; right: 2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: rgba(0,0,0,0.6); color: #fff; border: none;
+      font-size: 0.8rem; line-height: 1; cursor: pointer;
+    }
+
+    .form-acoes { display: flex; gap: 10px; margin-top: 4px; }
+    #formMsg { font-size: 0.8rem; font-weight: 700; margin-top: 12px; min-height: 1em; }
+    #formMsg.ok { color: var(--ok); }
+    #formMsg.erro { color: var(--danger); }
+
+    .item-produto {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .item-produto:last-child { border-bottom: none; }
+    .item-produto.inativo { opacity: 0.5; }
+    .item-thumb { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; background: #eee; flex-shrink: 0; }
+    .item-info { flex: 1; min-width: 0; }
+    .item-nome { font-weight: 800; font-size: 0.85rem; }
+    .item-preco { font-size: 0.78rem; color: #888; }
+    .item-status { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; color: var(--gold); }
+    .item-acoes { display: flex; gap: 6px; flex-shrink: 0; }
+    .item-acoes button {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 7px 10px;
+      border-radius: 6px;
+      border: 1.5px solid #ddd;
+      background: var(--white);
+      cursor: pointer;
+    }
+    .item-acoes .btn-excluir { color: var(--danger); border-color: var(--danger); }
+    .vazio { font-size: 0.82rem; color: #999; text-align: center; padding: 12px 0; }
+  </style>
+</head>
+<body>
+
+  <!-- TELA DE LOGIN -->
+  <div id="loginScreen">
+    <div class="login-card">
+      <h1>Área restrita</h1>
+      <p>Destaques da Semana — JR Atacadista</p>
+      <div class="campo">
+        <input type="password" id="fSenha" placeholder="Senha" autocomplete="current-password">
+      </div>
+      <button class="btn" id="btnEntrar">Entrar</button>
+      <div id="loginErro"></div>
+    </div>
+  </div>
+
+  <!-- PAINEL -->
+  <div id="painel" class="hidden">
+    <div class="painel-header">
+      <h1>Destaques da Semana</h1>
+      <button class="btn btn-secundario" id="btnSair">Sair</button>
+    </div>
+
+    <div class="card">
+      <h2 id="formTitle">Cadastrar novo produto</h2>
+      <form id="produtoForm">
+        <div class="campo">
+          <label>Nome do produto</label>
+          <input type="text" id="fNome" placeholder="Ex: Camiseta UV Agro Básica" required>
+        </div>
+        <div class="linha-2">
+          <div class="campo">
+            <label>Preço (R$)</label>
+            <input type="text" id="fPreco" placeholder="22,90" required>
+          </div>
+          <div class="campo">
+            <label>Referência (opcional)</label>
+            <input type="text" id="fSub" placeholder="Ex: Ref: 183">
+          </div>
+        </div>
+        <div class="campo">
+          <label>Tamanhos (separados por vírgula)</label>
+          <input type="text" id="fTamanhos" placeholder="P, M, G, GG">
+        </div>
+        <div class="campo">
+          <label>Ordem de exibição (opcional)</label>
+          <input type="number" id="fOrdem" placeholder="Deixe em branco para adicionar no final">
+        </div>
+
+        <div id="fotosExistentesWrap" class="hidden"></div>
+
+        <div class="campo">
+          <label>Fotos (até 6, formatos jpg/png/webp)</label>
+          <input type="file" id="fFotos" accept="image/*" multiple>
+        </div>
+
+        <div class="form-acoes">
+          <button type="submit" class="btn" id="btnSalvar">Publicar produto</button>
+          <button type="button" class="btn btn-secundario hidden" id="btnCancelar">Cancelar edição</button>
+        </div>
+        <div id="formMsg"></div>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Produtos cadastrados</h2>
+      <div id="listaProdutos" class="vazio">Carregando…</div>
+    </div>
+  </div>
+
+  <script>
+    var SUPABASE_URL = 'https://atkfhvigjaphkwgcvrwv.supabase.co';
+    var SUPABASE_ANON_KEY = 'sb_publishable_iNWnWl53rYrAfF3LhwUrWQ_OrQWnbsW';
+    var SUPABASE_HEADERS = {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: 'Bearer ' + SUPABASE_ANON_KEY
+    };
+    var SENHA_HASH = '3b0e3ea198b974589dd9d4afe0ba07e43c9fb03e63ca2a8315be72d7495235ea';
+    var LOGIN_KEY = 'jr_admin_ok';
+
+    var editingId = null;
+    var fotosExistentes = [];
+
+    /* ── LOGIN ── */
+    async function sha256(texto) {
+      var enc = new TextEncoder().encode(texto);
+      var buf = await crypto.subtle.digest('SHA-256', enc);
+      return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+    }
+
+    async function tentarLogin() {
+      var senha = document.getElementById('fSenha').value;
+      var hash = await sha256(senha);
+      if (hash === SENHA_HASH) {
+        localStorage.setItem(LOGIN_KEY, '1');
+        mostrarPainel();
+      } else {
+        document.getElementById('loginErro').textContent = 'Senha incorreta.';
+      }
+    }
+
+    document.getElementById('btnEntrar').addEventListener('click', tentarLogin);
+    document.getElementById('fSenha').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') tentarLogin();
+    });
+    document.getElementById('btnSair').addEventListener('click', function() {
+      localStorage.removeItem(LOGIN_KEY);
+      location.reload();
+    });
+
+    function mostrarPainel() {
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('painel').classList.remove('hidden');
+      carregarLista();
+    }
+
+    if (localStorage.getItem(LOGIN_KEY) === '1') mostrarPainel();
+
+    /* ── COMPRESSÃO DE IMAGEM ── */
+    function resizeAndCompress(file, maxSize, quality) {
+      return new Promise(function(resolve, reject) {
+        var reader = new FileReader();
+        reader.onload = function(ev) {
+          var img = new Image();
+          img.onload = function() {
+            var w = img.width, h = img.height;
+            if (w > h && w > maxSize) { h = Math.round(h * maxSize / w); w = maxSize; }
+            else if (h >= w && h > maxSize) { w = Math.round(w * maxSize / h); h = maxSize; }
+            var canvas = document.createElement('canvas');
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            canvas.toBlob(function(blob) {
+              resolve({
+                blob: blob,
+                nome: 'produto-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '.jpg'
+              });
+            }, 'image/jpeg', quality);
+          };
+          img.onerror = reject;
+          img.src = ev.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function uploadFoto(foto) {
+      return fetch(SUPABASE_URL + '/storage/v1/object/produtos-fotos/' + foto.nome, {
+        method: 'POST',
+        headers: Object.assign({}, SUPABASE_HEADERS, { 'Content-Type': 'image/jpeg' }),
+        body: foto.blob
+      }).then(function(r) {
+        if (!r.ok) throw new Error('Falha ao enviar foto');
+        return SUPABASE_URL + '/storage/v1/object/public/produtos-fotos/' + foto.nome;
+      });
+    }
+
+    /* ── FOTOS EXISTENTES (modo edição) ── */
+    function renderFotosExistentes() {
+      var wrap = document.getElementById('fotosExistentesWrap');
+      if (!editingId || !fotosExistentes.length) {
+        wrap.innerHTML = '';
+        wrap.classList.add('hidden');
+        return;
+      }
+      wrap.classList.remove('hidden');
+      wrap.innerHTML = '<div class="fotos-label">Fotos atuais (clique no × pra remover)</div><div class="fotos-grid">' +
+        fotosExistentes.map(function(url, i) {
+          return '<div class="foto-item"><img src="' + url + '"><button type="button" class="foto-remover" data-i="' + i + '">&times;</button></div>';
+        }).join('') +
+        '</div>';
+      wrap.querySelectorAll('.foto-remover').forEach(function(b) {
+        b.addEventListener('click', function() {
+          fotosExistentes.splice(Number(b.dataset.i), 1);
+          renderFotosExistentes();
+        });
+      });
+    }
+
+    /* ── FORMULÁRIO ── */
+    function mostrarMsg(texto, tipo) {
+      var el = document.getElementById('formMsg');
+      el.textContent = texto;
+      el.className = tipo;
+    }
+
+    function resetForm() {
+      editingId = null;
+      fotosExistentes = [];
+      document.getElementById('produtoForm').reset();
+      document.getElementById('formTitle').textContent = 'Cadastrar novo produto';
+      document.getElementById('btnSalvar').textContent = 'Publicar produto';
+      document.getElementById('btnCancelar').classList.add('hidden');
+      renderFotosExistentes();
+    }
+
+    document.getElementById('btnCancelar').addEventListener('click', resetForm);
+
+    document.getElementById('produtoForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var files = document.getElementById('fFotos').files;
+
+      if (!editingId && files.length === 0) {
+        mostrarMsg('Adicione pelo menos 1 foto.', 'erro');
+        return;
+      }
+      if (editingId && fotosExistentes.length === 0 && files.length === 0) {
+        mostrarMsg('O produto precisa ter pelo menos 1 foto.', 'erro');
+        return;
+      }
+
+      var btn = document.getElementById('btnSalvar');
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      mostrarMsg('', '');
+
+      try {
+        var fotosComprimidas = [];
+        for (var i = 0; i < files.length; i++) {
+          fotosComprimidas.push(await resizeAndCompress(files[i], 1200, 0.82));
+        }
+        var novasUrls = [];
+        for (var j = 0; j < fotosComprimidas.length; j++) {
+          novasUrls.push(await uploadFoto(fotosComprimidas[j]));
+        }
+
+        var ordemVal = document.getElementById('fOrdem').value.trim();
+        var body = {
+          nome: document.getElementById('fNome').value.trim(),
+          preco: document.getElementById('fPreco').value.trim(),
+          sub: document.getElementById('fSub').value.trim(),
+          tamanhos: document.getElementById('fTamanhos').value.split(',').map(function(s) { return s.trim(); }).filter(Boolean).join(' • ')
+        };
+        if (ordemVal !== '') body.ordem = Number(ordemVal);
+
+        var resp;
+        if (editingId) {
+          body.fotos = fotosExistentes.concat(novasUrls);
+          resp = await fetch(SUPABASE_URL + '/rest/v1/produtos?id=eq.' + editingId, {
+            method: 'PATCH',
+            headers: Object.assign({}, SUPABASE_HEADERS, { 'Content-Type': 'application/json', 'Prefer': 'return=representation' }),
+            body: JSON.stringify(body)
+          });
+        } else {
+          body.fotos = novasUrls;
+          body.ativo = true;
+          resp = await fetch(SUPABASE_URL + '/rest/v1/produtos', {
+            method: 'POST',
+            headers: Object.assign({}, SUPABASE_HEADERS, { 'Content-Type': 'application/json', 'Prefer': 'return=representation' }),
+            body: JSON.stringify(body)
+          });
+        }
+
+        if (resp.ok) {
+          mostrarMsg(editingId ? 'Produto atualizado com sucesso!' : 'Produto publicado com sucesso!', 'ok');
+          resetForm();
+          carregarLista();
+        } else {
+          var errJson = await resp.json().catch(function() { return {}; });
+          mostrarMsg('Erro: ' + (errJson.message || 'desconhecido'), 'erro');
+        }
+      } catch (err) {
+        mostrarMsg('Erro de conexão: ' + err.message, 'erro');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = editingId ? 'Salvar alterações' : 'Publicar produto';
+      }
+    });
+
+    /* ── LISTA ── */
+    async function carregarLista() {
+      var lista = document.getElementById('listaProdutos');
+      lista.textContent = 'Carregando…';
+      try {
+        var resp = await fetch(SUPABASE_URL + '/rest/v1/produtos?order=ordem.asc&select=*', {
+          headers: SUPABASE_HEADERS
+        });
+        var produtos = await resp.json();
+
+        if (!Array.isArray(produtos) || !produtos.length) {
+          lista.innerHTML = '<p class="vazio">Nenhum produto cadastrado ainda.</p>';
+          return;
+        }
+
+        produtos.sort(function(a, b) { return a.ordem - b.ordem; });
+        lista.innerHTML = '';
+
+        produtos.forEach(function(p) {
+          var item = document.createElement('div');
+          item.className = 'item-produto' + (p.ativo ? '' : ' inativo');
+          item.innerHTML =
+            '<img class="item-thumb" src="' + (p.fotos[0] || '') + '" onerror="this.style.visibility=\'hidden\'">' +
+            '<div class="item-info">' +
+              '<div class="item-nome">' + p.nome + '</div>' +
+              '<div class="item-preco">R$ ' + p.preco + '</div>' +
+              '<div class="item-status">' + (p.ativo ? 'Ativo' : 'Inativo') + '</div>' +
+            '</div>' +
+            '<div class="item-acoes">' +
+              '<button class="btn-editar" data-id="' + p.id + '">Editar</button>' +
+              '<button class="btn-excluir" data-id="' + p.id + '" data-ativo="' + p.ativo + '">' + (p.ativo ? 'Excluir' : 'Reativar') + '</button>' +
+            '</div>';
+          lista.appendChild(item);
+        });
+
+        lista.querySelectorAll('.btn-editar').forEach(function(b) {
+          b.addEventListener('click', function() { editarProduto(b.dataset.id, produtos); });
+        });
+        lista.querySelectorAll('.btn-excluir').forEach(function(b) {
+          b.addEventListener('click', function() { excluirProduto(b.dataset.id, b.dataset.ativo === 'true'); });
+        });
+      } catch (err) {
+        lista.innerHTML = '<p class="vazio">Erro ao carregar produtos.</p>';
+      }
+    }
+
+    function editarProduto(id, produtos) {
+      var p = produtos.filter(function(x) { return String(x.id) === String(id); })[0];
+      if (!p) return;
+
+      editingId = p.id;
+      fotosExistentes = (p.fotos || []).slice();
+
+      document.getElementById('fNome').value = p.nome || '';
+      document.getElementById('fPreco').value = p.preco || '';
+      document.getElementById('fSub').value = p.sub || '';
+      document.getElementById('fTamanhos').value = (p.tamanhos || '').split('•').map(function(s) { return s.trim(); }).filter(Boolean).join(', ');
+      document.getElementById('fOrdem').value = p.ordem || '';
+      document.getElementById('fFotos').value = '';
+
+      document.getElementById('formTitle').textContent = 'Editando: ' + p.nome;
+      document.getElementById('btnSalvar').textContent = 'Salvar alterações';
+      document.getElementById('btnCancelar').classList.remove('hidden');
+
+      renderFotosExistentes();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function excluirProduto(id, ativoAtual) {
+      if (!confirm('Confirma? Isso ativa/desativa a exibição dessa peça em /destaquesdasemana/.')) return;
+      try {
+        var resp = await fetch(SUPABASE_URL + '/rest/v1/produtos?id=eq.' + id, {
+          method: 'PATCH',
+          headers: Object.assign({}, SUPABASE_HEADERS, { 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ ativo: !ativoAtual })
+        });
+        if (resp.ok) carregarLista();
+        else alert('Erro ao atualizar produto.');
+      } catch (err) {
+        alert('Erro de conexão: ' + err.message);
+      }
+    }
+  </script>
+</body>
+</html>
