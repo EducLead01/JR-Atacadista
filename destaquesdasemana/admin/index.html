@@ -55,7 +55,7 @@
       color: #888;
       margin-bottom: 20px;
     }
-    input[type="password"], input[type="text"], input[type="number"], textarea {
+    input[type="password"], input[type="text"], input[type="number"], select, textarea {
       width: 100%;
       padding: 12px 14px;
       border: 1.5px solid #ddd;
@@ -63,6 +63,7 @@
       font-size: 0.9rem;
       font-family: inherit;
       color: var(--navy);
+      background: var(--white);
     }
     input:focus, textarea:focus { outline: none; border-color: var(--gold); }
     .btn {
@@ -225,6 +226,14 @@
         <div class="campo">
           <label>Tamanhos (separados por vírgula)</label>
           <input type="text" id="fTamanhos" placeholder="P, M, G, GG">
+        </div>
+        <div class="campo">
+          <label>Rótulo</label>
+          <select id="fRotulo">
+            <option value="">Nenhum</option>
+            <option value="novidade">Novidade</option>
+            <option value="reposicao">Reposição</option>
+          </select>
         </div>
         <div class="campo">
           <label>Ordem de exibição (opcional)</label>
@@ -419,7 +428,8 @@
           nome: document.getElementById('fNome').value.trim(),
           preco: document.getElementById('fPreco').value.trim(),
           sub: document.getElementById('fSub').value.trim(),
-          tamanhos: document.getElementById('fTamanhos').value.split(',').map(function(s) { return s.trim(); }).filter(Boolean).join(' • ')
+          tamanhos: document.getElementById('fTamanhos').value.split(',').map(function(s) { return s.trim(); }).filter(Boolean).join(' • '),
+          rotulo: document.getElementById('fRotulo').value
         };
         if (ordemVal !== '') body.ordem = Number(ordemVal);
 
@@ -481,7 +491,7 @@
           item.innerHTML =
             '<img class="item-thumb" src="' + (p.fotos[0] || '') + '" onerror="this.style.visibility=\'hidden\'">' +
             '<div class="item-info">' +
-              '<div class="item-nome">' + p.nome + '</div>' +
+              '<div class="item-nome">' + p.nome + (p.rotulo === 'novidade' ? ' 🟢 Novidade' : p.rotulo === 'reposicao' ? ' 🟠 Reposição' : '') + '</div>' +
               '<div class="item-preco">R$ ' + p.preco + '</div>' +
               '<div class="item-status">' + (p.ativo ? 'Ativo' : 'Inativo') + '</div>' +
             '</div>' +
@@ -514,6 +524,7 @@
       document.getElementById('fPreco').value = p.preco || '';
       document.getElementById('fSub').value = p.sub || '';
       document.getElementById('fTamanhos').value = (p.tamanhos || '').split('•').map(function(s) { return s.trim(); }).filter(Boolean).join(', ');
+      document.getElementById('fRotulo').value = p.rotulo || '';
       document.getElementById('fOrdem').value = p.ordem || '';
       document.getElementById('fFotos').value = '';
 

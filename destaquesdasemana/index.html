@@ -366,6 +366,22 @@
       overflow: hidden;
       background: #d0c8bc;
     }
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 3;
+      font-size: 0.62rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 5px 10px;
+      border-radius: 20px;
+      color: var(--white);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+    .product-badge.novidade { background: #2b8a4e; }
+    .product-badge.reposicao  { background: var(--gold-lt); }
     .pc-track {
       position: absolute;
       top: 0; left: 0;
@@ -590,10 +606,15 @@
       return '<div class="pc-slide"><img src="' + url + '" alt="' + nomeTexto + ' - Foto ' + (i + 1) + '" title="' + nomeTexto + '" loading="lazy"></div>';
     }).join('');
 
+    var badgeHtml = '';
+    if (p.rotulo === 'novidade') badgeHtml = '<div class="product-badge novidade">Novidade</div>';
+    else if (p.rotulo === 'reposicao') badgeHtml = '<div class="product-badge reposicao">Reposição</div>';
+
     var card = document.createElement('div');
     card.className = 'product-card';
     card.innerHTML =
       '<div class="product-carousel">' +
+        badgeHtml +
         '<div class="pc-track">' + slidesHtml + '</div>' +
         '<button class="pc-btn pc-prev" aria-label="Anterior">&#8249;</button>' +
         '<button class="pc-btn pc-next" aria-label="Próximo">&#8250;</button>' +
