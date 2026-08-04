@@ -234,8 +234,8 @@
         <div id="fotosExistentesWrap" class="hidden"></div>
 
         <div class="campo">
-          <label>Fotos (até 6, formatos jpg/png/webp)</label>
-          <input type="file" id="fFotos" accept="image/*" multiple>
+          <label>Fotos (até 6, somente WebP)</label>
+          <input type="file" id="fFotos" accept="image/webp" multiple>
         </div>
 
         <div class="form-acoes">
@@ -316,9 +316,9 @@
             canvas.toBlob(function(blob) {
               resolve({
                 blob: blob,
-                nome: 'produto-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '.jpg'
+                nome: 'produto-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '.webp'
               });
-            }, 'image/jpeg', quality);
+            }, 'image/webp', quality);
           };
           img.onerror = reject;
           img.src = ev.target.result;
@@ -331,7 +331,7 @@
     function uploadFoto(foto) {
       return fetch(SUPABASE_URL + '/storage/v1/object/produtos-fotos/' + foto.nome, {
         method: 'POST',
-        headers: Object.assign({}, SUPABASE_HEADERS, { 'Content-Type': 'image/jpeg' }),
+        headers: Object.assign({}, SUPABASE_HEADERS, { 'Content-Type': 'image/webp' }),
         body: foto.blob
       }).then(function(r) {
         if (!r.ok) throw new Error('Falha ao enviar foto');
@@ -391,6 +391,12 @@
       if (editingId && fotosExistentes.length === 0 && files.length === 0) {
         mostrarMsg('O produto precisa ter pelo menos 1 foto.', 'erro');
         return;
+      }
+      for (var k = 0; k < files.length; k++) {
+        if (files[k].type !== 'image/webp') {
+          mostrarMsg('Só são aceitas fotos no formato WebP. Converta "' + files[k].name + '" antes de enviar.', 'erro');
+          return;
+        }
       }
 
       var btn = document.getElementById('btnSalvar');
