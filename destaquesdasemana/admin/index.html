@@ -497,7 +497,7 @@
             '</div>' +
             '<div class="item-acoes">' +
               '<button class="btn-editar" data-id="' + p.id + '">Editar</button>' +
-              '<button class="btn-excluir" data-id="' + p.id + '" data-ativo="' + p.ativo + '">' + (p.ativo ? 'Excluir' : 'Reativar') + '</button>' +
+              '<button class="btn-excluir" data-id="' + p.id + '" data-ativo="' + p.ativo + '">' + (p.ativo ? 'Desativar' : 'Reativar') + '</button>' +
             '</div>';
           lista.appendChild(item);
         });
@@ -537,7 +537,8 @@
     }
 
     async function excluirProduto(id, ativoAtual) {
-      if (!confirm('Confirma? Isso ativa/desativa a exibição dessa peça em /destaquesdasemana/.')) return;
+      var acao = ativoAtual ? 'desativar' : 'reativar';
+      if (!confirm('Confirma ' + acao + ' essa peça? Ela ' + (ativoAtual ? 'deixa de aparecer' : 'volta a aparecer') + ' em /destaquesdasemana/.')) return;
       try {
         var resp = await fetch(SUPABASE_URL + '/rest/v1/produtos?id=eq.' + id, {
           method: 'PATCH',
