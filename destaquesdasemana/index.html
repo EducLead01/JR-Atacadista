@@ -382,6 +382,7 @@
     }
     .product-badge.novidade { background: #2b8a4e; }
     .product-badge.reposicao  { background: var(--gold-lt); }
+    .product-badge.promocao  { background: #d64545; }
     .pc-track {
       position: absolute;
       top: 0; left: 0;
@@ -605,6 +606,7 @@
     var badgeHtml = '';
     if (p.rotulo === 'novidade') badgeHtml = '<div class="product-badge novidade">Novidade</div>';
     else if (p.rotulo === 'reposicao') badgeHtml = '<div class="product-badge reposicao">Reposição</div>';
+    else if (p.rotulo === 'promocao') badgeHtml = '<div class="product-badge promocao">Promoção</div>';
 
     var card = document.createElement('div');
     card.className = 'product-card';

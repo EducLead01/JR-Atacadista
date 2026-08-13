@@ -233,6 +233,7 @@
             <option value="">Nenhum</option>
             <option value="novidade">Novidade</option>
             <option value="reposicao">Reposição</option>
+            <option value="promocao">Promoção</option>
           </select>
         </div>
         <div class="campo">
@@ -491,7 +492,7 @@
           item.innerHTML =
             '<img class="item-thumb" src="' + (p.fotos[0] || '') + '" onerror="this.style.visibility=\'hidden\'">' +
             '<div class="item-info">' +
-              '<div class="item-nome">' + p.nome + (p.rotulo === 'novidade' ? ' 🟢 Novidade' : p.rotulo === 'reposicao' ? ' 🟠 Reposição' : '') + '</div>' +
+              '<div class="item-nome">' + p.nome + (p.rotulo === 'novidade' ? ' 🟢 Novidade' : p.rotulo === 'reposicao' ? ' 🟠 Reposição' : p.rotulo === 'promocao' ? ' 🔴 Promoção' : '') + '</div>' +
               '<div class="item-preco">R$ ' + p.preco + '</div>' +
               '<div class="item-status">' + (p.ativo ? 'Ativo' : 'Inativo') + '</div>' +
             '</div>' +
