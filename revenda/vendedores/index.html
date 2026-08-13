@@ -140,7 +140,7 @@
           </button>
 
           <!-- JÁ TEM CONSULTOR -->
-          <div class="group bg-[#111] rounded-3xl p-7 text-left" style="border:1px solid rgba(245,168,0,.35);">
+          <button onclick="abrirListaConsultores()" class="group bg-[#111] rounded-3xl p-7 text-left w-full cursor-pointer hover:scale-[1.02] transition-transform duration-200" style="border:1px solid rgba(245,168,0,.35);">
             <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
                  style="background:rgba(245,168,0,.1); border:1px solid rgba(245,168,0,.2);">
               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,9 +151,9 @@
             <div class="w-7 h-[2px] mb-4" style="background:rgba(245,168,0,.4);"></div>
             <h2 class="font-black text-xl uppercase tracking-tight mb-2">Já tem consultor?</h2>
             <p class="text-white/50 text-sm leading-relaxed">
-              Se já tem seu consultor de vendas, entre em contato diretamente com ele pelo WhatsApp.
+              Se já tem seu consultor de vendas, clique aqui e escolha o nome dele na lista.
             </p>
-          </div>
+          </button>
 
         </div>
       </div>
@@ -215,6 +215,25 @@
     </div>
   </div>
 
+  <!-- LISTA DE CONSULTORES POPUP -->
+  <div id="overlayLista"
+       class="overlay fixed inset-0 z-50 items-center justify-center px-4"
+       style="background:rgba(0,0,0,.8); backdrop-filter: blur(6px);"
+       onclick="fecharOverlayLista(event)">
+
+    <div class="bg-[#111] border border-white/[0.08] rounded-3xl w-full max-w-sm p-8 relative"
+         style="border-color: rgba(245,168,0,.3);">
+
+      <button onclick="fecharListaConsultores()"
+              class="absolute top-4 right-5 text-white/30 hover:text-white text-2xl leading-none font-light">✕</button>
+
+      <h3 class="font-black text-xl uppercase tracking-tight mb-1 text-center">Escolha seu<br>consultor</h3>
+      <p class="text-white/40 text-sm mb-6 text-center">Toque no nome pra abrir o WhatsApp dele</p>
+
+      <div id="listaConsultores" class="flex flex-col gap-2"></div>
+    </div>
+  </div>
+
   <script>
     const vendedores = [
       { nome: 'Evellin',  wpp: 'https://wa.me/5562994044808' },
@@ -246,6 +265,32 @@
 
     function fecharOverlay(e) {
       if (e.target === document.getElementById('overlay')) fecharRoleta();
+    }
+
+    function abrirListaConsultores() {
+      const lista = document.getElementById('listaConsultores');
+      lista.innerHTML = vendedores.map(v => `
+        <a href="${v.wpp}" target="_blank" rel="noopener"
+           class="flex items-center justify-between px-4 py-3.5 rounded-xl hover:bg-white/[0.03] transition-colors duration-150"
+           style="border:1px solid rgba(245,168,0,.25);">
+          <span class="font-bold text-white text-sm">${v.nome}</span>
+          <span class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:#25d366;">
+            <svg class="w-4 h-4" viewBox="0 0 448 512" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+            </svg>
+          </span>
+        </a>
+      `).join('');
+
+      document.getElementById('overlayLista').classList.add('open');
+    }
+
+    function fecharListaConsultores() {
+      document.getElementById('overlayLista').classList.remove('open');
+    }
+
+    function fecharOverlayLista(e) {
+      if (e.target === document.getElementById('overlayLista')) fecharListaConsultores();
     }
   </script>
 
