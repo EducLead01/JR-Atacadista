@@ -65,6 +65,13 @@
     .pulse-dot:nth-child(2) { animation-delay: .15s; }
     .pulse-dot:nth-child(3) { animation-delay: .30s; }
 
+    /* pulse item (destaque do botão de atendimento) */
+    @keyframes pulse-item {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245,168,0,.55); border-color: rgba(245,168,0,.35); }
+      50%      { box-shadow: 0 0 0 8px rgba(245,168,0,0); border-color: rgba(245,168,0,.9); }
+    }
+    .pulse-item { animation: pulse-item 1.8s ease-in-out infinite; }
+
     /* overlay */
     .overlay { display: none; }
     .overlay.open { display: flex; }
@@ -118,7 +125,7 @@
 
 
             <!-- item clicável -->
-            <div class="flex items-center justify-between px-4 py-4 hover:bg-white/[0.03] transition-colors duration-150 mx-3 my-3 rounded-xl" style="border:1px solid rgba(245,168,0,.35);">
+            <div class="pulse-item flex items-center justify-between px-4 py-4 hover:bg-white/[0.03] transition-colors duration-150 mx-3 my-3 rounded-xl" style="border:1px solid rgba(245,168,0,.35);">
               <div>
                 <p class="text-white font-bold text-sm leading-tight">Iniciar atendimento</p>
                 <p class="text-white/40 text-[11px] uppercase tracking-wider mt-1">Primeiro contato ou sem vendedor ainda</p>
