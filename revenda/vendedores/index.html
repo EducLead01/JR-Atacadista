@@ -258,6 +258,11 @@
         </span>
       </a>
     `).join('');
+
+    // Link direto pra botão externo: ?auto=1 já dispara a roleta ao carregar a página
+    if (new URLSearchParams(location.search).get('auto') === '1') {
+      abrirRoleta();
+    }
   </script>
 
 </body>
