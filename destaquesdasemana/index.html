@@ -11,17 +11,18 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:     #f0e9dc;
-      --navy:   #1b2a4a;
-      --gold:   #9a6b2a;
-      --gold-lt:#c8922a;
-      --white:  #ffffff;
+      --bg:      #0a0a0a;
+      --card-bg: #141414;
+      --gold:    #d9a521;
+      --gold-lt: #f3c94f;
+      --red:     #d32f2f;
+      --white:   #ffffff;
     }
 
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
-      color: var(--navy);
+      color: var(--white);
       min-height: 100vh;
     }
 
@@ -41,48 +42,74 @@
       display: grid;
       grid-template-columns: repeat(5,8px);
       gap: 4px;
-      opacity: 0.35;
+      opacity: 0.5;
     }
-    .dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--navy); display: block; }
+    .dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); display: block; }
     .dots-tl { top: 24px; left: 16px; }
     .dots-tr { top: 24px; right: 16px; }
     .dots-bl { bottom: 32px; left: 16px; }
     .dots-br { bottom: 32px; right: 16px; }
+
+    /* ── LOGO ── */
+    .logo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    .logo-wrap img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+    }
+    .logo-wrap span {
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
 
     /* ── TÍTULO PRINCIPAL ── */
     .main-title {
       text-align: center;
       font-size: clamp(2.8rem, 12vw, 4.2rem);
       font-weight: 900;
-      color: var(--navy);
+      color: var(--white);
       line-height: 0.95;
       letter-spacing: -0.01em;
       text-transform: uppercase;
       margin-bottom: 12px;
     }
+    .main-title .gold { color: var(--gold); }
 
-    /* ── BADGE DOURADO ── */
+    /* ── BADGE ── */
     .badge-strip {
-      background: var(--gold);
-      color: var(--white);
+      display: block;
+      width: fit-content;
+      margin: 0 auto 20px;
+      background: var(--bg);
+      color: var(--gold);
       text-align: center;
       font-weight: 800;
       font-size: 0.82rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 9px 12px;
-      border-radius: 6px;
-      margin-bottom: 20px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--gold);
     }
-    .badge-strip::before { content: '/// '; }
-    .badge-strip::after  { content: ' ///'; }
 
     /* ── BENEFITS BAR ── */
     .benefits {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: var(--white);
+      background: var(--card-bg);
+      border: 1px solid rgba(217,165,33,.3);
       border-radius: 8px;
       padding: 10px 8px;
       margin-bottom: 24px;
@@ -105,13 +132,13 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      color: var(--navy);
+      color: var(--white);
       line-height: 1.2;
     }
     .benefit-divider {
       width: 1px;
       height: 36px;
-      background: #ddd;
+      background: rgba(255,255,255,.12);
       flex-shrink: 0;
     }
 
@@ -124,13 +151,14 @@
       font-size: 1.4rem;
       font-weight: 900;
       text-transform: uppercase;
-      color: var(--navy);
+      color: var(--white);
       line-height: 1.2;
       margin-bottom: 10px;
     }
+    .value-title .gold { color: var(--gold); }
     .value-text {
       font-size: 0.88rem;
-      color: rgba(27,42,74,.7);
+      color: rgba(255,255,255,.6);
       line-height: 1.5;
       max-width: 380px;
       margin: 0 auto;
@@ -153,7 +181,8 @@
       border-radius: 14px;
       text-decoration: none;
       margin-bottom: 28px;
-      box-shadow: 0 6px 18px rgba(37,211,102,.35);
+      border: 1.5px solid var(--gold);
+      box-shadow: 0 6px 20px rgba(217,165,33,.25);
       transition: background 0.2s, transform 0.2s;
     }
     .whatsapp-cta:hover { background: #1ebe5a; transform: scale(1.02); }
@@ -161,7 +190,8 @@
 
     /* ── FOOTER BAR ── */
     .footer-benefits {
-      background: var(--white);
+      background: var(--card-bg);
+      border: 1px solid rgba(217,165,33,.3);
       border-radius: 8px;
       padding: 10px 8px;
       margin-bottom: 20px;
@@ -171,22 +201,22 @@
       gap: 4px;
     }
 
-    /* ── CTA FINAL ── */
+    /* ── CTA FINAL / URGÊNCIA ── */
     .cta-bar {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
-      background: var(--navy);
+      background: var(--red);
       border-radius: 10px;
       padding: 16px 20px;
       text-decoration: none;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.2s;
     }
-    .cta-bar:hover { background: #24345c; }
+    .cta-bar:hover { background: #b71c1c; transform: scale(1.02); }
     .cta-bar i {
       font-size: 1.4rem;
-      color: var(--gold-lt);
+      color: var(--white);
     }
     .cta-bar span {
       font-size: 1rem;
@@ -221,8 +251,14 @@
   <div class="dots dots-tl" id="dtl"></div>
   <div class="dots dots-tr" id="dtr"></div>
 
+  <!-- Logo -->
+  <div class="logo-wrap">
+    <img src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="JR Atacadista">
+    <span>JR Atacadista</span>
+  </div>
+
   <!-- Título -->
-  <h1 class="main-title">Destaques<br>da Semana</h1>
+  <h1 class="main-title">Destaques<br><span class="gold">da Semana</span></h1>
 
   <!-- Badge strip -->
   <div class="badge-strip">Campe&otilde;es de vendas</div>
@@ -242,7 +278,7 @@
 
   <!-- Proposta de valor -->
   <div class="value-block">
-    <h2 class="value-title">Moda de qualidade,<br>direto de fábrica</h2>
+    <h2 class="value-title">Moda de qualidade,<br><span class="gold">direto de fábrica</span></h2>
     <p class="value-text">Toda semana chegam peças novas com preço de atacado. Fale agora com a gente pelo WhatsApp e garanta a sua.</p>
   </div>
 
@@ -264,10 +300,10 @@
     <div class="benefit"><i class="fa-solid fa-paper-plane"></i><span>Envio<br>Rápido</span></div>
   </div>
 
-  <!-- CTA final -->
+  <!-- CTA final / urgência -->
   <a href="#" onclick="falarComVendedor(event)" class="cta-bar">
     <i class="fa-solid fa-cart-shopping"></i>
-    <span>Garanta já a sua reposição!</span>
+    <span>Corra! Estoque limitado</span>
   </a>
 
   <!-- Dots decorativos bottom -->
