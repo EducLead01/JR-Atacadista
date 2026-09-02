@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -16,7 +16,6 @@
       --gold:   #9a6b2a;
       --gold-lt:#c8922a;
       --white:  #ffffff;
-      --card-bg:#ffffff;
     }
 
     body {
@@ -50,26 +49,6 @@
     .dots-bl { bottom: 32px; left: 16px; }
     .dots-br { bottom: 32px; right: 16px; }
 
-    /* ── HEADER ── */
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-      padding-left: 70px;
-    }
-    .logo {
-      height: 36px;
-      object-fit: contain;
-    }
-    .brand-name {
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
     /* ── TÍTULO PRINCIPAL ── */
     .main-title {
       text-align: center;
@@ -93,34 +72,10 @@
       text-transform: uppercase;
       padding: 9px 12px;
       border-radius: 6px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .badge-strip::before { content: '/// '; }
     .badge-strip::after  { content: ' ///'; }
-
-    /* Badge círculo no canto ── */
-    .badge-circle {
-      position: absolute;
-      top: 90px;
-      right: 16px;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: var(--gold);
-      color: var(--white);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 0.5rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      line-height: 1.3;
-      border: 3px solid var(--gold-lt);
-    }
-    .badge-circle i { font-size: 1.1rem; margin-bottom: 4px; }
 
     /* ── BENEFITS BAR ── */
     .benefits {
@@ -130,7 +85,7 @@
       background: var(--white);
       border-radius: 8px;
       padding: 10px 8px;
-      margin-bottom: 18px;
+      margin-bottom: 24px;
       gap: 4px;
     }
     .benefit {
@@ -160,191 +115,75 @@
       flex-shrink: 0;
     }
 
-    /* ── CTA PRODUTO ── */
-    .product-cta {
-      display: block;
-      background: var(--gold);
-      color: var(--white);
+    /* ── PROPOSTA DE VALOR ── */
+    .value-block {
       text-align: center;
-      font-size: 0.8rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 12px 8px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 4px;
-      transition: background 0.2s;
-    }
-    .product-cta:hover { background: var(--gold-lt); }
-    .product-cta i { margin-right: 5px; }
-
-    .product-cta-whatsapp {
-      display: block;
-      background: #25D366;
-      color: #fff;
-      text-align: center;
-      font-size: 0.8rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 12px 8px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 8px;
-      transition: background 0.2s;
-    }
-    .product-cta-whatsapp:hover { background: #1ebe5a; }
-    .product-cta-whatsapp i { margin-right: 5px; }
-
-    /* ── GRID DE PRODUTOS ── */
-    .product-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
       margin-bottom: 20px;
     }
+    .value-title {
+      font-size: 1.4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .value-text {
+      font-size: 0.88rem;
+      color: rgba(27,42,74,.7);
+      line-height: 1.5;
+      max-width: 380px;
+      margin: 0 auto;
+    }
 
-    /* ── CARD DE PRODUTO ── */
-    .product-card {
-      background: var(--white);
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1.5px solid #e0d8cc;
-      display: flex;
-      flex-direction: column;
-    }
-    .product-images {
-      display: flex;
-      flex-direction: row;
-      gap: 3px;
-      background: #e8e2d8;
-      aspect-ratio: 3/2;
-    }
-    .product-images .img-slot {
-      flex: 1;
-      background: #d0c8bc;
+    /* ── CTA WHATSAPP PRINCIPAL ── */
+    .whatsapp-cta {
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-    }
-    .product-images .img-slot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-    }
-    .product-images .img-placeholder {
-      color: #999;
-      font-size: 0.6rem;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
       text-align: center;
-      padding: 4px;
-    }
-
-    .product-info {
-      padding: 14px 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .product-name {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 900;
       text-transform: uppercase;
-      color: var(--navy);
-      line-height: 1.15;
+      letter-spacing: 0.05em;
+      padding: 18px 20px;
+      border-radius: 14px;
+      text-decoration: none;
+      margin-bottom: 28px;
+      box-shadow: 0 6px 18px rgba(37,211,102,.35);
+      transition: background 0.2s, transform 0.2s;
     }
-    .product-sub {
-      font-size: 0.6rem;
-      font-weight: 600;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-    .por-apenas {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--white);
-      font-size: 0.5rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 3px;
-      align-self: flex-start;
-    }
-    .price-box {
-      background: var(--navy);
-      border-radius: 6px;
-      padding: 8px 10px;
-      display: flex;
-      align-items: baseline;
-      gap: 2px;
-    }
-    .price-rs {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--white);
-    }
-    .price-val {
-      font-size: 2.8rem;
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1;
-    }
-    .price-cents {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--white);
-      align-self: flex-end;
-      margin-bottom: 3px;
-    }
-    .price-cada {
-      font-size: 0.5rem;
-      color: rgba(255,255,255,0.7);
-      text-transform: uppercase;
-      font-weight: 600;
-      align-self: flex-end;
-      margin-bottom: 3px;
-      margin-left: 2px;
-    }
-    .tamanhos-label {
-      font-size: 0.48rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #aaa;
-    }
-    .tamanhos-val {
-      font-size: 0.62rem;
-      font-weight: 800;
-      color: var(--navy);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
+    .whatsapp-cta:hover { background: #1ebe5a; transform: scale(1.02); }
+    .whatsapp-cta i { font-size: 1.3rem; }
 
     /* ── FOOTER BAR ── */
     .footer-benefits {
       background: var(--white);
       border-radius: 8px;
       padding: 10px 8px;
-      margin-bottom: 14px;
+      margin-bottom: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 4px;
     }
 
-    /* ── CTA ── */
+    /* ── CTA FINAL ── */
     .cta-bar {
-      background: var(--navy);
-      border-radius: 10px;
-      padding: 16px 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
+      background: var(--navy);
+      border-radius: 10px;
+      padding: 16px 20px;
+      text-decoration: none;
+      transition: background 0.2s;
     }
+    .cta-bar:hover { background: #24345c; }
     .cta-bar i {
       font-size: 1.4rem;
       color: var(--gold-lt);
@@ -355,103 +194,6 @@
       color: var(--white);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-    }
-
-    /* ── PRODUCT CAROUSEL ── */
-    .product-carousel {
-      position: relative;
-      width: 100%;
-      padding-bottom: 133.33%; /* proporção 3:4 retrato */
-      height: 0;
-      overflow: hidden;
-      background: #0a0a0a;
-    }
-    .product-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 3;
-      font-size: 0.62rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 5px 10px;
-      border-radius: 20px;
-      color: var(--white);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-    }
-    .product-badge.novidade { background: #2b8a4e; }
-    .product-badge.reposicao  { background: var(--gold-lt); }
-    .product-badge.promocao  { background: #d64545; }
-    .pc-track {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
-    }
-    .pc-slide {
-      min-width: 100%;
-      height: 100%;
-      flex-shrink: 0;
-    }
-    .pc-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-    }
-    .pc-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.35);
-      color: #fff;
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      line-height: 1;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-      transition: background 0.2s;
-    }
-    .pc-btn:hover { background: rgba(154,107,42,0.85); }
-    .pc-prev { left: 8px; }
-    .pc-next { right: 8px; }
-    .pc-dots {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 5px;
-      z-index: 2;
-    }
-    .pc-dots button {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(255,255,255,0.5);
-      cursor: pointer;
-      padding: 0;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .pc-dots button.active {
-      background: #fff;
-      transform: scale(1.3);
-    }
-
-    /* ── MOBILE ── */
-    @media (max-width: 400px) {
-      .price-val { font-size: 1.5rem; }
     }
   </style>
   <!-- Meta Pixel Code -->
@@ -479,7 +221,6 @@
   <div class="dots dots-tl" id="dtl"></div>
   <div class="dots dots-tr" id="dtr"></div>
 
-
   <!-- Título -->
   <h1 class="main-title">Destaques<br>da Semana</h1>
 
@@ -499,9 +240,16 @@
     <div class="benefit"><i class="fa-solid fa-paper-plane"></i><span>Envio<br>Rápido</span></div>
   </div>
 
-  <!-- Grid de produtos -->
-  <div class="product-grid" id="productGrid">
-  </div><!-- /product-grid -->
+  <!-- Proposta de valor -->
+  <div class="value-block">
+    <h2 class="value-title">Moda de qualidade,<br>direto de fábrica</h2>
+    <p class="value-text">Toda semana chegam peças novas com preço de atacado. Fale agora com a gente pelo WhatsApp e garanta a sua.</p>
+  </div>
+
+  <!-- CTA WhatsApp principal -->
+  <a href="#" onclick="falarComVendedor(event)" class="whatsapp-cta">
+    <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+  </a>
 
   <!-- Benefits bottom -->
   <div class="footer-benefits">
@@ -516,11 +264,11 @@
     <div class="benefit"><i class="fa-solid fa-paper-plane"></i><span>Envio<br>Rápido</span></div>
   </div>
 
-  <!-- CTA -->
-  <div class="cta-bar">
+  <!-- CTA final -->
+  <a href="#" onclick="falarComVendedor(event)" class="cta-bar">
     <i class="fa-solid fa-cart-shopping"></i>
     <span>Garanta já a sua reposição!</span>
-  </div>
+  </a>
 
   <!-- Dots decorativos bottom -->
   <div class="dots dots-bl" id="dbl"></div>
@@ -536,127 +284,14 @@
     for (var i = 0; i < 25; i++) el.appendChild(document.createElement('span'));
   });
 
-  // Product carousel
-  function initCarousel(carousel) {
-    var track  = carousel.querySelector('.pc-track');
-    var slides = carousel.querySelectorAll('.pc-slide');
-    var dotsEl = carousel.querySelector('.pc-dots');
-    var total  = slides.length;
-    var cur    = 0;
-
-    slides.forEach(function(_, i) {
-      var b = document.createElement('button');
-      if (i === 0) b.classList.add('active');
-      b.addEventListener('click', function() { go(i); });
-      dotsEl.appendChild(b);
-    });
-
-    function go(n) {
-      cur = (n + total) % total;
-      track.style.transform = 'translateX(-' + cur * 100 + '%)';
-      dotsEl.querySelectorAll('button').forEach(function(b, i) {
-        b.classList.toggle('active', i === cur);
-      });
-    }
-
-    carousel.querySelector('.pc-prev').addEventListener('click', function() { go(cur - 1); });
-    carousel.querySelector('.pc-next').addEventListener('click', function() { go(cur + 1); });
-
-    // Swipe mobile
-    var startX = 0;
-    track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive:true});
-    track.addEventListener('touchend', function(e) {
-      var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) go(diff > 0 ? cur + 1 : cur - 1);
-    }, {passive:true});
-  }
-
-  document.querySelectorAll('.product-carousel').forEach(initCarousel);
-</script>
-
-<script>
-  const vendedores = [
-    { nome: 'Vendedor Tráfego', wpp: 'https://wa.me/5562995744080' },
-  ];
+  // Botão de WhatsApp — dispara o evento Lead do Meta Pixel
+  var NUMERO_WHATSAPP = 'https://wa.me/5562995744080';
 
   function falarComVendedor(e) {
     e.preventDefault();
     if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-    const v = vendedores[Math.floor(Math.random() * vendedores.length)];
-    window.open(v.wpp, '_blank');
+    window.open(NUMERO_WHATSAPP, '_blank');
   }
-</script>
-
-<script>
-  // Produtos cadastrados pela tela de admin (anexados após os fixos)
-  var SUPABASE_URL = 'https://atkfhvigjaphkwgcvrwv.supabase.co';
-  var SUPABASE_ANON_KEY = 'sb_publishable_iNWnWl53rYrAfF3LhwUrWQ_OrQWnbsW';
-
-  function montarCardProduto(p) {
-    var partesPreco = String(p.preco || '0,00').split(',');
-    var reais = partesPreco[0] || '0';
-    var centavos = partesPreco[1] || '00';
-    var fotos = p.fotos || [];
-
-    var nomeTexto = (p.nome || '').replace(/<br>/gi, ' ');
-    var slidesHtml = fotos.map(function(url, i) {
-      return '<div class="pc-slide"><img src="' + url + '" alt="' + nomeTexto + ' - Foto ' + (i + 1) + '" title="' + nomeTexto + '" loading="lazy"></div>';
-    }).join('');
-
-    var badgeHtml = '';
-    if (p.rotulo === 'novidade') badgeHtml = '<div class="product-badge novidade">Novidade</div>';
-    else if (p.rotulo === 'reposicao') badgeHtml = '<div class="product-badge reposicao">Reposição</div>';
-    else if (p.rotulo === 'promocao') badgeHtml = '<div class="product-badge promocao">Promoção</div>';
-
-    var card = document.createElement('div');
-    card.className = 'product-card';
-    card.innerHTML =
-      '<div class="product-carousel">' +
-        badgeHtml +
-        '<div class="pc-track">' + slidesHtml + '</div>' +
-        '<button class="pc-btn pc-prev" aria-label="Anterior">&#8249;</button>' +
-        '<button class="pc-btn pc-next" aria-label="Próximo">&#8250;</button>' +
-        '<div class="pc-dots"></div>' +
-      '</div>' +
-      '<div class="product-info">' +
-        '<div class="product-name">' + (p.nome || '') + '</div>' +
-        (p.sub ? '<div class="product-sub">' + p.sub + '</div>' : '') +
-        '<div class="por-apenas">Por apenas</div>' +
-        '<div class="price-box">' +
-          '<span class="price-rs">R$</span>' +
-          '<span class="price-val">' + reais + '</span>' +
-          '<span class="price-cents">,' + centavos + '</span>' +
-          '<span class="price-cada">cada</span>' +
-        '</div>' +
-        '<div>' +
-          '<div class="tamanhos-label">Tamanhos</div>' +
-          '<div class="tamanhos-val">' + (p.tamanhos || '') + '</div>' +
-        '</div>' +
-        '<a href="#" class="product-cta-whatsapp"><i class="fa-brands fa-whatsapp"></i>Falar com vendedor</a>' +
-      '</div>';
-
-    card.querySelector('.product-cta-whatsapp').addEventListener('click', falarComVendedor);
-    return card;
-  }
-
-  fetch(SUPABASE_URL + '/rest/v1/produtos?ativo=eq.true&order=ordem.asc&select=*', {
-    headers: {
-      apikey: SUPABASE_ANON_KEY,
-      Authorization: 'Bearer ' + SUPABASE_ANON_KEY
-    }
-  })
-    .then(function(r) { return r.json(); })
-    .then(function(produtos) {
-      if (!Array.isArray(produtos) || !produtos.length) return;
-      var grid = document.getElementById('productGrid');
-      produtos.forEach(function(p) {
-        if (!p.fotos || !p.fotos.length) return;
-        var card = montarCardProduto(p);
-        grid.appendChild(card);
-        initCarousel(card.querySelector('.product-carousel'));
-      });
-    })
-    .catch(function () { /* mantém a página com os produtos fixos mesmo se o admin estiver fora do ar */ });
 </script>
 </body>
 </html>
