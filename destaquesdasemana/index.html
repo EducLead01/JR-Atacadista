@@ -25,6 +25,123 @@
       min-height: 100vh;
     }
 
+    /* ── MARQUEE ── */
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-bar {
+      overflow: hidden;
+      padding: 12px 0;
+      background: var(--gold);
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-track span {
+      font-weight: 900;
+      color: var(--bg);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      padding: 0 24px;
+    }
+
+    /* ── TOPO / HEADER ── */
+    .top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .top-header .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .top-header .brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .top-header .brand span {
+      font-weight: 900;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+    .top-header .brand span .gold { color: var(--gold); }
+    .top-header .btn-revender {
+      background: var(--gold);
+      color: var(--bg);
+      font-weight: 900;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 9px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .top-header .btn-revender:hover { background: var(--gold-lt); }
+
+    /* ── SHIPPING BAR ── */
+    .shipping-bar {
+      background: var(--card-bg);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .shipping-grid {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 22px 16px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .shipping-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+    }
+    .shipping-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(217,165,33,.1);
+      border: 1px solid rgba(217,165,33,.25);
+      color: var(--gold);
+      font-size: 1rem;
+    }
+    .shipping-item p.title {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .shipping-item p.sub {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,.4);
+      line-height: 1.3;
+    }
+
     /* ── WRAPPER ── */
     .page {
       max-width: 520px;
@@ -46,29 +163,6 @@
     .dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); display: block; }
     .dots-tl { top: 24px; left: 16px; }
     .dots-tr { top: 24px; right: 16px; }
-
-    /* ── LOGO ── */
-    .logo-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 22px;
-    }
-    .logo-wrap img {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--gold);
-    }
-    .logo-wrap span {
-      font-size: 0.85rem;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--white);
-    }
 
     /* ── TÍTULO PRINCIPAL ── */
     .main-title {
@@ -204,17 +298,59 @@
   <!-- End Meta Pixel Code -->
 </head>
 <body>
+
+  <!-- Faixa de anúncio -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span>100% ATACADO — EXCLUSIVO PARA LOJISTAS ●</span>
+      <span>100% ATACADO — EXCLUSIVO PARA LOJISTAS ●</span>
+      <span>100% ATACADO — EXCLUSIVO PARA LOJISTAS ●</span>
+      <span>100% ATACADO — EXCLUSIVO PARA LOJISTAS ●</span>
+      <span>100% ATACADO — EXCLUSIVO PARA LOJISTAS ●</span>
+      <span>SEM CNPJ NECESSÁRIO ●</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="top-header">
+    <a href="#" class="brand" onclick="return false;">
+      <img src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="JR Atacadista">
+      <span>JR <span class="gold">Atacadista</span></span>
+    </a>
+    <a href="#" onclick="falarComVendedor(event)" class="btn-revender">Quero Revender</a>
+  </div>
+
+  <!-- Shipping bar -->
+  <div class="shipping-bar">
+    <div class="shipping-grid">
+      <div class="shipping-item">
+        <div class="shipping-icon"><i class="fa-solid fa-truck-fast"></i></div>
+        <p class="title">Frete Inteligente</p>
+        <p class="sub">Frete rápido para reposições estratégicas</p>
+      </div>
+      <div class="shipping-item">
+        <div class="shipping-icon"><i class="fa-solid fa-box"></i></div>
+        <p class="title">Pedido Mínimo</p>
+        <p class="sub">20 peças</p>
+      </div>
+      <div class="shipping-item">
+        <div class="shipping-icon"><i class="fa-solid fa-bolt"></i></div>
+        <p class="title">Compre no Pix</p>
+        <p class="sub">Descontos exclusivos</p>
+      </div>
+      <div class="shipping-item">
+        <div class="shipping-icon"><i class="fa-solid fa-store-slash"></i></div>
+        <p class="title">Não Vendemos Varejo</p>
+        <p class="sub">Exclusivo para lojistas e revendedores</p>
+      </div>
+    </div>
+  </div>
+
 <div class="page">
 
   <!-- Dots decorativos -->
   <div class="dots dots-tl" id="dtl"></div>
   <div class="dots dots-tr" id="dtr"></div>
-
-  <!-- Logo -->
-  <div class="logo-wrap">
-    <img src="https://jratacadista44.com.br/wp-content/uploads/2024/03/logo02-300x300.jpg" alt="JR Atacadista">
-    <span>JR Atacadista</span>
-  </div>
 
   <!-- Título -->
   <h1 class="main-title">Destaques<br><span class="gold">da Semana</span></h1>
