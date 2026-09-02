@@ -15,7 +15,6 @@
       --card-bg: #141414;
       --gold:    #d9a521;
       --gold-lt: #f3c94f;
-      --red:     #d32f2f;
       --white:   #ffffff;
     }
 
@@ -200,31 +199,6 @@
       align-items: center;
       gap: 4px;
     }
-
-    /* ── CTA FINAL / URGÊNCIA ── */
-    .cta-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background: var(--red);
-      border-radius: 10px;
-      padding: 16px 20px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .cta-bar:hover { background: #b71c1c; transform: scale(1.02); }
-    .cta-bar i {
-      font-size: 1.4rem;
-      color: var(--white);
-    }
-    .cta-bar span {
-      font-size: 1rem;
-      font-weight: 900;
-      color: var(--white);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
   </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -299,12 +273,6 @@
     <div class="benefit-divider"></div>
     <div class="benefit"><i class="fa-solid fa-paper-plane"></i><span>Envio<br>Rápido</span></div>
   </div>
-
-  <!-- CTA final / urgência -->
-  <a href="#" onclick="falarComVendedor(event)" class="cta-bar">
-    <i class="fa-solid fa-cart-shopping"></i>
-    <span>Corra! Estoque limitado</span>
-  </a>
 
   <!-- Dots decorativos bottom -->
   <div class="dots dots-bl" id="dbl"></div>
