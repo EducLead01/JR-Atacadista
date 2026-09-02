@@ -164,97 +164,6 @@
     .dots-tl { top: 24px; left: 16px; }
     .dots-tr { top: 24px; right: 16px; }
 
-    /* ── TÍTULO PRINCIPAL ── */
-    .main-title {
-      text-align: center;
-      font-size: clamp(2.8rem, 12vw, 4.2rem);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 0.95;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .main-title .gold { color: var(--gold); }
-
-    /* ── BADGE ── */
-    .badge-strip {
-      display: block;
-      width: fit-content;
-      margin: 0 auto 20px;
-      background: var(--bg);
-      color: var(--gold);
-      text-align: center;
-      font-weight: 800;
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 8px 18px;
-      border-radius: 999px;
-      border: 1.5px solid var(--gold);
-    }
-
-    /* ── BENEFITS BAR ── */
-    .benefits {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--card-bg);
-      border: 1px solid rgba(217,165,33,.3);
-      border-radius: 8px;
-      padding: 10px 8px;
-      margin-bottom: 24px;
-      gap: 4px;
-    }
-    .benefit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      flex: 1;
-      text-align: center;
-    }
-    .benefit i {
-      font-size: 1.1rem;
-      color: var(--gold);
-    }
-    .benefit span {
-      font-size: 0.48rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--white);
-      line-height: 1.2;
-    }
-    .benefit-divider {
-      width: 1px;
-      height: 36px;
-      background: rgba(255,255,255,.12);
-      flex-shrink: 0;
-    }
-
-    /* ── PROPOSTA DE VALOR ── */
-    .value-block {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .value-title {
-      font-size: 1.4rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 10px;
-    }
-    .value-title .gold { color: var(--gold); }
-    .value-text {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,.6);
-      line-height: 1.5;
-      max-width: 380px;
-      margin: 0 auto;
-    }
-
     /* ── CTA WHATSAPP PRINCIPAL ── */
     .whatsapp-cta {
       display: flex;
@@ -351,31 +260,6 @@
   <!-- Dots decorativos -->
   <div class="dots dots-tl" id="dtl"></div>
   <div class="dots dots-tr" id="dtr"></div>
-
-  <!-- Título -->
-  <h1 class="main-title">Destaques<br><span class="gold">da Semana</span></h1>
-
-  <!-- Badge strip -->
-  <div class="badge-strip">Campe&otilde;es de vendas</div>
-
-  <!-- Benefits top -->
-  <div class="benefits">
-    <div class="benefit"><i class="fa-solid fa-medal"></i><span>Qualidade<br>Premium</span></div>
-    <div class="benefit-divider"></div>
-    <div class="benefit"><i class="fa-solid fa-shirt"></i><span>Tecido<br>Confortável</span></div>
-    <div class="benefit-divider"></div>
-    <div class="benefit"><i class="fa-solid fa-ruler-vertical"></i><span>Caimento<br>Perfeito</span></div>
-    <div class="benefit-divider"></div>
-    <div class="benefit"><i class="fa-solid fa-truck-fast"></i><span>Pronta<br>Entrega</span></div>
-    <div class="benefit-divider"></div>
-    <div class="benefit"><i class="fa-solid fa-paper-plane"></i><span>Envio<br>Rápido</span></div>
-  </div>
-
-  <!-- Proposta de valor -->
-  <div class="value-block">
-    <h2 class="value-title">Moda de qualidade,<br><span class="gold">direto de fábrica</span></h2>
-    <p class="value-text">Toda semana chegam peças novas com preço de atacado. Fale agora com a gente pelo WhatsApp e garanta a sua.</p>
-  </div>
 
   <!-- CTA WhatsApp principal -->
   <a href="#" onclick="falarComVendedor(event)" class="whatsapp-cta">
