@@ -46,8 +46,6 @@
     .dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); display: block; }
     .dots-tl { top: 24px; left: 16px; }
     .dots-tr { top: 24px; right: 16px; }
-    .dots-bl { bottom: 32px; left: 16px; }
-    .dots-br { bottom: 32px; right: 16px; }
 
     /* ── LOGO ── */
     .logo-wrap {
@@ -186,19 +184,6 @@
     }
     .whatsapp-cta:hover { background: #1ebe5a; transform: scale(1.02); }
     .whatsapp-cta i { font-size: 1.3rem; }
-
-    /* ── FOOTER BAR ── */
-    .footer-benefits {
-      background: var(--card-bg);
-      border: 1px solid rgba(217,165,33,.3);
-      border-radius: 8px;
-      padding: 10px 8px;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 4px;
-    }
   </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -261,28 +246,11 @@
     <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
   </a>
 
-  <!-- Benefits bottom -->
-  <div class="footer-benefits">
-    <div class="benefit"><i class="fa-solid fa-medal"></i><span>Qualidade<br>Premium</span></div>
-    <div class="benefit-divider"></div>
-    <div class="benefit"><i class="fa-solid fa-shirt"></i><span>Tecido<br>Confortável</span></div>
-    <div class="benefit-divider"></div>
-    <div class="benefit"><i class="fa-solid fa-ruler-vertical"></i><span>Caimento<br>Perfeito</span></div>
-    <div class="benefit-divider"></div>
-    <div class="benefit"><i class="fa-solid fa-truck-fast"></i><span>Pronta<br>Entrega</span></div>
-    <div class="benefit-divider"></div>
-    <div class="benefit"><i class="fa-solid fa-paper-plane"></i><span>Envio<br>Rápido</span></div>
-  </div>
-
-  <!-- Dots decorativos bottom -->
-  <div class="dots dots-bl" id="dbl"></div>
-  <div class="dots dots-br" id="dbr"></div>
-
 </div>
 
 <script>
   // Dots decorativos
-  ['dtl','dtr','dbl','dbr'].forEach(function(id) {
+  ['dtl','dtr'].forEach(function(id) {
     var el = document.getElementById(id);
     if (!el) return;
     for (var i = 0; i < 25; i++) el.appendChild(document.createElement('span'));
